@@ -8,9 +8,11 @@
             $user->setEmail($_POST['email']);
 			$user->setPassword($_POST['password']);
 			$user->setPasswordConfirmation($_POST['password_confirmation']);
-			
-			$user->register();
-			var_dump($result);
+            
+            if($password === $passwordConfirmation){
+                $user->register();
+                var_dump($result);
+            }
 		}
 
 ?><!DOCTYPE html>
