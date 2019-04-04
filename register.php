@@ -8,10 +8,12 @@
 			$user->setPassword($_POST['password']);
 			$user->setPasswordConfirmation($_POST['password_confirmation']);
             
+            /*
             if($password === $passwordConfirmation){
                 $user->register();
                 var_dump($result);
             }
+            */
 		}
 
 ?><!DOCTYPE html>
