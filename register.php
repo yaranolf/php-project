@@ -13,7 +13,9 @@
       $user->register();
       var_dump($result);
       }
-      */
+			*/
+			
+			//ook nog eventueel validatie checken (email met @ en . , wachtwoord min 8 tekens)
 		}
 
 ?><!DOCTYPE html>
