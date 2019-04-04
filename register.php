@@ -2,18 +2,18 @@
 	require_once("bootstrap.php");
 
 	  if(!empty($_POST)){
-            $user = new User();
-            $user->setFullName($_POST['fullname']);
-            $user->setEmail($_POST['email']);
+      $user = new User();
+      $user->setFullName($_POST['fullname']);
+      $user->setEmail($_POST['email']);
 			$user->setPassword($_POST['password']);
 			$user->setPasswordConfirmation($_POST['password_confirmation']);
             
-            /*
-            if($password === $passwordConfirmation){
-                $user->register();
-                var_dump($result);
-            }
-            */
+      /*
+      if($password === $passwordConfirmation){
+      $user->register();
+      var_dump($result);
+      }
+      */
 		}
 
 ?><!DOCTYPE html>

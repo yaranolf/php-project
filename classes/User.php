@@ -89,7 +89,7 @@
             $password = password_hash($this->password, PASSWORD_DEFAULT, $options); //PASSWORD_DEFAULT is constant, gaat niet wijzigen
             
             try{
-                $conn= new PDO("mysql:host=localhost;dbname=inspiration_hunter;","root","root", null);
+                $$conn = Db::getInstance();
                 $statement = $conn->prepare("INSERT INTO users (fullname, email, password) VALUES(:fullname, :email, :password)");
                 //gaat injectie tegen, er is geen $_POST, zijn 2 gaten waar nog iets moet binnenkomen
                 $statement->bindParam(":email", $email);
