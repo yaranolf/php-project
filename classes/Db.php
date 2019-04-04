@@ -11,7 +11,7 @@
         public static function getInstance() {
             if(self::$conn != null) {
                 // REUSE our connection
-                //echo "🚀";
+                echo "🚀";
                 return self::$conn;
             }
             else {
@@ -23,7 +23,7 @@
                 $user = $config['user'];
                 $password = $config['password'];
 
-                //echo "💥";
+                echo "💥";
                 self::$conn = new PDO('mysql:host=localhost;dbname='.$database.';charset=utf8mb4', $user, $password);
                 return self::$conn;
             }
