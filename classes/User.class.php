@@ -102,9 +102,10 @@
             $result = $statement->execute();
             echo $result; 
             //om te zien wat er uit komt
-        }catch (Throwable $t){
+        } catch (Throwable $t){
             echo "er liep iets mis";
             //echo $t->getMessage();
         }
+        }
     }
-}
+?>
