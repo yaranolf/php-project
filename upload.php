@@ -50,8 +50,7 @@ if ($uploadOk == 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Photo upload</title>
-    <!--<link rel="stylesheet" href="css/style.css">-->
+    <title>Image upload</title>
 </head>
 <body>
     <div class = "upload__photo">
