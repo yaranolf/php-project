@@ -1,0 +1,27 @@
+<?php
+
+$query = $db->query("SELECT * from users");
+
+while($r = $query->fetch()) {
+   
+    echo  '<img width="130" height="130" src="'.$r['profile_pic'].'"/><br>';
+    echo $r['username'], '<br>';
+    
+
+ 
+
+}
+ 
+
+?><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+</head>
+<body>
+    
+</body>
+</html>
