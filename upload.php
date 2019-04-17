@@ -1,21 +1,16 @@
 
 <?php
 
-if(!empty($_POST)){
-    $description = $_POST['description'];
-} else {
-    $description = "";
-}
 
-if(isset($_POST['Submit1'])){ 
+if(isset($_POST['Submit1']) && !empty($_POST['description'])){ 
     $filepath = "uploads/" . $_FILES["file"]["name"];
-    
-    if(move_uploaded_file($_FILES["file"]["tmp_name"], $filepath)) {
+    $description = $_POST['description'];
+    if(move_uploaded_file($_FILES["file"]["tmp_name"], $filepath) && !empty($description)) {
         echo "<img src=".$filepath." height=300 width=300 />";
-    } else {
-        echo "Error !!";
-    }
-} 
+    } 
+}  else {
+    $description = "Please add a description";
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,13 +22,12 @@ if(isset($_POST['Submit1'])){
     <title>Image upload</title>
 </head>
 <body>
-    
-    <div>
-         <?php echo $description;?>
-    </div>
 
     <form action="upload.php" enctype="multipart/form-data" method="post">
         <input type="file" name="file"><br/>
+        <div>
+            <?php echo $description;?>
+        </div>
         <textarea name="description" rows="6" cols="40"></textarea><br/>
         <input type="submit" value="Upload" name="Submit1"> <br/>
         
