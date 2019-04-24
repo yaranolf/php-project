@@ -23,13 +23,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Inspiration Hunter</title>
-  <!--<link rel="stylesheet" href="css/style.css">-->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<div class="inspirationHunterLogin inspirationHunterLogin--register">
 		<div class="form form--login">
 			<form action="" method="post">
-				<h2 form__title>Sign up for an account</h2>
+				<h2 form__title>Sign up <br>for an <br>account</h2>
 
 				<div class="form__error hidden">
 					<p>
@@ -38,23 +38,30 @@
 				</div>
 
 				<div class="form__field">
-					<label for="email">Email</label>
-					<input type="text" id="email" name="email">
+					<label for="email" class="label">Email</label>
+					<br>
+					<input type="text" id="email" name="email" class="input">
                 </div>
                 
                 <div class="form__field">
-					<label for="fullname">Full name</label>
-					<input type="text" id="fullname" name="fullname">
+
+					<label for="fullname" class="label">Full name</label>
+					<br>
+					<input type="text" id="fullname" name="fullname" class="input">
                 </div>
 
 				<div class="form__field">
-					<label for="password">Password</label>
-					<input type="password" id="password" name="password">
+				
+					<label for="password" class="label">Password</label>
+					<br>
+					<input type="password" id="password" name="password" class="input">
 				</div>
 
                 <div class="form__field">
-					<label for="password_confirmation">Confirm your password</label>
-					<input type="password" id="password_confirmation" name="password_confirmation">
+			
+					<label for="password_confirmation" class="label">Confirm your password</label>
+					<br>
+					<input type="password" id="password_confirmation" name="password_confirmation" class="input">
 				</div>
 
 				<div class="form__field">
