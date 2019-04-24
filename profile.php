@@ -6,6 +6,7 @@ while($r = $query->fetch()) {
    
     echo  '<img width="130" height="130" src="'.$r['profile_pic'].'"/><br>';
     echo $r['username'], '<br>';
+    echo $r['password'], '<br>';
     
 
  
