@@ -41,7 +41,6 @@
             //this verwijst naar huidig object, in een abstract zijn geen objecten dus sef
     
             $config = parse_ini_file('./config/config.ini');
-            //var_dump($config);
     
                 if(self::$conn != null){
                     echo "connectie hergebruiken";
