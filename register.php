@@ -1,74 +1,64 @@
-<?php
-	require_once("bootstrap.php");
+<?php 
+    require_once("bootstrap.php");
 
-	  if(!empty($_POST)){
-      $user = new User();
-      $user->setFullName($_POST['fullname']);
-      $user->setEmail($_POST['email']);
-			$user->setPassword($_POST['password']);
-			$user->setPasswordConfirmation($_POST['password_confirmation']);
-            
-      /*
-      if($password === $passwordConfirmation){
-      $user->register();
-      var_dump($result);
-      }
-			*/
-			
-			//ook nog eventueel validatie checken (email met @ en . , wachtwoord min 8 tekens)
-		}
+    if(!empty($_POST)){
+			/*try{
+          $security = new Security();
+          $security->password = $_POST['password'];
+          $security->passwordConfirmation = $_POST['passwordConfirmation'];
 
-?><!DOCTYPE html>
+				if($security->passwordsAreSecure()){*/
+					$user = new User();
+					$user->setFirstName($_POST['firstname']);
+					$user->setLastName($_POST['lastname']);
+					$user->setUserName($_POST['username']);
+					$user->setEmail($_POST['email']);
+					$user->setPassword($_POST['password']);
+					/*if($user->register()){
+
+					}*/
+					$user->register();
+        	var_dump($user->register());
+		}/*else{
+					$error = "Your passwords are not secure or do not match.";
+				}
+    	}catch(Exception $e){
+				$error = $e->getMessage();
+			}
+		}*/
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Inspiration Hunter</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Register</title>
 </head>
 <body>
-	<div class="inspirationHunterLogin inspirationHunterLogin--register">
-		<div class="form form--login">
-			<form action="" method="post">
-				<h2 form__title>Sign up <br>for an <br>account</h2>
+    <div class="">
+    <form action="" method="post">
+        <label for="firstname">Firstname</label>
+        <input type="text" id="firstname" name="firstname">
 
-				<div class="form__error hidden">
-					<p>
-						Some error here
-					</p>
-				</div>
+        <label for="lastname">Lastname</label>
+        <input type="text" id="lastname" name="lastname">
 
-				<div class="form__field">
-					<label for="email" class="label">Email</label>
-					<br>
-					<input type="text" id="email" name="email" class="input">
-                </div>
-                
-                <div class="form__field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username">
 
-					<label for="fullname" class="label">Full name</label>
-					<br>
-					<input type="text" id="fullname" name="fullname" class="input">
-                </div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email">
 
-				<div class="form__field">
-				
-					<label for="password" class="label">Password</label>
-					<br>
-					<input type="password" id="password" name="password" class="input">
-				</div>
+        <label for="password">Password</label>
+        <input type="text" id="password" name="password">
 
-                <div class="form__field">
-			
-					<label for="password_confirmation" class="label">Confirm your password</label>
-					<br>
-					<input type="password" id="password_confirmation" name="password_confirmation" class="input">
-				</div>
+				<label for="password">Password confirmation</label>
+        <input type="text" id="passwordConfirmation" name="passwordConfirmation">
 
-				<div class="form__field">
-					<input type="submit" value="Sign me up!" class="btn btn--primary">	
-				</div>
-			</form>
-		</div>
-	</div>
+        <input type="submit" value="Sign me up!">
+    </form>
+    </div>
 </body>
 </html>

@@ -1,26 +1,65 @@
 <?php
     class User {
-        private $fullName;
+        private $firstName;
+        private $lastName;
+        private $userName;
         private $email;
         private $password;
-        private $passwordConfirmation;
-
+        
         /**
-         * Get the value of fullName
+         * Get the value of firstName
          */ 
-        public function getFullName()
+        public function getFirstName()
         {
-            return $this->fullName;
+            return $this->firstName;
         }
 
         /**
-         * Set the value of fullName
+         * Set the value of firstName
          *
          * @return  self
          */ 
-        public function setFullName($fullName)
+        public function setFirstName($firstName)
         {
-            $this->fullName = $fullName;
+            $this->firstName = $firstName;
+            return $this;
+        }
+
+        /**
+         * Get the value of lastName
+         */ 
+        public function getLastName()
+        {
+            return $this->lastName;
+        }
+
+        /**
+         * Set the value of lastName
+         *
+         * @return  self
+         */ 
+        public function setLastName($lastName)
+        {
+            $this->lastName = $lastName;
+            return $this;
+        }
+
+        /**
+         * Get the value of userName
+         */ 
+        public function getUserName()
+        {
+            return $this->userName;
+        }
+
+        /**
+         * Set the value of userName
+         *
+         * @return  self
+         */ 
+        public function setUserName($userName)
+        {
+            $this->userName = $userName;
             return $this;
         }
 
@@ -62,53 +101,29 @@
             return $this;
         }
 
-        /**
-         * Get the value of passwordConfirmation
-         */ 
-        public function getPasswordConfirmation()
-        {
-            return $this->passwordConfirmation;
-        }
-
-        /**
-         * Set the value of passwordConfirmation
-         *
-         * @return  self
-         */ 
-        public function setPasswordConfirmation($passwordConfirmation)
-        {
-            $this->passwordConfirmation = $passwordConfirmation;
-            return $this;
-        }
-
         public function register(){
-            $options = [
-                'cost' => 14, //je schrijft 2^14, hash wordt dus 4096x uitgevoerd, hacker moet gokken welke macht wij gekozen hebben, duurt ook langer, met brute force kan je veel minder pogingen doen per minuut
-            ];
-
-            $password = password_hash($this->password, PASSWORD_DEFAULT, $options); //PASSWORD_DEFAULT is constant, gaat niet wijzigen
-            
-            try{
-                $conn = new PDO("mysql:host=localhost;dbname=inspiration_hunter;","root","root",null);
-                //$conn = Db::getInstance();
-                $statement = $conn->prepare("INSERT INTO users (fullname, email, password) VALUES(:fullname, :email, :password)");
-                //gaat injectie tegen, er is geen $_POST, zijn 2 gaten waar nog iets moet binnenkomen
-                $statement->bindParam(":email", $email);
-                $statement->bindParam(":password", $password);
-                $statement->bindParam(":fullname", $fullName);
-                //plakt niks in query tot je runt, bindValue stopt direct in query (ook zonder runnen)
-                //bindParam gaat quotes negeren
-                $statement->execute();
-                //geeft true of false terug zodat je weet of het gelukt is
-                $result = $statement->execute();
-                return $result;
-                echo $result; 
-                //om te zien wat er uit komt
-            } catch (Throwable $t){
-                echo "er liep iets mis";
-                return false;
-                //echo $t->getMessage();
-            }
+                $options = [
+                    'cost' => 14, 
+                ];
+    
+                $password = password_hash($this->password, PASSWORD_DEFAULT, $options);
+                
+                try{
+                    //$conn = new PDO("mysql:host=localhost;dbname=inspiration_hunter;","root","root",null);
+                    $conn = Db::getInstance();
+                    $statement = $conn->prepare("INSERT INTO users (firstname, lastname, username, email, password) VALUES(:firstname, :lastname, :username, :email, :password)");
+                    $statement->bindParam(":firstname", $this->firstName);
+                    $statement->bindParam(":lastname", $this->lastName);
+                    $statement->bindParam(":username", $this->userName);
+                    $statement->bindParam(":email", $this->email);
+                    $statement->bindParam(":password", $password);
+                    //$statement->execute();
+                    $result = $statement->execute();
+                    return $result;
+                } catch (Throwable $t){
+                    echo "er liep iets mis";
+                    return false;
+                }
         }
     }
 ?>
