@@ -38,7 +38,7 @@
             private static $conn;
     
             public static function getInstance(){
-            //this verwijst naar huidig object, in een abstract zijn geen objecten dus sef
+            //this verwijst naar huidig object, in een abstract zijn geen objecten dus self
     
             $config = parse_ini_file('./config/config.ini');
     
