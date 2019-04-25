@@ -1,27 +1,69 @@
 <?php
     class User {
-        private $fullName;
+        private $firstName;
+        private $lastName;
+        private $userName;
         private $email;
         private $password;
-        private $passwordConfirmation;
 
-        /**
-         * Get the value of fullName
+                /**
+         * Get the value of firstName
          */ 
-        public function getFullName()
+        public function getFirstName()
         {
-            return $this->fullName;
+                return $this->firstName;
         }
 
         /**
-         * Set the value of fullName
+         * Set the value of firstName
          *
          * @return  self
          */ 
-        public function setFullName($fullName)
+        public function setFirstName($firstName)
         {
-            $this->fullName = $fullName;
-            return $this;
+                $this->firstName = $firstName;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of lastName
+         */ 
+        public function getLastName()
+        {
+                return $this->lastName;
+        }
+
+        /**
+         * Set the value of lastName
+         *
+         * @return  self
+         */ 
+        public function setLastName($lastName)
+        {
+                $this->lastName = $lastName;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of userName
+         */ 
+        public function getUserName()
+        {
+                return $this->userName;
+        }
+
+        /**
+         * Set the value of userName
+         *
+         * @return  self
+         */ 
+        public function setUserName($userName)
+        {
+                $this->userName = $userName;
+
+                return $this;
         }
 
         /**
@@ -63,14 +105,6 @@
         }
 
         /**
-         * Get the value of passwordConfirmation
-         */ 
-        public function getPasswordConfirmation()
-        {
-            return $this->passwordConfirmation;
-        }
-
-        /**
          * Set the value of passwordConfirmation
          *
          * @return  self
@@ -91,8 +125,10 @@
             try{
                 //$conn = new PDO("mysql:host=localhost;dbname=inspiration_hunter;","root","root",null);
                 $conn = Db::getInstance();
-                $statement = $conn->prepare("INSERT INTO users (fullname, email, password) VALUES(:fullname, :email, :password)");
-                $statement->bindParam(":fullname", $this->fullName);
+                $statement = $conn->prepare("INSERT INTO users (firstname, lastname, username, email, password) VALUES(:firstname, :lastname, :username, :email, :password)");
+                $statement->bindParam(":firstname", $this->firstName);
+                $statement->bindParam(":lastname", $this->lastName);
+                $statement->bindParam(":username", $this->userName);
                 $statement->bindParam(":email", $this->email);
                 $statement->bindParam(":password", $password);
                 //$statement->execute();
