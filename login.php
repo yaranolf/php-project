@@ -15,14 +15,15 @@
 		$result = $statement->execute();
 
 		$user = $statement->fetch(PDO::FETCH_ASSOC); 
-		//var_dump($user);*/
-
+		var_dump($user);
+		
 		//juist > login
 		if( password_verify($password, $user['password']) ){ 
 			echo " 🎈";
 			session_start();
 			$_SESSION['userid'] = $user['id'];
-            header('Location:index.php');
+			header('Location:index.php');
+			
         //fout > error
 		} else {
 			$error = true;
@@ -37,7 +38,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>IMDFlix</title>
+  <title></title>
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
