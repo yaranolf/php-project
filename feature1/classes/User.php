@@ -92,13 +92,12 @@
                 //$conn = new PDO("mysql:host=localhost;dbname=inspiration_hunter;","root","root",null);
                 $conn = Db::getInstance();
                 $statement = $conn->prepare("INSERT INTO users (fullname, email, password) VALUES(:fullname, :email, :password)");
-                $statement->bindParam(":fullname", $fullName);
-                $statement->bindParam(":email", $email);
+                $statement->bindParam(":fullname", $this->fullName);
+                $statement->bindParam(":email", $this->email);
                 $statement->bindParam(":password", $password);
-                $statement->execute();
-                //$result = $statement->execute();
-                //return $result;
-                //echo $result;
+                //$statement->execute();
+                $result = $statement->execute();
+                return $result;
             } catch (Throwable $t){
                 echo "er liep iets mis";
                 return false;

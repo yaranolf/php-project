@@ -8,9 +8,8 @@
         $user->setPassword($_POST['password']);
         //$user->setPasswordConfirmation($_POST['password_confirmation']);
         $user->register();
+        var_dump($user->register());
     }
-    
-              
 ?>
 
 <!DOCTYPE html>
