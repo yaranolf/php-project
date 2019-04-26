@@ -7,7 +7,7 @@
         //$conn = Db::getInstance();
         $conn = new PDO("mysql:host=localhost;dbname=hunter;", "root", "root", null);
         
-        $query = "select * from users where email = '".$conn->real_escape_string($username)."'";
+        $query = "select * from users where email = '".$conn->quote($username)."'";
         $result = $conn->query($query);
         if( $result->num_rows == 1 ) {
             $user = $result->fetch_assoc();
