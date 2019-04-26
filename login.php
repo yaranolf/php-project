@@ -1,42 +1,20 @@
 <?php
-	/*
-	if( !empty($_POST) ){
-		// email en password opvragen
-		$email = $_POST['email'];
-		$password = $_POST['password'];
-
-		// hash opvragen, obv email
-			// tijd besparen door geen try catch te gebruiken
-		$conn = new PDO("mysql:host=localhost;dbname=inspiration_hunter;", "root", "root", null);
-
-		// check of rehash van password gelijk is aan hash uit db
-		$statement = $conn->prepare("select * from users where email = :email");
-		$statement->bindParam(":email", $email);
-		$result = $statement->execute();
-
-		$user = $statement->fetch(PDO::FETCH_ASSOC); 
-		var_dump($user);
-		
-		//juist > login
-		if( password_verify($password, $user['password']) ){ 
-			echo " 🎈";
-			session_start();
-			$_SESSION['userid'] = $user['id'];
-			header('Location:index.php');
-			
-        //fout > error
-		} else {
-			$error = true;
-		}
-	} else {
-        $error = true;
-		}*/
-	
 	// e-mail en password opvragen
 	if( !empty($_POST) ) {
 		$username = $_POST['email'];
 		$password = $_POST['password'];
 	} 
+
+	//functie aanroepen
+	if( login($username, $password) ) {
+		session_start();
+		$_SESSION['username'] = $username;
+
+		header('Location: index.php');
+	}
+	else {
+		$error = "Login failed";
+	}
 
 
 
