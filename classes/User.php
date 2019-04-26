@@ -128,7 +128,7 @@
 
         public function login() {
             // hash opvragen, obv email
-            $conn = new PDO("mysql:host=localhost;dbname=hunter;", "root", "root", null);
+            $conn = Db::getInstance();
 
             // check of rehash van password gelijk is aan hash uit db
             $statement = $conn->prepare("select * from users where email = :email");
