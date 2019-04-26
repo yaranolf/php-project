@@ -133,15 +133,5 @@
             $_SESSION['username'] = $this->email;
             header('Location: index.php');
         }
-
-        /* Check if a user is logged in. If not, redirect to login*/
-        public static function checkLogin(){
-            if(!isset($_SESSION)) { 
-                session_start(); 
-            }
-            if(!isset($_SESSION['username'])){
-                header('Location: login.php');
-            }
-        }
     }
 ?>

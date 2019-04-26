@@ -31,26 +31,11 @@
 	} else {
         $error = true;
 		}*/
-
 	
-	include_once("functions.inc.php");
-	
-	// get user and password from POST
+	// e-mail en password opvragen
 	if( !empty($_POST) ) {
 		$username = $_POST['email'];
 		$password = $_POST['password'];
-
-		// check if user can login (use function)
-		if( canILogin($username, $password) ) {
-			session_start();
-			$_SESSION['username'] = $username;
-
-			// if ok -> redirect to index.php
-			header('Location: index.php');
-		}
-		else {
-			$error = true;
-		}
 	} 
 
 
