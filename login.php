@@ -6,15 +6,7 @@
 	} 
 
 	//functie aanroepen
-	if( login($username, $password) ) {
-		session_start();
-		$_SESSION['username'] = $username;
-
-		header('Location: index.php');
-	}
-	else {
-		$error = "Login failed";
-	}
+	//$result = $user->login();
 
 
 
