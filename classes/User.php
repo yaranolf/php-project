@@ -127,11 +127,18 @@
         }
 
         public function login() {
-            if(!isset($_SESSION)) { 
-                session_start(); 
-            } 
-            $_SESSION['username'] = $this->email;
-            header('Location: index.php');
-        }
+            // hash opvragen, obv email
+			// tijd besparen door geen try catch te gebruiken
+            $conn = new PDO("mysql:host=localhost;dbname=hunter;", "root", "root", null);
+
+            // check of rehash van password gelijk is aan hash uit db
+            $statement = $conn->prepare("select * from users where email = :email");
+            $statement->bindParam(":email", $email);
+            $result = $statement->execute();
+
+            $user = $statement->fetch(PDO::FETCH_ASSOC); 
+            var_dump($user);
+        } 
+
     }
 ?>
