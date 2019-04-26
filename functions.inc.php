@@ -5,7 +5,7 @@
     */
     function canILogin( $username, $password ){
         //$conn = Db::getInstance();
-        $conn = new PDO("mysql:host=localhost;dbname=inspiration_hunter;", "root", "root", null);
+        $conn = new PDO("mysql:host=localhost;dbname=hunter;", "root", "root", null);
         
         $query = "select * from users where email = '".$conn->real_escape_string($username)."'";
         $result = $conn->query($query);
