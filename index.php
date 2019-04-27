@@ -1,3 +1,13 @@
+<?php
+
+include 'classes/Post.php';
+include_once 'classes/Db.php';
+
+$post = new Post();
+  $posts = Post::getAll();  
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +17,15 @@
   <title>Document</title>
 </head>
 <body>
+
+<?php foreach($posts as $post): ?>
+	    <article class="post" >
+		
+        <p> <?php echo $post->date_created; ?> </p>
+        <img src= " <?php echo $post->file_path; ?> " alt="">
+		    <p> <?php echo $post->file_path; ?> </p>
+	    </article>
+	<?php endforeach; ?>
   
 </body>
 </html>

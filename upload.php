@@ -1,16 +1,31 @@
 
 <?php
 
+require_once("bootstrap.php");
+
+include 'classes/Post.php';
+
+
 
 if(isset($_POST['Submit1']) && !empty($_POST['description'])){ 
-    $filepath = "uploads/" . $_FILES["file"]["name"];
+    $targetDir = "uploads/";
+    $fileName = basename($_FILES["file"]["name"]);
+    $targetFilePath = $targetDir . $fileName;
     $description = $_POST['description'];
-    if(move_uploaded_file($_FILES["file"]["tmp_name"], $filepath) && !empty($description)) {
-        $image = "<img src=".$filepath." height=200 width=200 />";
+    if(move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath) && !empty($description)) {
+        $image_show = "<img src=".$targetFilePath." height=200 width=200 />";
+        $image =addslashes(file_get_contents($targetFilePath));
+        $post = new Post();
+        $post->setFile_path($fileName);
+        $post->setImg_description($description);
+        $post->newPost();
     } 
 }  else {
     $description = "Please add a description";
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +42,7 @@ if(isset($_POST['Submit1']) && !empty($_POST['description'])){
     <h2>Upload <br>an image</h2>
 
     <div class="center-div-upload">
-    <?php echo $image ?>
+    <?php echo $image_show ?>
     </div>
 
     <form action="upload.php" enctype="multipart/form-data" method="post">

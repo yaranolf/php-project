@@ -15,7 +15,7 @@
                 return self::$conn;
             } else{
                 echo "nieuwe connectie maken";
-                self::$conn = new PDO('mysql:host=localhost;dbname='.$config['database'], $config['user'], $config['password']);
+                return self::$conn = new PDO('mysql:host=localhost;dbname='.$config['database'], $config['user'], $config['password']);
             }
         }
     }
