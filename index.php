@@ -1,11 +1,9 @@
 <?php
 
-include 'classes/Post.php';
-include_once 'classes/Db.php';
+include_once("bootstrap.php");
+	$posts = Post::getAll();
 
-$post = new Post();
-  $posts = Post::getAll();  
-
+  
 ?>
 
 <!DOCTYPE html>
@@ -18,14 +16,13 @@ $post = new Post();
 </head>
 <body>
 
-<?php foreach($posts as $post): ?>
-	    <article class="post" >
-		
-        <p> <?php echo $post->date_created; ?> </p>
-        <img src= " <?php echo $post->file_path; ?> " alt="">
-		    <p> <?php echo $post->file_path; ?> </p>
-	    </article>
-	<?php endforeach; ?>
+  <?php foreach($posts as $post): ?>
   
+  <img src=" <?php echo "uploads/" . $post->file_path ?> "  height=300 width=300 alt="">  
+  <p><?php echo $post->img_description ?></p>
+  <p><?php echo $post->date_created ?></p>
+
+  <?php endforeach; ?>
+
 </body>
 </html>

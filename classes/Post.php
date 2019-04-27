@@ -83,6 +83,7 @@ class Post
         $conn = Db::getInstance();
         $result = $conn->query("SELECT * FROM images");
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+        
     }
 
  
