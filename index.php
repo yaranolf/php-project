@@ -5,7 +5,6 @@ include 'classes/Like.php';
   $posts = Post::getAll();
 
 
-  
 ?>
 
 <!DOCTYPE html>
@@ -35,13 +34,14 @@ include 'classes/Like.php';
   <?php endforeach; ?>
 
 
-  
+
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 
   <script>
+    
         // index.php script
         $("a.like").on("click", function(e){
             // op welke post?
