@@ -70,6 +70,11 @@ a{
     width: 200px; 
 }
 
+.center-div-image{
+    margin: 20px auto;
+    width: 300px; 
+}
+
 .form__error{
     color: #FA7268;
     text-align: center;
@@ -116,3 +121,9 @@ textarea{
     height: 10px;;
 }
 
+nav a{
+    display: inline-block;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}

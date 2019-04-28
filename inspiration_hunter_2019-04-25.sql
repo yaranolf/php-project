@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 27, 2019 at 01:26 PM
+-- Generation Time: Apr 28, 2019 at 09:09 AM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -23,17 +23,32 @@ SET time_zone = "+00:00";
 CREATE TABLE `images` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `image` blob NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL
+  `img_description` varchar(255) NOT NULL,
+  `date_created` datetime NOT NULL,
+  `file_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `images`
 --
 
-INSERT INTO `images` (`id`, `user_id`, `image`, `description`, `date_created`) VALUES
-(1, 0, 0x75706c6f6164732f31312e6a7067, 'test', '0000-00-00 00:00:00');
+INSERT INTO `images` (`id`, `user_id`, `img_description`, `date_created`, `file_path`) VALUES
+(5, 0, 'vacay', '2019-04-27 17:12:48', '_DSC4743.jpeg'),
+(9, 0, 'fruit', '2019-04-27 20:25:42', '09f7e88ccfe2e64f4baa408399765d9b.jpg'),
+(10, 0, 'what a view!', '2019-04-27 21:09:00', '_04A7147.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `likes`
+--
+
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date_created` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -62,7 +77,10 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (6, '', '', '', '', '$2y$14$Av3naoToJCp0u3sPqUQwS.1SjUITp8asoPj0bNeoQ42GQMNVoo.yG'),
 (7, 'Hoi', 'Hoi', 'Hoi', 'Hoi', '$2y$14$Ugwf93rvdhvgXrz8M63wBeJ.N3wEtsGtiaxxFyxS5mF9DmOawCBq.'),
 (8, 'Annelies', 'Annelies', 'jow', 'hoi', '$2y$14$aHgtdWDRLQ2v/Xq7hICJsem1K6VzFOzQZEDpOdAYMwleGLVkD.bUi'),
-(9, 'Annelies', 'Annelies', 'jow', 'hoi', '$2y$14$8r6vydzlw4710r6NIQKE/OQhlO0UhREmRiqniFlNaNzUNEz2k6fFu');
+(9, 'Annelies', 'Annelies', 'jow', 'hoi', '$2y$14$8r6vydzlw4710r6NIQKE/OQhlO0UhREmRiqniFlNaNzUNEz2k6fFu'),
+(10, 't', 'a', 'a', 'a', '$2y$14$kPfRvt4QXOkn5TLn767XUeP9UWPkyQtfkgLc60TPz7ehMdmkRTt4O'),
+(11, 't', 'a', 'a', 'a', '$2y$14$lKukM/NZvWlb6/TrMEBC5O7UMIfqhQoHaZkHu9821aXRC12.NscLS'),
+(12, 'a', 'a', 'a', 'a', '$2y$14$deJk9MWiFGkm/4WUQpKdQOriwWHzm33WUdhiTW.2wJ7rNC4kTSThq');
 
 --
 -- Indexes for dumped tables
@@ -72,6 +90,12 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -88,10 +112,16 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
