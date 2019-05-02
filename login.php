@@ -1,6 +1,7 @@
 <?php
 
-    include 'functions.inc.php';
+    include 'classes/User.php';
+    $user = new User();
 
     if (!empty($_POST)) {
         $email = $_POST['email'];
