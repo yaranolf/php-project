@@ -1,18 +1,17 @@
-<?php 
-include_once("bootstrap.php");
-include_once("classes/user.php");
+<?php
+include_once 'bootstrap.php';
+include_once 'classes/user.php';
 
 $user = new User();
 $user->setUser_id(13);
-$profile = $user->getUserInfo();
+$profile = $user->getFirstName();
 
-if(!empty($_POST["edit"])) {
-    
-    if(!empty($_FILES['profileImg']['name'])) {
+if (!empty($_POST['edit'])) {
+    if (!empty($_FILES['profileImg']['name'])) {
         $saveImage = new User();
-        $nameWithoutSpace = preg_replace('/\s+/','',$_FILES['profileImg']['name']);
-        $nameWithoutSpaceTMP = preg_replace('/\s+/','',$_FILES['profileImg']['tmp_name']);
-        $nameWithoutSpaceSize = preg_replace('/\s+/','',$_FILES['profileImg']['size']);
+        $nameWithoutSpace = preg_replace('/\s+/', '', $_FILES['profileImg']['name']);
+        $nameWithoutSpaceTMP = preg_replace('/\s+/', '', $_FILES['profileImg']['tmp_name']);
+        $nameWithoutSpaceSize = preg_replace('/\s+/', '', $_FILES['profileImg']['size']);
         $saveImage->SetImageName($nameWithoutSpace);
         $saveImage->SetImageSize($nameWithoutSpaceSize);
         $saveImage->SetImageTmpName($nameWithoutSpaceTMP);
@@ -23,34 +22,34 @@ if(!empty($_POST["edit"])) {
 
     $user_edit = new User();
     $user_edit->setUser_id(13);
-    $user_edit->setFullname($_POST["fullname"]);
-    $user_edit->setEmail($_POST["email"]);
-    $user_edit->setBio($_POST["bio"]);
+    $user_edit->setFullname($_POST['fullname']);
+    $user_edit->setEmail($_POST['email']);
+    $user_edit->setBio($_POST['bio']);
     $user_edit->setImage($destination);
-    if($user_edit->update()){
-        $message = "Profile is up to date.";
+    if ($user_edit->update()) {
+        $message = 'Profile is up to date.';
     } else {
         $error = "Your update didn't come through.";
     }
 }
 
 //password update
-if(!empty($_POST["passwordedit"]) && !empty($_POST["password"]) && !empty($_POST["repassword"])){
-    if(strcmp($_POST['password'], $_POST["repassword"]) == 0){
+if (!empty($_POST['passwordedit']) && !empty($_POST['password']) && !empty($_POST['repassword'])) {
+    if (strcmp($_POST['password'], $_POST['repassword']) == 0) {
         $user_pass = new User();
         $user_pass->setUser_id(13);
-         $user_pass->setPassword($_POST['password']);
-        if($user_pass->updatePassword()){
-            $message = "Password updated";
+        $user_pass->setPassword($_POST['password']);
+        if ($user_pass->updatePassword()) {
+            $message = 'Password updated';
         }
     } else {
-        $error = "Passwoorden moeten gelijk zijn";
+        $error = 'Passwoorden moeten gelijk zijn';
     }
 } else {
-    $error = "Invullen aub.";
+    $error = 'Invullen aub.';
 }
 
-$profile = $user->getUserInfo();
+$profile = $user->getFirstName();
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -66,7 +65,7 @@ $profile = $user->getUserInfo();
     <form method="post" action="" enctype="multipart/form-data" class="edit_profile">
     <h2>Edit profile</h2>
     <label for="profileImg">Mijn profielfoto</label>
-    <img src="<?php echo $profile['image'] ?>" alt="">
+    <img src="<?php echo $profile['image']; ?>" alt="">
     <input type="file" name="profileImg" id="profileImg" accept="image/gif, image/jpeg, image/png, image/jpg">
 
     <div class="formitem">
@@ -76,7 +75,7 @@ $profile = $user->getUserInfo();
 
 <div class="formitem">
     <label for="bio">Bio</label>
-    <textarea rows="4" cols="50" name="bio" id="bio"><?php echo $profile['bio'];?></textarea>
+    <textarea rows="4" cols="50" name="bio" id="bio"><?php echo $profile['bio']; ?></textarea>
 </div>
 
 <div class="formitem">
