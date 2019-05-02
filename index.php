@@ -5,9 +5,7 @@ include 'classes/Like.php';
   $posts = Post::getAll();
   //comment
 
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -33,6 +31,7 @@ include 'classes/Like.php';
     </article>
   <?php endforeach; ?>
 
+  <button> Load more </button>
 
 
   <script
@@ -64,6 +63,10 @@ include 'classes/Like.php';
  
             e.preventDefault();
         });
+
+      //load functie 
+      
+
     </script>
 
 </body>
