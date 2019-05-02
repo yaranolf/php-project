@@ -1,9 +1,9 @@
 <?php
 
-include_once("bootstrap.php");
+include_once 'bootstrap.php';
 include 'classes/Like.php';
   $posts = Post::getAll();
-
+  //comment
 
 ?>
 
@@ -20,16 +20,16 @@ include 'classes/Like.php';
 <body>
 
   
-  <?php include_once("nav.inc.php"); ?>
+  <?php include_once 'nav.inc.php'; ?>
 
   <h2>Your <br> inspiration</h2>
 
-  <?php foreach($posts as $post): ?>
+  <?php foreach ($posts as $post): ?>
     <article class="center-div-image">
-      <img src=" <?php echo "uploads/" . $post->file_path ?> "  height=300 width=300 alt="">  
-      <p><?php echo $post->img_description ?></p>
-      <p><?php echo $post->date_created ?></p>
-      <div><a href="#" data-id="<?php echo $post->id ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt="">  
+      <p><?php echo $post->img_description; ?></p>
+      <p><?php echo $post->date_created; ?></p>
+      <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
     </article>
   <?php endforeach; ?>
 
