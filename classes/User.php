@@ -1,4 +1,7 @@
 <?php
+
+    include 'classes/Db.php';
+
     class User {
         private $firstName;
         private $lastName;
@@ -126,30 +129,7 @@
                 }
         }
 
-        public function login() {
-            // hash opvragen, obv email
-            $conn = Db::getInstance();
-
-            // check of rehash van password gelijk is aan hash uit db
-            $statement = $conn->prepare("select * from users where email = :email");
-            $statement->bindParam(":email", $email);
-            $result = $statement->execute();
-
-            $user = $statement->fetch(PDO::FETCH_ASSOC); 
-            var_dump($user);
         
-            //juist > login
-            if( password_verify($password, $user['password']) ){ 
-                echo " 🎈";
-                session_start();
-                $_SESSION['userid'] = $user['id'];
-                header('Location:index.php');
-                        
-                //fout > error
-                } else {
-                    $error = true;
-                }
-            }
 
     }
 ?>
