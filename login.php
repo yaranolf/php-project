@@ -74,6 +74,10 @@
 					<input type="password" name="password" class="input">
 				</div>
 
+				<div class="form__field">
+					<input type="submit" value="Sign in" class="btn btn--primary">
+				</div>
+
 				<div>
 					<p>No account yet? <a href="register.php">Sign up here</a></p>
 				</div>
