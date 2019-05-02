@@ -1,9 +1,12 @@
 <?php
 
     include 'classes/User.php';
-    $user = new User();
 
     if (!empty($_POST)) {
+        $user = new User();
+        $user->setEmail($_POST['email']);
+        $user->setPassword($_POST['password']);
+
         $email = $_POST['email'];
         $password = $_POST['password'];
 
