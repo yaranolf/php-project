@@ -74,13 +74,6 @@
 					<input type="password" name="password" class="input">
 				</div>
 
-				<div class="form__field">
-					<input type="submit" value="Sign in" class="btn btn--primary">
-					<div class="center-div">	
-					<input type="checkbox" id="rememberMe"><label for="rememberMe" >Remember me</label>
-					</div>
-				</div>
-
 				<div>
 					<p>No account yet? <a href="register.php">Sign up here</a></p>
 				</div>
