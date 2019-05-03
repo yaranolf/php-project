@@ -13,5 +13,8 @@ include 'classes/Search.php';
 
 <?php include_once 'nav.inc.php'; ?>
 
+
+<li><?php echo $s; ?></li>
+
 </body>
 </html>
