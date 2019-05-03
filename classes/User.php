@@ -1,6 +1,6 @@
 <?php
 
-    include 'classes/Db.php';
+    include 'Db.php';
 
     class User
     {
@@ -9,6 +9,7 @@
         private $userName;
         private $email;
         private $password;
+        private $passwordCorfirmation;
 
         /**
          * Get the value of firstName.
@@ -150,14 +151,16 @@
             $statement->bindParam(':lastname', $this->lastName);
             $statement->bindParam(':username', $this->userName);
             $statement->bindParam(':email', $this->email);
-            $statement->bindParam(':password', $hash);
+            $statement->bindParam(':password', $password);
 
-            $hash = password_hash($this->password, PASSWORD_BCRYPT);
+            $password = password_hash($this->password, PASSWORD_BCRYPT);
 
             // execute
             $result = $statement->execute();
 
             return $result;
+
+            echo 'yes';
         }
 
         public function login($email, $password)
@@ -179,5 +182,14 @@
                 return false;
                 $error = true;
             }
+        }
+
+        public function logMeIn()
+        {
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+            $_SESSION['email'] = $this->email;
+            header('Location: index.php');
         }
     }

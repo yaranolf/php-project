@@ -46,7 +46,7 @@
                 $user->setEmail($_POST['email']);
                 $user->setPassword($_POST['password']);
                 if ($user->register()) {
-                    User::login;
+                    $user->logMeIn();
                 }
             } else {
                 $error = 'Your passwords are not secure or do not match.';
@@ -55,9 +55,7 @@
             $error = $e->getMessage();
         }
     }
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -71,6 +69,13 @@
     <div class="">
     <h2>Registreer</h2>
     <form action="" method="post">
+    <?php if (isset($error)): ?>
+		<div class="form__error">
+			<p>
+			💩 <?php echo $error; ?>
+			</p>
+		</div>
+    <?php endif; ?>
         <label for="firstname" class="label">Firstname</label>
         <input type="text" id="firstname" name="firstname" class="input">
 
