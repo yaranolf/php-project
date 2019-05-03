@@ -10,7 +10,7 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if (User::login($email, $password)) {
+        if ($user->login($email, $password)) {
             session_start();
             $_SESSION['email'] = $email;
 
