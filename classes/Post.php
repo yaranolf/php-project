@@ -5,7 +5,7 @@ class Post
     public $user_id;
     public $img_description;
     public $file_path;
-    public $date_created;
+    private $date_created;
 
     /**
      * Get the value of user_id.
@@ -102,6 +102,14 @@ class Post
     {
         $conn = Db::getInstance();
         $result = $conn->query('SELECT * FROM images');
+
+        return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+    }
+
+    public static function getDate()
+    {
+        $conn = Db::getInstance();
+        $result = $conn->query('SELECT date_created FROM images');
 
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }

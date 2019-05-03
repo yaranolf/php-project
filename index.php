@@ -5,11 +5,14 @@ include 'classes/Like.php';
 
 $posts = Post::getAll();
 
-$timepost = new Post();
-$t = $timepost->getDate_created();
-var_dump($t);
+foreach ($posts as $post) {
+    $t = $post->getDate_created();
+    $time_ago = strtotime($t);
+}
+
+//$t = $timepost->getDate_created();
+//var_dump($t);
 //$t = '2019-04-10 09:09:09';
-$time_ago = strtotime($t);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -34,8 +37,7 @@ $time_ago = strtotime($t);
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>
-      <p><?php echo Post::timeAgo(($time_ago)); ?></p>
-      <p><?php echo $post->date_created; ?></p>
+      <p><?php echo $time_ago; ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
     </article>
   <?php endforeach; ?>
