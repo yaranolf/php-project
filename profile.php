@@ -1,111 +1,142 @@
 <?php
+include 'classes/Db.php';
 
-session_start();
-include_once 'User.php';
-include_once 'bootstrap.php';
-$user = new User();
-$user->setUser_id($_SESSION['user_id']);
-
-$profile = $user->getFirstName();
-
-if (!empty($_POST['edit'])) {
-    if (!empty($_FILES['profileImg']['name'])) {
-        $saveImage = new User();
-        $nameWithoutSpace = preg_replace('/\s+/', '', $_FILES['profileImg']['name']);
-        $nameWithoutSpaceTMP = preg_replace('/\s+/', '', $_FILES['profileImg']['tmp_name']);
-        $nameWithoutSpaceSize = preg_replace('/\s+/', '', $_FILES['profileImg']['size']);
-        $saveImage->SetImageName($nameWithoutSpace);
-        $saveImage->SetImageSize($nameWithoutSpaceSize);
-        $saveImage->SetImageTmpName($nameWithoutSpaceTMP);
-        $destination = $saveImage->SaveProfileImg();
-    } else {
-        $destination = $profile['image'];
-    }
-
-    $user_edit = new User();
-    $user_edit->setUser_id($_SESSION['user_id']);
-    $user_edit->setFirstname($_POST['firstname']);
-    $user_edit->setLastname($_POST['lastname']);
-    if ($profile['email'] == $_POST['email']) {
-        $user_edit->setEmail($_POST['email']);
-    } elseif ($user_edit->emailExists($_POST['email'])) {
-        $user_edit->setEmail($profile['email']);
-    } else {
-        $user_edit->setEmail($_POST['email']);
-    }
-    $user_edit->setBio($_POST['bio']);
-    $user_edit->setImage($destination);
-    if ($user_edit->update()) {
-        $message = 'Your profile is updated.';
-    } else {
-        $error = "Something went wrong, profile isn't updated.";
-    }
+$id = null;
+if (!empty($_GET['id'])) {
+    $id = $_REQUEST['id'];
 }
 
-if (!empty($_POST['passwordedit']) && !empty($_POST['password']) && !empty($_POST['repassword'])) {
-    if (strcmp($_POST['password'], $_POST['repassword']) == 0) {
-        $user_pass = new User();
-        $user_pass->setUser_id($_SESSION['user_id']);
-        $user_pass->setPassword($_POST['password']);
-        if ($user_pass->updatePassword()) {
-            $message = 'Password updated';
-        }
-    } else {
-        $error = 'password must be the same';
+if (null == $id) {
+    //header('Location: index.php');
+}
+
+if (!empty($_POST)) {
+    // keep track validation errors
+    $firstnameError = null;
+    $lastnameError = null;
+    $emailError = null;
+    $passwordError = null;
+    $usernameError = null;
+
+    // keep track post values
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $username = $_POST['username'];
+
+    // validate input
+    $valid = true;
+    if (empty($firstname)) {
+        $firstnameError = 'Please enter Name';
+        $valid = false;
+    }
+    $valid = true;
+    if (empty($lastname)) {
+        $lastnameError = 'Please enter Name';
+        $valid = false;
+    }
+
+    if (empty($email)) {
+        $emailError = 'Please enter Email Address';
+        $valid = false;
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $emailError = 'Please enter a valid Email Address';
+        $valid = false;
+    }
+
+    if (empty($username)) {
+        $usernameError = 'Please enter Mobile Number';
+        $valid = false;
+    }
+    if (empty($password)) {
+        $usernameError = 'Please enter Mobile Number';
+        $valid = false;
+    }
+
+    // update data
+    if ($valid) {
+        $pdo = Db::connect();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'UPDATE customers  set name = ?, email = ?, mobile =? WHERE id = ?';
+        $q = $pdo->prepare($sql);
+        $q->execute(array($firstname, $lastname, $username, $email, $password));
+        Db::disconnect();
+        header('Location: index.php');
     }
 } else {
-    $error = 'invullen';
+    $pdo = Db::connect();
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = 'SELECT * FROM customers where id = ?';
+    $q = $pdo->prepare($sql);
+    $q->execute(array($userna));
+    $data = $q->fetch(PDO::FETCH_ASSOC);
+    $name = $data['name'];
+    $email = $data['email'];
+    $mobile = $data['mobile'];
+    Db::disconnect();
 }
-
-$profile = $user->getFirstName();
 
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <meta charset="utf-8">
+    <link   href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
 </head>
+ 
 <body>
-
-
-<?php include_once 'nav.inc.php'; ?>
-
-
-
-
-    <form method="post" action="" enctype="multipart/form-data" class="edit_profile">
-    <h2>Edit profile</h2>
-    <label for="profileImg">Mijn profielfoto</label>
-    <img src="<?php echo $profile['image']; ?>" alt="profiel" style="width:100px;">
-    <input type="file" name="profileImg" id="profileImg" accept="image/gif, image/jpeg, image/png, image/jpg">
-
-    <label for="firstname">firstname</label>
-    <input type="text" name="firstname" id="firstname" value="<?php echo $profile['firstname']; ?>">
-
-    <label for="lastname">lastname</label>
-    <input type="text" name="lastname" id="lastname" value="<?php echo $profile['lastname']; ?>"> 
-
-    <label for="bio">Bio</label>
-    <textarea rows="4" cols="50" name="bio" id="bio"><?php echo $profile['bio']; ?></textarea>
-
-    <label for="email">E-mail</label>
-    <input type="email" name="email" id="email" value="<?php echo $profile['email']; ?>">
-
-    <input type="submit" name="edit" value="Edit">
-</form>
-
-<form method="post" action="" class="edit_profile">
-    <h2>Wachtwoord aanpassen</h2>
-    <label for="password">New password</label>
-    <input type="password" name="password" id="password" placeholder="New password">
-
-     <label for="repassword">Retype New password</label>
-    <input type="password" name="repassword" id="repassword" placeholder="Retype New password">
-
-    <input type="submit" name="passwordedit" value="Edit">
-</form>
-</body>
+    <div class="container">
+     
+                <div class="span10 offset1">
+                    <div class="row">
+                        <h3>Update a Customer</h3>
+                    </div>
+             
+                    <form class="form-horizontal" action="update.php?id=<?php echo $id; ?>" method="post">
+                      <div class="control-group <?php echo !empty($firstname) ? 'error' : ''; ?>">
+                        <label class="control-label">Name</label>
+                        <div class="controls">
+                            <input name="name" type="text"  placeholder="Name" value="<?php echo !empty($firstname) ? $name : ''; ?>">
+                            <?php if (!empty($firstnameError)): ?>
+                                <span class="help-inline"><?php echo $firstnameError; ?></span>
+                            <?php endif; ?>
+                        </div>
+                      </div>
+                      <div class="control-group <?php echo !empty($lastname) ? 'error' : ''; ?>">
+                        <label class="control-label">Name</label>
+                        <div class="controls">
+                            <input name="name" type="text"  placeholder="Name" value="<?php echo !empty($lastname) ? $name : ''; ?>">
+                            <?php if (!empty($lastnameError)): ?>
+                                <span class="help-inline"><?php echo $lastnameError; ?></span>
+                            <?php endif; ?>
+                        </div>
+                      </div>
+                      <div class="control-group <?php echo !empty($emailError) ? 'error' : ''; ?>">
+                        <label class="control-label">Email Address</label>
+                        <div class="controls">
+                            <input name="email" type="text" placeholder="Email Address" value="<?php echo !empty($email) ? $email : ''; ?>">
+                            <?php if (!empty($emailError)): ?>
+                                <span class="help-inline"><?php echo $emailError; ?></span>
+                            <?php endif; ?>
+                        </div>
+                      </div>
+                      <div class="control-group <?php echo !empty($usernameError) ? 'error' : ''; ?>">
+                        <label class="control-label">Mobile Number</label>
+                        <div class="controls">
+                            <input name="mobile" type="text"  placeholder="Mobile Number" value="<?php echo !empty($username) ? $mobile : ''; ?>">
+                            <?php if (!empty($usernameError)): ?>
+                                <span class="help-inline"><?php echo $usernameError; ?></span>
+                            <?php endif; ?>
+                        </div>
+                      </div>
+                      <div class="form-actions">
+                          <button type="submit" class="btn btn-success">Update</button>
+                          <a class="btn" href="index.php">Back</a>
+                        </div>
+                    </form>
+                </div>
+                 
+    </div> <!-- /container -->
+  </body>
 </html>
