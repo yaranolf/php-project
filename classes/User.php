@@ -111,35 +111,6 @@
             return $this;
         }
 
-        /*  public function register()
-          {
-              $options = [
-                      'cost' => 14,
-                  ];
-
-              $password = password_hash($this->password, PASSWORD_DEFAULT, $options);
-
-              try {
-                  //$conn = new PDO("mysql:host=localhost;dbname=inspiration_hunter;","root","root",null);
-                  $conn = Db::getInstance();
-                  $statement = $conn->prepare('INSERT INTO users (firstname, lastname, username, email, password) VALUES(:firstname, :lastname, :username, :email, :password)');
-                  $statement->bindParam(':firstname', $this->firstName);
-                  $statement->bindParam(':lastname', $this->lastName);
-                  $statement->bindParam(':username', $this->userName);
-                  $statement->bindParam(':email', $this->email);
-                  $statement->bindParam(':password', $password);
-
-                  //execute
-                  $result = $statement->execute();
-
-                  return $result;
-              } catch (Throwable $t) {
-                  echo 'er liep iets mis';
-
-                  return false;
-              }
-          }*/
-
         public function register()
         {
             // connectie
