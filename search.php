@@ -2,6 +2,14 @@
 include 'classes/Search.php';
 include 'classes/Post.php';
 
+if (!empty($_POST)) {
+    $foundPosts = $_GET['foundPosts'];
+
+    $user->searchPosts();
+} else {
+    echo 'empty';
+}
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +24,7 @@ include 'classes/Post.php';
 <?php include_once 'nav.inc.php'; ?>
 
 
-<?php foreach ($foundPosts as $foundPost): ?>
+<?php foreach ($foundPosts as $f): ?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt="">  
       <p><?php echo $post->img_description; ?></p>
