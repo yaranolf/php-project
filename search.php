@@ -1,11 +1,10 @@
 <?php
 include 'classes/Search.php';
 include 'classes/Post.php';
+require_once 'bootstrap.php';
 
-if (isset($_POST['submit']) && !empty($_POST['search'])) {
-    $foundPosts = $_GET['foundPosts'];
-
-    $user->searchPosts();
+if (!empty($_GET)) {
+    $foundPosts = Search::searchPosts($_GET['search']);
 } else {
     echo 'empty';
 }
