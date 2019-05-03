@@ -3,7 +3,7 @@ include_once 'bootstrap.php';
 include 'classes/Post.php';
 
 if (!empty($_GET)) {
-    $foundPosts = Search::searchPosts($_GET['search']);
+    $postsFound = Search::searchPosts($_GET['search']);
 }
 
 ?><!DOCTYPE html>
@@ -21,7 +21,7 @@ if (!empty($_GET)) {
 
 <h2>Your <br> results</h2>
 
-<?php foreach ($foundPosts as $f):
+<?php foreach ($postsFound as $f):
     $post = new Post();
     $post->setUser_id($f['user_id']);
     $post->setFile_path($f['file_path']);

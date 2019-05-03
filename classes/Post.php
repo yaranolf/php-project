@@ -2,6 +2,7 @@
 
 class Post
 {
+    public $id;
     public $user_id;
     public $img_description;
     public $file_path;
