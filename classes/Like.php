@@ -1,61 +1,62 @@
 <?php
 
-    include  'classes/Post.php';
+    include 'classes/Post.php';
 
-    class Like {
+    class Like
+    {
         private $postId;
         private $userId;
 
         /**
-         * Get the value of postId
-         */ 
+         * Get the value of postId.
+         */
         public function getPostId()
         {
-                return $this->postId;
+            return $this->postId;
         }
 
         /**
-         * Set the value of postId
+         * Set the value of postId.
          *
-         * @return  self
-         */ 
+         * @return self
+         */
         public function setPostId($postId)
         {
-                $this->postId = $postId;
+            $this->postId = $postId;
 
-                return $this;
+            return $this;
         }
 
         /**
-         * Get the value of userId
-         */ 
+         * Get the value of userId.
+         */
         public function getUserId()
         {
-                return $this->userId;
+            return $this->userId;
         }
 
         /**
-         * Set the value of userId
+         * Set the value of userId.
          *
-         * @return  self
-         */ 
+         * @return self
+         */
         public function setUserId($userId)
         {
-                $this->userId = $userId;
+            $this->userId = $userId;
 
-                return $this;
+            return $this;
         }
 
-        public function saveLike(){
-
+        public function saveLike()
+        {
             // @todo: hook in a new function that checks if a user has already liked a post
 
             $conn = Db::getInstance();
-            
-            $statement = $conn->prepare("insert into likes (post_id, user_id, date_created) values (:postid, :userid, NOW())");
-            $statement->bindValue(":postid", $this->getPostId());
-            $statement->bindValue(":userid", $this->getUserId());
+
+            $statement = $conn->prepare('insert into likes (post_id, user_id, date_created) values (:postid, :userid, NOW())');
+            $statement->bindValue(':postid', $this->getPostId());
+            $statement->bindValue(':userid', $this->getUserId());
+
             return $statement->execute();
-        
         }
     }

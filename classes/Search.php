@@ -6,7 +6,7 @@ class Search
     {
         $conn = Db::getInstance();
         // Prepare statement
-        $statement = $conn->prepare('select * from images where img_desription like %$foundPosts%');
+        $statement = $conn->prepare("select * from images where img_description like '%$foundPosts%'");
         $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
