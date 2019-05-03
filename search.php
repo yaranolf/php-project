@@ -6,7 +6,7 @@ require_once 'bootstrap.php';
 if (!empty($_GET)) {
     $foundPosts = Search::searchPosts($_GET['search']);
 } else {
-    echo 'empty';
+    echo 'Sorry, I can not search for you. You left this empty';
 }
 
 ?><!DOCTYPE html>
@@ -22,7 +22,7 @@ if (!empty($_GET)) {
 
 <?php include_once 'nav.inc.php'; ?>
 
-
+<h2>Your <br> results</h2>
 <?php foreach ($foundPosts as $f): ?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt="">  
