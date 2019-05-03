@@ -7,8 +7,9 @@
     <a href="settings.php">Settings</a>
     <a href="logout.php" class="navbar__logout">Logout</a>
     
-    <form action="" method="get">
-      <input type="text" name="search" class="input">
+    <form action="search.php" method="get">
+      <input class="input" name="search" type="text" placeholder="search">
+      <input id="sumbit" type="submit" value="search">
     </form>
     
     
