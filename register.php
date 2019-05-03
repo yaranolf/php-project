@@ -46,7 +46,7 @@
                 $user->setEmail($_POST['email']);
                 $user->setPassword($_POST['password']);
                 if ($user->register()) {
-                    User::Login;
+                    User::login;
                 }
             } else {
                 $error = 'Your passwords are not secure or do not match.';
