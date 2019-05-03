@@ -1,6 +1,10 @@
 <?php
 include 'classes/Search.php';
-SearchFunction::Search();
+include 'classes/Post.php';
+
+foreach ($foundItems as $foundItem):
+
+
 
 ?><!DOCTYPE html>
 <html lang="en">
