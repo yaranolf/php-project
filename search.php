@@ -1,10 +1,7 @@
 <?php
-require_once 'bootstrap.php';
 
 if (!empty($_GET)) {
     $foundPosts = Search::searchPosts($_GET['search']);
-} else {
-    echo 'Try again';
 }
 
 ?><!DOCTYPE html>
@@ -21,7 +18,7 @@ if (!empty($_GET)) {
 <?php include_once 'nav.inc.php'; ?>
 
 <h2>Your <br> results</h2>
-<?php foreach ($foundPosts as $f): ?>
+<?php foreach ($foundPosts as $f):?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt="">  
       <p><?php echo $post->img_description; ?></p>
