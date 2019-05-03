@@ -1,5 +1,5 @@
 <?php
-    require_once 'bootstrap.php';
+    /*require_once 'bootstrap.php';
 
     if (!empty($_POST)) {
         /*try{
@@ -8,24 +8,50 @@
           $security->passwordConfirmation = $_POST['passwordConfirmation'];
 
             if($security->passwordsAreSecure()){*/
-        $user = new User();
+       /* $user = new User();
         $user->setFirstName($_POST['firstname']);
         $user->setLastName($_POST['lastname']);
         $user->setUserName($_POST['username']);
         $user->setEmail($_POST['email']);
-        $user->setPassword($_POST['password']);
+        $user->setPassword($_POST['password']);*/
         /*if($user->register()){
 
         }*/
+        /*
         $user->register();
         var_dump($user->register());
-    }/*else{
+    }else{
                     $error = "Your passwords are not secure or do not match.";
                 }
         }catch(Exception $e){
                 $error = $e->getMessage();
             }
         }*/
+
+        require_once 'bootstrap.php';
+        include_once 'classes/User.php';
+        include_once 'classes/Security.class.php';
+
+    if (!empty($_POST)) {
+        try {
+            $security = new Security();
+            $security->password = $_POST['password'];
+            $security->passwordConfirmation = $_POST['password_confirmation'];
+
+            if ($security->passwordsAreSecure()) {
+                $user = new User();
+                $user->setEmail($_POST['email']);
+                $user->setPassword($_POST['password']);
+                if ($user->register()) {
+                    User::Login;
+                }
+            } else {
+                $error = 'Your passwords are not secure or do not match.';
+            }
+        } catch (Exception $e) {
+            $error = $e->getMessage();
+        }
+    }
 ?>
 
 <!DOCTYPE html>

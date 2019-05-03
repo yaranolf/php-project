@@ -1,32 +1,37 @@
 <?php
-    /*class Security {
+    class Security
+    {
         public $password;
         public $passwordConfirmation;
 
-        private function passwordIsStrongEnough(){
-            if( strlen( $this->password ) <= 8 ){
-                return false;
-            }
-            else {
+        /*
+            check if passwords are secure
+            to use in my signup process
+        */
+        public function passwordsAreSecure()
+        {
+            if ($this->passwordIsStrongEnough()
+                && $this->passwordsAreEqual()) {
                 return true;
-            }
-        }
-
-        private function passwordsAreEqual(){
-            if( $this->password == $this->passwordConfirmation ){
-                return true;
-            }
-            else {
+            } else {
                 return false;
             }
         }
 
-        public function passwordsAreSecure(){
-            if( $this->passwordIsStrongEnough() 
-                && $this->passwordsAreEqual() ){
+        private function passwordIsStrongEnough()
+        {
+            if (strlen($this->password) <= 8) {
+                return false;
+            } else {
                 return true;
             }
-            else {
+        }
+
+        private function passwordsAreEqual()
+        {
+            if ($this->password == $this->passwordConfirmation) {
+                return true;
+            } else {
                 return false;
             }
         }
