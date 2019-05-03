@@ -125,7 +125,7 @@ class Post
         return $result['count'];
     }
 
-    public static function timeAgo($time_ago)
+    public static function convertTime($time_ago)
     {
         $cur_time = time();
         $time_elapsed = $cur_time - $time_ago;
