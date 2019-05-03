@@ -28,9 +28,9 @@
             }
         }*/
 
-        require_once 'bootstrap.php';
-        include_once 'classes/User.php';
-        include_once 'classes/Security.class.php';
+    require_once 'bootstrap.php';
+    include_once 'classes/User.php';
+    include_once 'classes/Security.class.php';
 
     if (!empty($_POST)) {
         try {
@@ -40,6 +40,9 @@
 
             if ($security->passwordsAreSecure()) {
                 $user = new User();
+                $user->setFirstName($_POST['firstname']);
+                $user->setLastName($_POST['lastname']);
+                $user->setUserName($_POST['username']);
                 $user->setEmail($_POST['email']);
                 $user->setPassword($_POST['password']);
                 if ($user->register()) {
