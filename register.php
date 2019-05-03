@@ -36,7 +36,7 @@
         try {
             $security = new Security();
             $security->password = $_POST['password'];
-            $security->passwordConfirmation = $_POST['password_confirmation'];
+            $security->passwordConfirmation = $_POST['passwordConfirmation'];
 
             if ($security->passwordsAreSecure()) {
                 $user = new User();
