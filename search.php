@@ -2,7 +2,7 @@
 include 'classes/Search.php';
 include 'classes/Post.php';
 
-if (!empty($_POST)) {
+if (isset($_POST['submit']) && !empty($_POST['search'])) {
     $foundPosts = $_GET['foundPosts'];
 
     $user->searchPosts();
