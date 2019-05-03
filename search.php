@@ -2,11 +2,11 @@
 include_once 'bootstrap.php';
 include 'classes/Post.php';
 
-$timeago = Post::get_timeago(strtotime($row['date_created']));
-
 if (!empty($_GET)) {
     $foundPosts = Search::searchPosts($_GET['search']);
 }
+
+$timeago = Post::get_timeago(strtotime($row['date_created']));
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -27,7 +27,7 @@ if (!empty($_GET)) {
     $post = new Post();
     $post->setUser_id($f['user_id']);
     $post->setFile_path($f['file_path']);
-    $post->getLikes();
+    $post->setImg_description($f['img_description']);
     ?>
 
     <article class="center-div-image">
