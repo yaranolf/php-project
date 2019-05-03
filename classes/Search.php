@@ -1,14 +1,16 @@
 <?php
 
-// Users search terms is saved
-$searchIt = $_GET['searchIt'];
-// Create array for the names that are close to or match the search term
-$results = array();
-// Prepare statement
-$search = $conn->prepare("SELECT * FROM 'users' WHERE 'img_description' LIKE ?");
-// Execute with wildcards
-$search->execute(array("%$searchIt%"));
-// Echo results
-foreach ($search as $s) {
-    echo $s['img_description'];
+abstract class Search
+{
+    private static $conn;
+
+    public static function searchItem($foundItem)
+    {
+        self::$conn = Db::getInstance();
+        // Prepare statement
+        $statement = self::$conn->prepare("SELECT * FROM 'images' WHERE img_description LIKE %$foundItem%");
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
