@@ -127,7 +127,8 @@
                 $statement->bindParam(':username', $this->userName);
                 $statement->bindParam(':email', $this->email);
                 $statement->bindParam(':password', $password);
-                //$statement->execute();
+
+                //execute
                 $result = $statement->execute();
 
                 return $result;

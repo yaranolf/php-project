@@ -30,7 +30,7 @@
 
     require_once 'bootstrap.php';
     include_once 'classes/User.php';
-    include_once 'classes/Security.class.php';
+    include_once 'classes/Security.php';
 
     if (!empty($_POST)) {
         try {
