@@ -5,7 +5,9 @@ include 'classes/Like.php';
 
 $posts = Post::getAll();
 
-$timeago = Post::get_timeago(strtotime($row['date_created']));
+$timepost = new Post();
+$timepost->getDate_created();
+$time_ago = Post::timeAgo(strtotime($timepost));
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -26,9 +28,9 @@ $timeago = Post::get_timeago(strtotime($row['date_created']));
 
   <?php foreach ($posts as $post): ?>
     <article class="center-div-image">
-      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt="">  
+      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>
-      <p><?php echo $timeago; ?></p>
+      <p><?php echo $time_ago; ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
     </article>
   <?php endforeach; ?>

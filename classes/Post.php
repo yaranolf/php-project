@@ -7,31 +7,67 @@ class Post
     public $file_path;
     public $date_created;
 
-    public static function get_timeago($date_created)
+    public static function timeAgo($date_created)
     {
-        $now = time();
-        $estimate_time = $now - $date_created;
-
-        if ($estimate_time < 1) {
-            return 'less than 1 second ago';
+        $cur_time = time();
+        $time_elapsed = $cur_time - $date_created;
+        $seconds = $time_elapsed;
+        $minutes = round($time_elapsed / 60);
+        $hours = round($time_elapsed / 3600);
+        $days = round($time_elapsed / 86400);
+        $weeks = round($time_elapsed / 604800);
+        $months = round($time_elapsed / 2600640);
+        $years = round($time_elapsed / 31207680);
+        // Seconds
+        if ($seconds <= 60) {
+            echo "$seconds seconds ago";
         }
-
-        $condition = array(
-                12 * 30 * 24 * 60 * 60 => 'year',
-                30 * 24 * 60 * 60 => 'month',
-                24 * 60 * 60 => 'day',
-                60 * 60 => 'hour',
-                60 => 'minute',
-                1 => 'second',
-    );
-
-        foreach ($condition as $secs => $str) {
-            $d = $estimate_time / $secs;
-
-            if ($d >= 1) {
-                $r = round($d);
-
-                return 'about '.$r.' '.$str.($r > 1 ? 's' : '').' ago';
+        //Minutes
+        elseif ($minutes <= 60) {
+            if ($minutes == 1) {
+                echo 'one minute ago';
+            } else {
+                echo "$minutes minutes ago";
+            }
+        }
+        //Hours
+        elseif ($hours <= 24) {
+            if ($hours == 1) {
+                echo 'an hour ago';
+            } else {
+                echo "$hours hours ago";
+            }
+        }
+        //Days
+        elseif ($days <= 7) {
+            if ($days == 1) {
+                echo 'yesterday';
+            } else {
+                echo "$days days ago";
+            }
+        }
+        //Weeks
+        elseif ($weeks <= 4.3) {
+            if ($weeks == 1) {
+                echo 'a week ago';
+            } else {
+                echo "$weeks weeks ago";
+            }
+        }
+        //Months
+        elseif ($months <= 12) {
+            if ($months == 1) {
+                echo 'a month ago';
+            } else {
+                echo "$months months ago";
+            }
+        }
+        //Years
+        else {
+            if ($years == 1) {
+                echo 'one year ago';
+            } else {
+                echo "$years years ago";
             }
         }
     }
@@ -92,6 +128,26 @@ class Post
     public function setFile_path($file_path)
     {
         $this->file_path = $file_path;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_created.
+     */
+    public function getDate_created()
+    {
+        return $this->date_created;
+    }
+
+    /**
+     * Set the value of date_created.
+     *
+     * @return self
+     */
+    public function setDate_created($date_created)
+    {
+        $this->date_created = $date_created;
 
         return $this;
     }

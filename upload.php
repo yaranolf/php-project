@@ -3,9 +3,6 @@
 
 require_once 'bootstrap.php';
 
-session_start();
-var_dump($_SESSION);
-
 include 'classes/Post.php';
 
 if (isset($_POST['Submit1']) && !empty($_POST['description'])) {

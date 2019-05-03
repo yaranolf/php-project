@@ -138,7 +138,7 @@
             }
         }
 
-        public function Login($email, $password)
+        public static function Login($email, $password)
         {
             $conn = Db::getInstance();
 
