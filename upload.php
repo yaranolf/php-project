@@ -38,7 +38,9 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     <h2>Upload <br>an image</h2>
 
     <div class="center-div-upload">
-    <?php echo $image_show; ?>
+    <?php if (!empty($_POST['description'])) {
+    echo $image_show;
+}?>
     </div>
 
     <form action="upload.php" enctype="multipart/form-data" method="post">

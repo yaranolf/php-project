@@ -90,8 +90,7 @@ class Post
     public function newPost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO images (user_id, img_description, file_path, date_created) values (:user_id, :imgdescription, :file_path, NOW())');
-        $statement->bindValue(':user_id', $this->getUser_id());
+        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created) values (:imgdescription, :file_path, NOW())');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
 
@@ -102,14 +101,6 @@ class Post
     {
         $conn = Db::getInstance();
         $result = $conn->query('SELECT * FROM images');
-
-        return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
-    }
-
-    public static function getDate()
-    {
-        $conn = Db::getInstance();
-        $result = $conn->query('SELECT date_created FROM images');
 
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
@@ -127,65 +118,28 @@ class Post
 
     public static function convertTime($time_ago)
     {
-        $cur_time = time();
-        $time_elapsed = $cur_time - $time_ago;
-        $seconds = $time_elapsed;
-        $minutes = round($time_elapsed / 60);
-        $hours = round($time_elapsed / 3600);
-        $days = round($time_elapsed / 86400);
-        $weeks = round($time_elapsed / 604800);
-        $months = round($time_elapsed / 2600640);
-        $years = round($time_elapsed / 31207680);
-        // Seconds
-        if ($seconds <= 60) {
-            echo "$seconds seconds ago";
+        $estimate_time = time() - $time_ago;
+
+        if ($estimate_time < 1) {
+            return 'less than 1 second ago';
         }
-        //Minutes
-        elseif ($minutes <= 60) {
-            if ($minutes == 1) {
-                echo 'one minute ago';
-            } else {
-                echo "$minutes minutes ago";
-            }
-        }
-        //Hours
-        elseif ($hours <= 24) {
-            if ($hours == 1) {
-                echo 'an hour ago';
-            } else {
-                echo "$hours hours ago";
-            }
-        }
-        //Days
-        elseif ($days <= 7) {
-            if ($days == 1) {
-                echo 'yesterday';
-            } else {
-                echo "$days days ago";
-            }
-        }
-        //Weeks
-        elseif ($weeks <= 4.3) {
-            if ($weeks == 1) {
-                echo 'a week ago';
-            } else {
-                echo "$weeks weeks ago";
-            }
-        }
-        //Months
-        elseif ($months <= 12) {
-            if ($months == 1) {
-                echo 'a month ago';
-            } else {
-                echo "$months months ago";
-            }
-        }
-        //Years
-        else {
-            if ($years == 1) {
-                echo 'one year ago';
-            } else {
-                echo "$years years ago";
+
+        $condition = array(
+                12 * 30 * 24 * 60 * 60 => 'year',
+                30 * 24 * 60 * 60 => 'month',
+                24 * 60 * 60 => 'day',
+                60 * 60 => 'hour',
+                60 => 'minute',
+                1 => 'second',
+    );
+
+        foreach ($condition as $secs => $str) {
+            $d = $estimate_time / $secs;
+
+            if ($d >= 1) {
+                $r = round($d);
+
+                return 'about '.$r.' '.$str.($r > 1 ? 's' : '').' ago';
             }
         }
     }

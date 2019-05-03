@@ -5,11 +5,6 @@ include 'classes/Like.php';
 
 $posts = Post::getAll();
 
-foreach ($posts as $post) {
-    $t = $post->getDate_created();
-    $time_ago = strtotime($t);
-}
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +24,10 @@ foreach ($posts as $post) {
 
   
 
-  <?php foreach ($posts as $post): ?>
+  <?php foreach ($posts as $post):
+    $t = $post->getDate_created();
+    $time_ago = strtotime($t);
+  ?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>

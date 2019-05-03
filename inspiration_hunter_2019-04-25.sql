@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 03, 2019 at 08:04 AM
+-- Generation Time: May 03, 2019 at 02:19 PM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -35,7 +35,10 @@ CREATE TABLE `images` (
 INSERT INTO `images` (`id`, `user_id`, `img_description`, `date_created`, `file_path`) VALUES
 (5, 0, 'vacay', '2019-04-27 15:12:48', '_DSC4743.jpeg'),
 (9, 0, 'fruit', '2019-04-27 18:25:42', '09f7e88ccfe2e64f4baa408399765d9b.jpg'),
-(10, 0, 'what a view!', '2019-04-27 19:09:00', '_04A7147.jpg');
+(10, 0, 'what a view!', '2019-04-27 19:09:00', '_04A7147.jpg'),
+(11, 0, 'test', '2019-05-03 13:22:39', 'large (10).jpg'),
+(12, 0, 'blabla', '2019-05-03 13:22:48', '_DSC4743.jpeg'),
+(13, 0, 'dfsqS', '2019-05-03 13:41:54', 'DSC01936.jpg');
 
 -- --------------------------------------------------------
 
@@ -49,6 +52,14 @@ CREATE TABLE `likes` (
   `user_id` int(11) NOT NULL,
   `date_created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `likes`
+--
+
+INSERT INTO `likes` (`id`, `post_id`, `user_id`, `date_created`) VALUES
+(4, 5, 1, '2019-05-03 15:43:58'),
+(5, 5, 1, '2019-05-03 15:44:02');
 
 -- --------------------------------------------------------
 
@@ -82,7 +93,8 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (11, 't', 'a', 'a', 'a', '$2y$14$lKukM/NZvWlb6/TrMEBC5O7UMIfqhQoHaZkHu9821aXRC12.NscLS'),
 (12, 'a', 'a', 'a', 'a', '$2y$14$deJk9MWiFGkm/4WUQpKdQOriwWHzm33WUdhiTW.2wJ7rNC4kTSThq'),
 (13, 'lisse', 'thys', 'lissethys', 'lisse.thys@hotmail.com', '$2y$14$a.gxJMVG25ZatHqLlqD7OOjMMRcoxj8/aK9j9VXgcs8cqPBVXUJbC'),
-(14, 'lisse', 'thys', 'lissethys', 'lisse.thys@hotmail.com', '$2y$14$GB40R09UtICboi2F42Vhhe39ZshVSiSo7A6BtIQe6CLDz.UjrLMj6');
+(14, 'lisse', 'thys', 'lissethys', 'lisse.thys@hotmail.com', '$2y$14$GB40R09UtICboi2F42Vhhe39ZshVSiSo7A6BtIQe6CLDz.UjrLMj6'),
+(15, 'Lisse', 'Thys', '', 'lisse.thys@hotmail.com', '$2y$10$zwR0hPfZxBTH8Xl.2GStVOfOvg90hhzTE4RlwrYZCFkDRhxCI6Tvu');
 
 --
 -- Indexes for dumped tables
@@ -114,16 +126,16 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
