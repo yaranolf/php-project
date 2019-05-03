@@ -134,6 +134,25 @@
             echo 'yes';
         }
 
+        public function update($id)
+        {
+            // connectie
+            $conn = Db::getInstance();
+
+            // query (sql injectie!!!)
+            $statement = $conn->prepare('UPDATE users SET firstname = :firstname, lastname = :lastname, username = :username, email = :email WHERE id = :id');
+            $statement->bindParam(':firstname', $this->firstName);
+            $statement->bindParam(':lastname', $this->lastName);
+            $statement->bindParam(':username', $this->userName);
+            $statement->bindParam(':email', $this->email);
+            $statement->bindParam(':id', intval($id));
+
+            // execute
+            $result = $statement->execute();
+
+            return $result;
+        }
+
         public function login($email, $password)
         {
             $conn = Db::getInstance();
