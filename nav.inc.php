@@ -8,7 +8,7 @@
     <a href="logout.php" class="navbar__logout">Logout</a>
     
     <form action="search.php" method="GET">
-      <input id="search" name="search" type="text" placeholder="search">
+      <input id="search" name="search" type="text" placeholder="search" class="input">
       <input id="sumbit" type="submit" value="Search">
     </form>
     

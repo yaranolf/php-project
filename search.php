@@ -26,6 +26,7 @@ if (!empty($_GET)) {
     $post->setUser_id($f['user_id']);
     $post->setFile_path($f['file_path']);
     $post->setImg_description($f['img_description']);
+
     $t = $post->getDate_created();
     $time_ago = strtotime($t);
   ?>
