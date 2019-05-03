@@ -16,7 +16,7 @@ include 'classes/Post.php';
 <?php include_once 'nav.inc.php'; ?>
 
 
-<?php foreach ($foundItems as $foundItem): ?>
+<?php foreach ($foundPosts as $foundPost): ?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt="">  
       <p><?php echo $post->img_description; ?></p>
