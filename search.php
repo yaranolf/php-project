@@ -1,12 +1,10 @@
 <?php
-include 'classes/Search.php';
-include 'classes/Post.php';
 require_once 'bootstrap.php';
 
 if (!empty($_GET)) {
     $foundPosts = Search::searchPosts($_GET['search']);
 } else {
-    echo 'Sorry, I can not search for you. You left this empty';
+    echo 'Try again';
 }
 
 ?><!DOCTYPE html>
