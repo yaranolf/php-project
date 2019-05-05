@@ -106,6 +106,16 @@ class Post
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
+    public static function getAllFromFriends($ids, $start, $end)
+    {
+        $conn = Db::getInstance();
+        $result = $conn->prepare('SELECT * FROM images WHERE user_id IN ('.$ids.') limit '.$start.','.$end);
+        //$result->bindParam(':userids', $ids);
+        $result->execute();
+
+        return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+    }
+
     public function getLikes()
     {
         $conn = Db::getInstance();

@@ -154,4 +154,16 @@ class Friends
             }
         }
     }
+
+    public static function getFriends($uid)
+    {
+        if (!empty($uid)) {
+            $conn = Db::getInstance();
+            $result = $conn->prepare("SELECT * FROM friends WHERE (user_one = :userid) OR (user_two = :userid) AND official = '1'");
+            $result->bindParam(':userid', $uid);
+            $result->execute();
+
+            return $result->fetchAll(\PDO::FETCH_ASSOC);
+        }
+    }
 }

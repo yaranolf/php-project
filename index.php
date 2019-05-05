@@ -1,9 +1,22 @@
 <?php
-
+session_start();
 include_once 'bootstrap.php';
 include 'classes/Like.php';
 
-$posts = Post::getAll();
+$friendList = $_SESSION['userid'];
+$friends = Friends::getFriends($_SESSION['userid']);
+foreach ($friends as $friend):
+  $id = $friend['user_one'];
+  if ($id == $_SESSION['userid']) {
+      $friendList = $friendList.','.$friend['user_two'];
+  } else {
+      $friendList = $friendList.','.$id;
+  }
+
+ endforeach;
+ //$friendList = substr($friendList, 1);
+
+$posts = Post::getAllFromFriends($friendList, 0, 20);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -23,7 +36,7 @@ $posts = Post::getAll();
   <h2>Your <br> inspiration</h2>
 
   
-
+<div id="resultlist">
   <?php foreach ($posts as $post):
     $t = $post->getDate_created();
     $time_ago = strtotime($t);
@@ -35,6 +48,7 @@ $posts = Post::getAll();
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
     </article>
   <?php endforeach; ?>
+  </div>
 
   <button> Load more </button>
 
