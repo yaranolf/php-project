@@ -85,7 +85,15 @@ $posts = Post::getAll();
         });
 
       //comment
+      $(function(){
+        //klik op 'add comment'
+        $(".comments-link").on("click", function( event ){
+          event.preventDefault();                
+          $(this).hide();                       
+          $(".comment-form-container").show();   
+        });
 
+        });
 
     </script>
 
