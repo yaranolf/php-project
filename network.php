@@ -16,16 +16,13 @@
 <?php
 //sessie starten
 session_start();
-$_SESSION['uid'] = 1;
+$_SESSION['uid'] = $_SESSION['userid'];
 
 //connect to database
 include_once 'classes/Db.php';
 
 // require friends class
 require 'classes/Friends.php';
-
-//$query = $pdo->prepare('SELECT * FROM users');
-//$query->execute();
 
 $pdo = Db::getInstance();
     $statement = $pdo->prepare('SELECT * FROM users');
@@ -36,34 +33,44 @@ if ($statement->rowCount() > 0) {
         $id = $fetch['id'];
         $username = $fetch['username']; ?>
     <div>
-    <h3><?php echo $username; ?></h3>
-    <div class="actions">
+    
     <?php
         if ($id != $_SESSION['uid']) {
+            ?>
+            <h3><?php echo $username; ?></h3>
+    <div class="actions"><?php
             //display buttons adding as friend
             if (Friends::renderFriendShip($_SESSION['uid'], $id, 'isThereRequestPending') == 1) {
                 ?>
                      <button class="request_pending" disabled>Request Pending</button>
                 <?php
             } else {
-                if (Friends::renderFriendShip($_SESSION['uid'], $id, 'isThereFriendShip') == 0) {
+                if (Friends::renderFriendShip($_SESSION['uid'], $id, 'isThereApprovalPending') == 1) {
                     ?>
-                        <button class='friendBtn add' data-uid='<?php echo $id; ?>' data-type='addfriend'>Add as friend</button>
-                        <button class="request_pending hidden" disabled>Request Pending</button>
+                         <button class="friendBtn friendBtn<?php echo $id; ?> approve" data-uid='<?php echo $id; ?>' data-type='approvefriend'>Approve</button>
+                         <button class='friendBtn friendBtn<?php echo $id; ?> unfriend' data-uid='<?php echo $id; ?>' data-type='destroyfriend'>Ignore</button>
                     <?php
                 } else {
-                    ?>
-                        <button class='friendBtn unfriend' data-uid='<?php echo $id; ?>' data-type='unfriend'>Unfriend</button>
+                    if (Friends::renderFriendShip($_SESSION['uid'], $id, 'isThereFriendShip') == 0) {
+                        ?>
+                        <button class='friendBtn friendBtn<?php echo $id; ?> add' data-uid='<?php echo $id; ?>' data-type='addfriend'>Add as friend</button>
+                        <button class="request_pending hidden" disabled>Request Pending</button>
+                    <?php
+                    } else {
+                        ?>
+                        <button class='friendBtn friendBtn<?php echo $id; ?> unfriend' data-uid='<?php echo $id; ?>' data-type='destroyfriend'>Unfriend</button>
                         <button class='friendBtn add hidden' data-uid='<?php echo $id; ?>' data-type='addfriend'>Add as friend</button>
                         
                         <button class="request_pending hidden" disabled>Request Pending</button>
                     <?php
+                    }
                 }
-            }
+            } ?>
+            </div><?php
         } else {
             // display request
         } ?>
-    </div>
+   
 
 
 
