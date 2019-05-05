@@ -40,8 +40,8 @@ $posts = Post::getAll();
       <input id="sumbit" type="submit" value="Search">
     </form>
     -->
-    <a href=# class="comments-link">add a comment</a>
-    <div class="comment-form-container cm">
+   
+    <div class="comment-form-container cfm">
       <form>
         <textarea name="comment"></textarea>
         <input type="submit" value="add">
@@ -86,13 +86,6 @@ $posts = Post::getAll();
 
       //comment
       $(function(){
-        //klik op 'add comment'
-        $(".comments-link").on("click", function( event ){
-          event.preventDefault();                
-          $(this).hide();                       
-          $(".comment-form-container").show();   
-        });
-
         $(".comment-form-container form").on("submit", function( event ){
             event.preventDefault();             
             alert( $(this).serialize() +"\nWILL BE SENT TO PHP" );
@@ -103,9 +96,7 @@ $posts = Post::getAll();
                 alert("PHP says: "+ response);
               }
         });
-        });
-
-        });
+      });
 
     </script>
 
