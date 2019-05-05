@@ -40,7 +40,7 @@ $posts = Post::getAll();
       <input id="sumbit" type="submit" value="Search">
     </form>
     -->
-   
+    
     <div class="comment-form-container cfm">
       <form>
         <textarea name="comment"></textarea>
