@@ -40,6 +40,13 @@ $posts = Post::getAll();
       <input id="sumbit" type="submit" value="Search">
     </form>
     -->
+    <a href=# class="comments-link">add a comment</a>
+    <div class="comment-form-container cm">
+      <form>
+        <textarea name="comment"></textarea>
+        <input type="submit" value="add">
+      </form>
+    </div>
 
   <?php endforeach; ?>
 
@@ -50,6 +57,7 @@ $posts = Post::getAll();
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
   <script>
     
@@ -76,8 +84,8 @@ $posts = Post::getAll();
             e.preventDefault();
         });
 
-      //load functie 
-      
+      //comment
+
 
     </script>
 
