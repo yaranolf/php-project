@@ -34,11 +34,13 @@ $posts = Post::getAll();
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
     </article>
+  <!-- comment 
     <form action="ajax/comment.php" method="post">
       <input id="comment" type="text" placeholder="Comment" name="comment" class="input">
       <input id="sumbit" type="submit" value="Search">
     </form>
-</form>
+    -->
+
   <?php endforeach; ?>
 
   <button> Load more </button>
