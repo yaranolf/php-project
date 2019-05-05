@@ -1,20 +1,15 @@
 <?php
 
-if (!empty($_POST)) {
-    $postId = $_POST['postId'];
-    $userId = 1;
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    exit;
+} // Don't allow anything but POST
 
-    include_once '../bootstrap.php';
-    $l = new Like();
-    $l->setPostId($postId);
-    $l->setUserId($userId);
-    $l->saveLike(); //voert de query uit (functie in Like.php)
+$response = '';
 
-    //JSON
-    $result = [
-            'status' => 'success',
-            'message' => 'Like has been saved',
-        ];
-
-    echo json_encode($result);
+if (isset($_POST['comment'])) {
+    $comment = htmlspecialchars($_POST['comment']);
+    $response = $comment;
+} else {
+    $response = 'Please, enter a comment';
 }
+echo $response;  // This will be sent/returned to AJAX
