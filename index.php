@@ -84,7 +84,7 @@ $posts = Post::getAll();
             e.preventDefault();
         });
 
-      //comment
+      //comment plaatsen
       $(function(){
         $(".comment-form-container form").on("submit", function( event ){
             event.preventDefault();             

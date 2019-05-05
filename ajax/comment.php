@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 $response = '';
 
 if (isset($_POST['comment'])) {
+    $comment = new Comment();
     $comment = htmlspecialchars($_POST['comment']);
     $response = $comment;
 } else {

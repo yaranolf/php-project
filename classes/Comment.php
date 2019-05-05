@@ -2,10 +2,48 @@
 
 class Comment
 {
-    public $id;
     public $user_id;
     public $comment;
-    private $date_created;
+
+    /**
+     * Get the value of userId.
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * Set the value of userId.
+     *
+     * @return self
+     */
+    public function setUserId($user_Id)
+    {
+        $this->userId = $user_Id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_created.
+     */
+    public function getComment()
+    {
+        return $this->date_created;
+    }
+
+    /**
+     * Set the value of date_created.
+     *
+     * @return self
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
 
     public function addComment()
     {
