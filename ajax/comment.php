@@ -1,5 +1,7 @@
 <?php
 
+include_once '../bootstrap.php';
+
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     exit;
 } // Don't allow anything but POST

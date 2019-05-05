@@ -27,6 +27,7 @@ $posts = Post::getAll();
   <?php foreach ($posts as $post):
     $t = $post->getDate_created();
     $time_ago = strtotime($t);
+
   ?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
