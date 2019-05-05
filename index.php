@@ -93,6 +93,18 @@ $posts = Post::getAll();
           $(".comment-form-container").show();   
         });
 
+        $(".comment-form-container form").on("submit", function( event ){
+            event.preventDefault();             
+            alert( $(this).serialize() +"\nWILL BE SENT TO PHP" );
+            $.ajax({
+              type: "POST",
+              url: "Comment.php",
+              data: $(this).serialize(), success: function( response ) {
+                alert("PHP says: "+ response);
+              }
+        });
+        });
+
         });
 
     </script>
