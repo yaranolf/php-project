@@ -16,7 +16,7 @@ foreach ($friends as $friend):
  endforeach;
  //$friendList = substr($friendList, 1);
 
-$posts = Post::getAllFromFriends($friendList, 0, 20);
+$posts = Post::getAllFromFriends($friendList, 0, 2);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -37,9 +37,11 @@ $posts = Post::getAllFromFriends($friendList, 0, 20);
 
   
 <div id="resultlist">
-  <?php foreach ($posts as $post):
-    $t = $post->getDate_created();
-    $time_ago = strtotime($t);
+  
+  <?php
+  foreach ($posts as $post):
+  $t = $post->getDate_created();
+   $time_ago = strtotime($t);
   ?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
@@ -50,14 +52,19 @@ $posts = Post::getAllFromFriends($friendList, 0, 20);
   <?php endforeach; ?>
   </div>
 
-  <button> Load more </button>
+    <input type="hidden" id="start" value="2">
+    <input type="hidden" id="end" value="4">
+    <input type="hidden" id="ids" value="<?php echo $friendList; ?>">
+  <button class="loadmore"> Load more </button>
 
 
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
+<script src="js/Posts.js" ></script>
   <script>
     
         // index.php script

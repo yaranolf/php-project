@@ -116,6 +116,8 @@ class Post
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
+    
+
     public function getLikes()
     {
         $conn = Db::getInstance();

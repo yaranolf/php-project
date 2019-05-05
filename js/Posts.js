@@ -1,26 +1,23 @@
 $(function(){
-    $(document).on('click','.friendBtn',function(){
-        var $this = $(this);
-        var type = $this.data('type');
+    $(document).on('click','.loadmore',function(){
+       // var $this = $(this);
+        var startpos = Number($('#start').val())
+        var endpos = Number($('#end').val());
 
        
         
-                var id = $this.data('uid');
+                var ids = $('#ids').val();
 
-                if(id != "")
+                if(ids != "")
                 {
                 
-                   $.post('http://localhost:8888/php-project2/parse.php', {tags: 'addFriend', uid: id}, function(data){
-                      
-                        if(data.code == 1)
-                        {
-                            $this.text(data.msg);
-                            $this.attr('disabled', 'disabled');
-                        }else {
-                            
-                        } 
+                   $.post('http://localhost:8888/php-project2/loadmorepost.php', {start: startpos, end: endpos, ids: ids}, function(data){
+                   alert (data);   
+                   $('.center-div-image:last').after(data).show();
+                      //$('#start') = startpos + 20;
+                     // $('#end') = endpos + 20;
                         
-                    },"json"); 
+                    }); 
                 }
         
     });
