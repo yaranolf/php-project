@@ -5,9 +5,11 @@ include 'classes/Like.php';
 
 $posts = Post::getAll();
 
-if (isset($_POST['user_comm'])) {
+if (isset($_POST['comment'])) {
     $comment = new Comment();
     $comment->setComment($_POST['comment']);
+
+    $comment = $_POST['comment'];
 }
 
 ?><!DOCTYPE html>
@@ -92,7 +94,7 @@ if (isset($_POST['user_comm'])) {
           $.ajax({
             method: "POST",
             url: "classes/Comment.php",
-            data: {user_comm:comment}
+            data: {comment:comment}
           },
           success:function(response){
             document.getElementById("comment").value="";
