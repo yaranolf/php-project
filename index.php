@@ -34,18 +34,13 @@ $posts = Post::getAll();
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+      <p><?php echo $comment; ?></p>
     </article>
-  <!-- comment 
-    <form action="ajax/comment.php" method="post">
-      <input id="comment" type="text" placeholder="Comment" name="comment" class="input">
-      <input id="sumbit" type="submit" value="Search">
-    </form>
-    -->
     
     <div class="comment-form-container cfm">
-      <form>
-        <textarea name="comment"></textarea>
-        <input type="submit" value="add">
+      <form method="post" action="" onsubmit="return post();" id="container">
+        <textarea name="comment" placeholder="Comment"></textarea>
+        <input type="submit" value="add" id="submit">
       </form>
     </div>
 
@@ -86,18 +81,21 @@ $posts = Post::getAll();
         });
 
       //comment plaatsen
-      $(function(){
-        $(".comment-form-container form").on("submit", function( event ){
-            event.preventDefault();             
-            alert( $(this).serialize() +"\nWILL BE SENT TO PHP" );
-            $.ajax({
-              type: "POST",
-              url: "Comment.php",
-              data: $(this).serialize(), success: function( response ) {
-                alert("PHP says: "+ response);
-              }
-        });
+      function postComment(){
+        var comment = document.getElementById("comment").value;
+        if(comment){
+          $.ajax({
+            method: "POST",
+            url: "Comment.php",
+            data: {user_comm:comment}
+          },
+          success:function(response){
+            document.getElementById("comment").value="";
+          }
+        }
       });
+      return false;
+      }
 
     </script>
 
