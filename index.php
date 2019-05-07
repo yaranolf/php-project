@@ -5,6 +5,11 @@ include 'classes/Like.php';
 
 $posts = Post::getAll();
 
+if (isset($_POST['user_comm'])) {
+    $comment = new Comment();
+    $comment->setComment($_POST['comment']);
+}
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +44,7 @@ $posts = Post::getAll();
     
     <div class="comment-form-container cfm">
       <form method="post" action="" onsubmit="return post();" id="container">
-        <textarea name="comment" placeholder="Comment"></textarea>
+        <textarea name="comment" placeholder="Comment" id="comment"></textarea>
         <input type="submit" value="add" id="submit">
       </form>
     </div>
@@ -86,7 +91,7 @@ $posts = Post::getAll();
         if(comment){
           $.ajax({
             method: "POST",
-            url: "Comment.php",
+            url: "classes/Comment.php",
             data: {user_comm:comment}
           },
           success:function(response){
