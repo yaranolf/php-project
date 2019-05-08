@@ -51,13 +51,9 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
     </article>
   <?php endforeach; ?>
   </div>
-
-    <input type="hidden" id="start" value="2">
-    <input type="hidden" id="end" value="4">
+    <input type="hidden" id="start" name="start" value="2"/>
     <input type="hidden" id="ids" value="<?php echo $friendList; ?>">
   <button class="loadmore"> Load more </button>
-
-
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

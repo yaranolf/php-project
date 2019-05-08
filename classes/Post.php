@@ -7,6 +7,7 @@ class Post
     public $img_description;
     public $file_path;
     private $date_created;
+    public $user_name;
 
     /**
      * Get the value of user_id.
@@ -88,6 +89,26 @@ class Post
         return $this;
     }
 
+    /**
+     * Get the value of user_name.
+     */
+    public function getUser_name()
+    {
+        return $this->user_name;
+    }
+
+    /**
+     * Set the value of user_name.
+     *
+     * @return self
+     */
+    public function setUser_name($user_name)
+    {
+        $this->user_name = $user_name;
+
+        return $this;
+    }
+
     public function newPost()
     {
         $conn = Db::getInstance();
@@ -106,17 +127,15 @@ class Post
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 
-    public static function getAllFromFriends($ids, $start, $end)
+    public static function getAllFromFriends($ids, $start, $counter)
     {
         $conn = Db::getInstance();
-        $result = $conn->prepare('SELECT * FROM images WHERE user_id IN ('.$ids.') limit '.$start.','.$end);
+        $result = $conn->prepare('SELECT * FROM images WHERE user_id IN ('.$ids.') limit '.$start.','.$counter);
         //$result->bindParam(':userids', $ids);
         $result->execute();
 
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
-
-    
 
     public function getLikes()
     {

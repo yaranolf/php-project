@@ -40,6 +40,7 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     <div class="center-div-upload">
     <?php if (!empty($_POST['description'])) {
     echo $image_show;
+    echo $user_id;
 }?>
     </div>
 
