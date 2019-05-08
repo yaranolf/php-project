@@ -119,6 +119,25 @@ class Post
         return $statement->execute();
     }
 
+    public function removePost($id)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('DELETE FROM images WHERE id = :id');
+        $statement->bindValue(':id', $id);
+
+        return $statement->execute();
+    }
+
+    public function modifyPost($id, $description)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('UPDATE images SET img_description = :description WHERE id = :id');
+        $statement->bindValue(':id', $id);
+        $statement->bindValue(':description', $description);
+
+        return $statement->execute();
+    }
+
     public static function getAll()
     {
         $conn = Db::getInstance();

@@ -25,4 +25,37 @@ $(function(){
                 }
         
     });
+    $(document).on('click','.RemoveBtn',function(){
+        // var $this = $(this);
+        var $this = $(this);
+        var id = $this.data('id');
+ 
+        
+
+                 
+                    $.post('http://localhost:8888/php-project2/parse.php', {tags: 'destroyPost', imageId: id}, function(data){
+                    
+                    $this.parents('article').toggle();
+                   
+                   
+                         
+                     }); 
+         
+     });
+     $(document).on('click','.ModifyBtn',function(){
+        // var $this = $(this);
+        var $this = $(this);
+        var id = $this.data('id');
+        var imgDescription = $this.parents('article').find('#Description').val();
+       
+        
+
+                 
+                    $.post('http://localhost:8888/php-project2/parse.php', {tags: 'modifyPost', imageId: id, imgDescription: imgDescription}, function(data){
+                    
+           
+                         
+                     }); 
+         
+     });
 });

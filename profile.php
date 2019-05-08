@@ -137,7 +137,29 @@ if (!empty($_POST)) {
                         </div>
                     </form>
                 </div>
+        
 
     </div> <!-- /container -->
+    <div class="images">
+    <?php
+
+    $posts = Post::getAllFromFriends($id, 0, 999);
+
+  foreach ($posts as $post):
+  $t = $post->getDate_created();
+   $time_ago = strtotime($t);
+  ?>
+    <article class="center-div-image">
+      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
+      <p> <input id="Description" type="text"  placeholder="Description" value="<?php echo $post->img_description; ?>"></p>
+      <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
+      <div><button data-id="<?php echo $post->id; ?>" class="RemoveBtn">Delete</button><button data-id="<?php echo $post->id; ?>" class="ModifyBtn">Modify</button><br><br><br><br><br><br> </div>
+    </article>
+  <?php endforeach; ?>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
+<script src="js/Posts.js" ></script>
   </body>
 </html>
