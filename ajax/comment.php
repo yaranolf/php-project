@@ -20,8 +20,8 @@ if (!empty($_POST)) {
         ];
     } catch (Throwable $t) {
         $result = [
-    'status' => 'success',
-    'message' => 'Comment has been saved',
+    'status' => 'error',
+    'message' => 'Comment hasn/t been saved',
     ];
     }
     echo json_encode($result); //vertaald json naar php
