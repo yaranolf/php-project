@@ -54,6 +54,7 @@ if (isset($_POST['comment'])) {
       //set id
       //set data
     ?>
+    //echo user + tekst + datum
     <div class="comment-form-container cfm">
       <form method="post" action="" onsubmit="return post();" id="container">
         <textarea name="comment" placeholder="Comment" id="comment"></textarea>
