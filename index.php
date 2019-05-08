@@ -99,10 +99,14 @@ if (isset($_POST['comment'])) {
         });
 
       //comment plaatsen
-      function postComment(){
-        var comment = document.getElementById("comment").value;
-        if(comment){
-          $.ajax({
+      //click functie
+      $("").on("click", function(e)){
+        console.log("");
+        var postId = $(this).data("postId");
+        var userId = $(this).data("userId");
+        var commentText = $(this).data("commentText");
+    
+        $.ajax({
             method: "POST",
             url: "classes/Comment.php",
             data: {comment:comment}
@@ -111,6 +115,7 @@ if (isset($_POST['comment'])) {
             document.getElementById("comment").value="";
           }
         }
+      }
       });
       return false;
       }
