@@ -44,13 +44,23 @@ if (isset($_POST['comment'])) {
       <p><?php echo $comment; ?></p>
     </article>
     
+    <?php foreach ($comment as $c):
+      //new comment
+      //id
+      //setData
+
+      //user ophalen
+      //new user
+      //set id
+      //set data
+    ?>
     <div class="comment-form-container cfm">
       <form method="post" action="" onsubmit="return post();" id="container">
         <textarea name="comment" placeholder="Comment" id="comment"></textarea>
         <input type="submit" value="add" id="submit">
       </form>
     </div>
-
+  <?php endforeach; ?> 
   <?php endforeach; ?>
 
   <button> Load more </button>
