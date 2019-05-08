@@ -13,9 +13,9 @@ class Comment
     public function setComment()
     {
         $conn = Db::getInstance();
-
-        $result = $conn->query('select * from comments by id desc');
-
+        //comment       //db::simplefetch > mogelijkheid
+        $result = $conn->query('select * from comments by id desc'); //where id = '.this->id
+        //$this->userId = $comment["userId"]
         return $result->fetchAll(PDO::FETCH_ARRAY);
     }
 
