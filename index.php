@@ -53,13 +53,14 @@ if (isset($_POST['comment'])) {
       $comment->setComment();
 
       //user ophalen
+      $user = new User();
       //new user
       //set id
       //set data
     ?>
-    //echo user + tekst + datum
+    <!--echo user + tekst + datum -->
     <div class="comment-form-container cfm">
-      <form method="post" action="" onsubmit="return post();" id="container">
+      <form method="post" action="" onsubmit="return setComment();" id="container">
         <textarea name="comment" placeholder="Comment" id="comment"></textarea>
         <input type="submit" value="add" id="submit_comment">
       </form>
