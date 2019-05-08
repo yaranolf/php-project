@@ -41,7 +41,7 @@ if (isset($_POST['comment'])) {
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
-      <p><?php echo $comment; ?></p>
+      <p><?php echo $newComment; ?></p>
     </article>
     
     <?php foreach ($comment as $c):
@@ -58,7 +58,7 @@ if (isset($_POST['comment'])) {
     <div class="comment-form-container cfm">
       <form method="post" action="" onsubmit="return post();" id="container">
         <textarea name="comment" placeholder="Comment" id="comment"></textarea>
-        <input type="submit" value="add" id="submit">
+        <input type="submit" value="add" id="submit_comment">
       </form>
     </div>
   <?php endforeach; ?> 
@@ -100,12 +100,14 @@ if (isset($_POST['comment'])) {
 
       //comment plaatsen >> kan ook verplaatsen naar detailpagina? 
       //click functie
-      $("").on("click", function(event)){
+      $("submit_comment").on("click", function(event)){
         console.log("");
         var postId = $(this).data("id");
         var userId = $(this).data("userId");
         var commentText = $(this).data("commentText");
     
+        e.preventDefault();
+        
         $.ajax({
             method: "POST",
             url: "ajax/comment.php",
@@ -117,8 +119,8 @@ if (isset($_POST['comment'])) {
             dataType: "json"
           })
           .done(function(response){
-            if(res.status == "success"){
-              var newComment =; //verwijzen naar hierboven
+            if(response.status == "success"){
+              return newComment; //verwijzen naar hierboven
             }
           });
         });
