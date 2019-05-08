@@ -1,7 +1,6 @@
 <?php
 
 include_once 'bootstrap.php';
-include 'classes/Like.php';
 
 $posts = Post::getAll();
 
@@ -57,9 +56,9 @@ $posts = Post::getAll();
                 method: "POST",
                 url: "ajax/like.php",
                 data: { postId: postId },
-                dataType: "json"
+                dataType: "text"
             })
-            .done(function( res ) {
+            .done(function( res ) { console.log(res);
                 if(res.status == "success") {
                     likes++;
                     elLikes.html(likes);

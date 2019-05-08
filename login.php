@@ -11,7 +11,6 @@
         $password = $_POST['password'];
 
         if (User::Login($email, $password)) {
-            session_start();
             $_SESSION['email'] = $email;
 
             header('Location: index.php');

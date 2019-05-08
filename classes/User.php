@@ -149,7 +149,6 @@
             $user = $statement->fetch(PDO::FETCH_ASSOC);
 
             if (password_verify($password, $user['password'])) {
-                session_start();
                 $_SESSION['userid'] = $user['id'];
 
                 return true;

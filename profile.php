@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 include_once 'User.php';
 include_once 'bootstrap.php';
 $user = new User();

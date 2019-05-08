@@ -1,11 +1,12 @@
 <?php
 
+require_once '../bootstrap.php';
     //POST?
     if (!empty($_POST)) {
         $postId = $_POST['postId'];
-        $userId = 1;
+        $userId = $_SESSION['userid'];
 
-        include_once '../bootstrap.php';
+        //include_once '../bootstrap.php';
         $l = new Like();
         $l->setPostId($postId);
         $l->setUserId($userId);

@@ -1,7 +1,5 @@
 <?php
 
-    include 'classes/Post.php';
-
     class Like
     {
         private $postId;
@@ -54,9 +52,9 @@
             $conn = Db::getInstance();
 
             $statement = $conn->prepare('insert into likes (post_id, user_id, date_created) values (:postid, :userid, NOW())');
-            $statement->bindValue(':postid', $this->getPostId());
-            $statement->bindValue(':userid', $this->getUserId());
+            $statement->bindValue(':postid', $this->postId);
+            $statement->bindValue(':userid', $this->userId);
 
-            return $statement->execute();
+            $statement->execute();
         }
     }
