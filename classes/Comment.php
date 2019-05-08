@@ -25,5 +25,7 @@ class Comment
 
         $statement = $conn->prepare('insert into comments (comment, date_created) values (:comment, NOW())');
         $statement->bindValue(':comment', $this->getComment());
+
+        return $statement->execute();
     }
 }
