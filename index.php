@@ -41,13 +41,16 @@ if (isset($_POST['comment'])) {
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
-      <p><?php echo $newComment; ?></p>
+     <p><?php; // echo $response;?></p>
     </article>
     
     <?php foreach ($comment as $c):
       //new comment
+      $comment = new Comment();
       //id
-      //setData
+      $comment->setUserId($c['userId']);
+      $comment->setPostId($c['postId']);
+      $comment->setComment();
 
       //user ophalen
       //new user
@@ -107,7 +110,7 @@ if (isset($_POST['comment'])) {
         var commentText = $(this).data("commentText");
     
         e.preventDefault();
-        
+
         $.ajax({
             method: "POST",
             url: "ajax/comment.php",
@@ -120,7 +123,7 @@ if (isset($_POST['comment'])) {
           })
           .done(function(response){
             if(response.status == "success"){
-              return newComment; //verwijzen naar hierboven
+              return response; //verwijzen naar hierboven
             }
           });
         });
