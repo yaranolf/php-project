@@ -100,7 +100,7 @@ if (isset($_POST['comment'])) {
 
       //comment plaatsen
       //click functie
-      $("").on("click", function(e)){
+      $("").on("click", function(event)){
         console.log("");
         var postId = $(this).data("postId");
         var userId = $(this).data("userId");
@@ -108,18 +108,18 @@ if (isset($_POST['comment'])) {
     
         $.ajax({
             method: "POST",
-            url: "classes/Comment.php",
-            data: {comment:comment}
-          },
-          success:function(response){
-            document.getElementById("comment").value="";
-          }
-        }
-      }
-      });
-      return false;
-      }
-
+            url: "ajax/comment.php",
+            data: {
+              //aanvullen
+            },
+            dataType: "json"
+          })
+          .done(function(response){
+            if(res.status == "success"){
+              var newComment =; //verwijzen naar hierboven
+            }
+          });
+        });
     </script>
 
 </body>
