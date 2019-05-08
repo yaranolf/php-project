@@ -102,7 +102,7 @@ if (isset($_POST['comment'])) {
       //click functie
       $("").on("click", function(event)){
         console.log("");
-        var postId = $(this).data("postId");
+        var postId = $(this).data("id");
         var userId = $(this).data("userId");
         var commentText = $(this).data("commentText");
     
@@ -110,7 +110,9 @@ if (isset($_POST['comment'])) {
             method: "POST",
             url: "ajax/comment.php",
             data: {
-              //aanvullen
+              postId: postId,
+              userId: userId,
+              commentText: commentText
             },
             dataType: "json"
           })
