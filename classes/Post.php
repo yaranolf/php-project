@@ -91,7 +91,8 @@ class Post
     public function newPost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created) values (:imgdescription, :file_path, NOW())');
+        $statement = $conn->prepare('INSERT INTO images (user_id, img_description, file_path, date_created) values (:userid, :imgdescription, :file_path, NOW())');
+        $statement->bindValue(':userid', $this->getUser_id());
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
 
@@ -115,8 +116,6 @@ class Post
 
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
-
-    
 
     public function getLikes()
     {

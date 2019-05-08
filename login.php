@@ -13,6 +13,7 @@
         if ($user->login($email, $password)) {
             session_start();
             $_SESSION['email'] = $email;
+            $_SESSION['uid'] = $user->getUserId($email);
 
             header('Location: index.php');
         } else {

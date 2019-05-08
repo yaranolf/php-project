@@ -1,9 +1,8 @@
-
 <?php
-
-require_once 'bootstrap.php';
-
+session_start();
+include_once 'bootstrap.php';
 include 'classes/Post.php';
+include_once 'classes/User.php';
 
 if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     $targetDir = 'uploads/';
@@ -16,12 +15,14 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         $post = new Post();
         $post->setFile_path($fileName);
         $post->setImg_description($description);
+        var_dump($_SESSION);
+        $post->setUser_id($_SESSION['uid']);
+
         $post->newPost();
     }
 } else {
     $description = 'Please add a description';
 }
-
 ?>
 
 <!DOCTYPE html>

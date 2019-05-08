@@ -4,12 +4,33 @@
 
     class User
     {
+        private $id;
         private $firstName;
         private $lastName;
         private $userName;
         private $email;
         private $password;
         private $passwordCorfirmation;
+
+        /**
+         * Get the value of id.
+         */
+        public function getId()
+        {
+            return $this->id;
+        }
+
+        /**
+         * Set the value of id.
+         *
+         * @return self
+         */
+        public function setId($id)
+        {
+            $this->id = $id;
+
+            return $this;
+        }
 
         /**
          * Get the value of firstName.
@@ -181,5 +202,16 @@
             }
             $_SESSION['email'] = $this->email;
             header('Location: index.php');
+        }
+
+        public function getUserId($email)
+        {
+            $conn = Db::getInstance();
+            $statement = $conn->prepare('select id from users where email = :email');
+            $statement->bindParam(':email', $email);
+            $statement->execute();
+            $result = $statement->fetch(PDO::FETCH_OBJ);
+
+            return $result->id;
         }
     }
