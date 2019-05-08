@@ -98,7 +98,7 @@ if (isset($_POST['comment'])) {
             e.preventDefault();
         });
 
-      //comment plaatsen
+      //comment plaatsen >> kan ook verplaatsen naar detailpagina? 
       //click functie
       $("").on("click", function(event)){
         console.log("");

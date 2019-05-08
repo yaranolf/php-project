@@ -1,21 +1,22 @@
 <?php
-if (!empty($_POST)) {
-        $postId = $_POST['postId'];
-        $userId = 1;
 
+if (!empty($_POST)) {
+    $postId = $_POST['postId'];
+    $userId = $_POST['userId'];
+    $commentText = $_POST['commentText'];
+    //datum
+
+    try {
         include_once '../bootstrap.php';
-        $l = new Like();
-        $l->setPostId($postId);
-        $l->setUserId($userId);
-        $l->saveLike(); //voert de query uit (functie in Like.php)
+        $comment = new Comment();
+        $comment->setPostId($postId);
+        $comment->setUserId($userId);
+        $comment->saveComment();
 
         //JSON
         $result = [
             'status' => 'success',
-            'message' => 'Like has been saved',
+            'message' => 'Comment has been saved',
         ];
-
-        echo json_encode($result); //vertaald json naar php
-
-        //nagaan in inspecteren -> netwerk en preview request
     }
+}
