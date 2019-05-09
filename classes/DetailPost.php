@@ -5,6 +5,7 @@ include 'classes/Post.php';
 
 class Detail
 {
+    public $id;
     private $postId;
     private $userId;
 

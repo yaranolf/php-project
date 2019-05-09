@@ -21,15 +21,15 @@ $detailPost->addDetailPost();
 
 <?php foreach ($detailPost as $d):
   $post = new Post();
-  $post->setUser_id($f['user_id']);
-  $post->setFile_path($f['file_path']);
-  $post->setImg_description($f['img_description']);
+  $post->setUser_id($d['user_id']);
+  $post->setFile_path($d['file_path']);
+  $post->setImg_description($d['img_description']);
 
   $t = $post->getDate_created();
   $time_ago = strtotime($t);
 ?>
 <article class="center-div-image">
-<a href="detailPost.php?id=<?php echo $f['id']; ?>"><img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> </a>
+<img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt="">
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
