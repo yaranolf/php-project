@@ -112,9 +112,10 @@ class Post
     public function newPost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created) values (:imgdescription, :file_path, NOW())');
+        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created, user_id) values (:imgdescription, :file_path, NOW(), :userid)');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
+        $statement->bindValue(':userid', $this->getUser_id());
 
         return $statement->execute();
     }
