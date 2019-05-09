@@ -1,4 +1,5 @@
 <?php
+include 'classes/Like.php';
 if (!empty($_POST)) {
     $postId = $_POST['postId'];
     $userId = $_POST['userId'];
@@ -23,7 +24,10 @@ if (!empty($_POST)) {
 
 <?php include_once 'nav.inc.php'; ?>
 <!-- foto linken aan search oproep-->
+<?php foreach ($detailpost as $d):
 
+
+?>
 <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>
@@ -51,7 +55,7 @@ if (!empty($_POST)) {
 
     <!--echo user + tekst + datum -->
     <div class="comment-form-container cfm">
-      <form method="post" action="" onsubmit="return setComment();" id="container">
+      <form method="post" action="" id="container"> <!--onsubmit="return setComment();-->
         <textarea name="comment" placeholder="Comment" id="comment"></textarea>
         <input type="submit" value="add" id="submit_comment">
       </form>
