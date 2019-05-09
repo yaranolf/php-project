@@ -2,8 +2,8 @@
 include_once 'bootstrap.php';
 include_once 'classes/DetailPost.php';
 
-$detailPost = new Detail();
-$detailPost->addDetailPost();
+$detailPost = $_GET['id'];
+$detailPost = Post::detailPost('postId');
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -19,22 +19,13 @@ $detailPost->addDetailPost();
 <?php include_once 'nav.inc.php'; ?>
 <!-- foto linken aan search oproep-->
 
-<?php foreach ($detailPost as $d):
-  $post = new Post();
-  $post->setUser_id($d['user_id']);
-  $post->setFile_path($d['file_path']);
-  $post->setImg_description($d['img_description']);
 
-  $t = $post->getDate_created();
-  $time_ago = strtotime($t);
-?>
 <article class="center-div-image">
-<img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt="">
+<img src="<?php echo 'uploads/'.$post->file_path; ?>"  height=300 width=300 alt="">
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
 </article>
-<?php endforeach; ?>
 
 
   <script>
