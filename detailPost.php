@@ -1,10 +1,12 @@
 <?php
 include_once 'bootstrap.php';
-include_once 'classes/DetailPost.php';
 
-$detailPost = $_GET['id'];
-$detailPost = Post::detailPost('postId');
+$post = $_GET['id'];
+$detailPost = Post::detailPost($post);
 
+$detailPost->img_description;
+
+var_dump($detailPost);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +23,7 @@ $detailPost = Post::detailPost('postId');
 
 
 <article class="center-div-image">
-<img src="<?php echo 'uploads/'.$post->file_path; ?>"  height=300 width=300 alt="">
+<img src="<?php echo 'uploads/'.$post->file_path; ?>" height=300 width=300 alt="">
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>

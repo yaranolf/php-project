@@ -145,11 +145,11 @@ class Post
         }
     }
 
-    public function detailPost()
+    public static function detailPost($post)
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('select * from images where post_id = :postid');
-        $statement->bindValue(':postid', $this->id);
+        $statement = $conn->prepare('select * from images where id = :postid');
+        $statement->bindValue(':postid', $post);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
