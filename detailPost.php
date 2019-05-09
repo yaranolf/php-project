@@ -4,6 +4,7 @@ include_once 'classes/DetailPost.php';
 
 $detailPost = new Detail();
 $detailPost->addDetailPost();
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

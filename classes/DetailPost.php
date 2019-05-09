@@ -1,5 +1,6 @@
 <?php
 
+include_once 'bootstrap.php';
 include 'classes/Post.php';
 
 class Detail
