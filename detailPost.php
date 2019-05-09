@@ -4,9 +4,7 @@ include_once 'bootstrap.php';
 $post = $_GET['id'];
 $detailPost = Post::detailPost($post);
 
-$detailPost->img_description;
-
-var_dump($detailPost);
+var_dump($post);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +18,6 @@ var_dump($detailPost);
 
 <?php include_once 'nav.inc.php'; ?>
 <!-- foto linken aan search oproep-->
-
-
 <article class="center-div-image">
 <img src="<?php echo 'uploads/'.$post->file_path; ?>" height=300 width=300 alt="">
       <p><?php echo $post->img_description; ?></p>
