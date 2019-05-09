@@ -144,4 +144,15 @@ class Post
             }
         }
     }
+
+    public function detailPost()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('select * from images where post_id = :postid');
+        $statement->bindValue(':postid', $this->id);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 }
