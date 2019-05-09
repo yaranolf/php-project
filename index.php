@@ -5,13 +5,6 @@ include 'classes/Like.php';
 
 $posts = Post::getAll();
 
-if (isset($_POST['comment'])) {
-    $comment = new Comment();
-    $comment->setComment($_POST['comment']);
-
-    $comment = $_POST['comment'];
-}
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

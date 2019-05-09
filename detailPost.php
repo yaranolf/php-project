@@ -11,6 +11,13 @@ if (!empty($_POST)) {
     $detailpost->addDetail();
 }
 
+if (isset($_POST['comment'])) {
+    $comment = new Comment();
+    $comment->setComment($_POST['comment']);
+
+    $comment = $_POST['comment'];
+}
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +42,7 @@ if (!empty($_POST)) {
      <p><?php; // echo $response;?></p>
 </article>
 <?php; endforeach; ?> 
+
 <!-- commentaar eronder -->
 <?php //foreach ($comment as $c):
       //new comment
