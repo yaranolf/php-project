@@ -46,13 +46,14 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
-      <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+      <div><a href="#" class="like" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
     </article>
   <?php endforeach; ?>
   </div>
     <input type="hidden" id="start" name="start" value="2"/>
     <input type="hidden" id="ids" value="<?php echo $friendList; ?>">
-  <button class="loadmore"> Load more </button>
+  <button class="loadmore btn--primary"> Load more </button>
+
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -62,9 +63,9 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
 <script src="js/Posts.js" ></script>
   <script>
     
-        // index.php script
-        $("a.like").on("click", function(e){
-            // op welke post?
+    $(document).ready(function(){
+        $(".like").on("click", function(e){
+            var button = $(this);
             var postId = $(this).data('id');
             var elLikes = $(this).parent().find(".likes");
             var likes = elLikes.html();
@@ -73,20 +74,19 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
                 method: "POST",
                 url: "ajax/like.php",
                 data: { postId: postId },
-                dataType: "json"
+                dataType: "json",
+                
             })
             .done(function( res ) {
-                if(res.status == "liked") {
-                  button.text("unlike");
-                    elLikes.html(likes);
+                if(res.status === "liked") {
+                  //button.html("unlike");
+                  elLikes.html(likes);
                 }
             });
  
             e.preventDefault();
         });
-
-      //load functie 
-      
+      });
 
     </script>
 
