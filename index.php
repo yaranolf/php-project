@@ -43,29 +43,6 @@ if (isset($_POST['comment'])) {
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
      <p><?php; // echo $response;?></p>
     </article>
-    
-    <?php foreach ($comment as $c):
-      //new comment
-      $comment = new Comment();
-      //id
-      $comment->setUserId($c['userId']);
-      $comment->setPostId($c['postId']);
-      $comment->setComment();
-
-      //user ophalen
-      $user = new User();
-      //new user
-      //set id
-      //set data
-    ?>
-    <!--echo user + tekst + datum -->
-    <div class="comment-form-container cfm">
-      <form method="post" action="" onsubmit="return setComment();" id="container">
-        <textarea name="comment" placeholder="Comment" id="comment"></textarea>
-        <input type="submit" value="add" id="submit_comment">
-      </form>
-    </div>
-  <?php endforeach; ?> 
   <?php endforeach; ?>
 
   <button> Load more </button>
