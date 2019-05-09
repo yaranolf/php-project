@@ -34,7 +34,6 @@ $posts = Post::getAll();
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
-     <p><?php; // echo $response;?></p>
     </article>
   <?php endforeach; ?>
 
