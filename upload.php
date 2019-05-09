@@ -19,7 +19,7 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         $post->setFile_path($fileName);
         $post->setImg_description($description);
         $post->setUser_id($userId);
-        $post->newPost();
+        $post->savePost();
     }
 } else {
     $description = 'Please add a description';

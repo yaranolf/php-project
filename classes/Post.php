@@ -109,7 +109,7 @@ class Post
         return $this;
     }
 
-    public function newPost()
+    public function savePost()
     {
         $conn = Db::getInstance();
         $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created, user_id) values (:imgdescription, :file_path, NOW(), :userid)');
