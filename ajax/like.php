@@ -9,15 +9,15 @@
         $l = new Like();
         $l->setPostId($postId);
         $l->setUserId($userId);
-        $l->saveLike(); //voert de query uit (functie in Like.php)
+        $l->likeUnlike($postId); //voert de query uit (functie in Like.php)
 
         //JSON
-        $result = [
-            'status' => 'success',
+        $res = [
+            'status' => 'liked',
             'message' => 'Like has been saved',
         ];
 
-        echo json_encode($result); //vertaald json naar php
+        echo json_encode($res); //vertaald json naar php
 
         //nagaan in inspecteren -> netwerk en preview request
     }

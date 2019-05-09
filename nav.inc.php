@@ -9,7 +9,7 @@
     
     <form action="search.php" method="GET">
       <input id="search" name="search" type="text" placeholder="search" class="input">
-      <input id="sumbit" type="submit" value="Search">
+      <input id="sumbit" type="submit" value="Search" class="btn btn--primary">
     </form>
     
     

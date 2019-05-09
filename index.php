@@ -76,8 +76,8 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
                 dataType: "json"
             })
             .done(function( res ) {
-                if(res.status == "success") {
-                    likes++;
+                if(res.status == "liked") {
+                  button.text("unlike");
                     elLikes.html(likes);
                 }
             });
