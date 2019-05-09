@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,14 +9,10 @@
     <title>Detail post</title>
 </head>
 <body>
+<!-- foto linken aan search oproep-->
 
-    <article class="center-div-image">
-      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
-      <p><?php echo $post->img_description; ?></p>
-      <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
-      <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
-    </article>
 
+<!-- commentaar eronder -->
 <?php foreach ($comment as $c):
       //new comment
       $comment = new Comment();
@@ -41,9 +39,9 @@
   <?php endforeach; ?> 
 
   <script>
-       //comment plaatsen >> kan ook verplaatsen naar detailpagina? 
-      //click functie
-      $("submit_comment").on("click", function(event)){
+    //comment plaatsen >> kan ook verplaatsen naar detailpagina? 
+    //click functie
+    $("submit_comment").on("click", function(event)){
         console.log("");
         var postId = $(this).data("id");
         var userId = $(this).data("userId");
