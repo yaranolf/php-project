@@ -5,6 +5,8 @@ require_once 'bootstrap.php';
 
 include 'classes/Post.php';
 
+$userId = $_SESSION['userid'];
+
 if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     $targetDir = 'uploads/';
     $fileName = basename($_FILES['file']['name']);
@@ -16,8 +18,8 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         $post = new Post();
         $post->setFile_path($fileName);
         $post->setImg_description($description);
-        $r = $post->newPost();
-        var_dump($r);
+        $post->setUser_id($userId);
+        $post->newPost();
     }
 } else {
     $description = 'Please add a description';
