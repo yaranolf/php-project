@@ -1,10 +1,10 @@
 <?php
 include_once 'bootstrap.php';
+  $post = new Post();
+    $post = $_GET['id'];
+    $detailPost = Post::detailPost($post);
 
-$post = $_GET['id'];
-$detailPost = Post::detailPost($post);
-
-var_dump($post);
+var_dump($detailPost);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
