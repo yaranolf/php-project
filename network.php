@@ -14,8 +14,10 @@
 
 <body>
 <?php
+
+require 'bootstrap.php';
+
 //sessie starten
-session_start();
 $_SESSION['uid'] = $_SESSION['userid'];
 
 //connect to database

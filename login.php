@@ -1,7 +1,7 @@
 <?php
 
     include 'classes/User.php';
-
+    require_once 'bootstrap.php';
     if (!empty($_POST)) {
         $user = new User();
         $user->setEmail($_POST['email']);
@@ -11,7 +11,6 @@
         $password = $_POST['password'];
 
         if ($user->login($email, $password)) {
-            session_start();
             $_SESSION['email'] = $email;
 
             header('Location: index.php');
