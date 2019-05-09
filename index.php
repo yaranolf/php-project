@@ -13,7 +13,7 @@ $posts = Post::getAll();
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
-  <title>Document</title>
+  <title>Feed</title>
 </head>
 <body>
 
