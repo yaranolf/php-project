@@ -26,7 +26,6 @@ if (!empty($_POST)) {
 <!-- foto linken aan search oproep-->
 <?php foreach ($detailpost as $d):
 
-
 ?>
 <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
@@ -35,7 +34,7 @@ if (!empty($_POST)) {
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
      <p><?php; // echo $response;?></p>
 </article>
-
+<?php; endforeach; ?> 
 <!-- commentaar eronder -->
 <?php //foreach ($comment as $c):
       //new comment
@@ -55,7 +54,7 @@ if (!empty($_POST)) {
 
     <!--echo user + tekst + datum -->
     <div class="comment-form-container cfm">
-      <form method="post" action="" id="container"> <!--onsubmit="return setComment();-->
+      <form method="post" action="" onsubmit="return setComment();" id="container">
         <textarea name="comment" placeholder="Comment" id="comment"></textarea>
         <input type="submit" value="add" id="submit_comment">
       </form>
