@@ -78,33 +78,6 @@ if (isset($_POST['comment'])) {
  
             e.preventDefault();
         });
-
-      //comment plaatsen >> kan ook verplaatsen naar detailpagina? 
-      //click functie
-      $("submit_comment").on("click", function(event)){
-        console.log("");
-        var postId = $(this).data("id");
-        var userId = $(this).data("userId");
-        var commentText = $(this).data("commentText");
-    
-        e.preventDefault();
-
-        $.ajax({
-            method: "POST",
-            url: "ajax/comment.php",
-            data: {
-              postId: postId,
-              userId: userId,
-              commentText: commentText
-            },
-            dataType: "json"
-          })
-          .done(function(response){
-            if(response.status == "success"){
-              return response; //verwijzen naar hierboven
-            }
-          });
-        });
     </script>
 
 </body>

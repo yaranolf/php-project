@@ -8,6 +8,12 @@
 </head>
 <body>
 
+    <article class="center-div-image">
+      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
+      <p><?php echo $post->img_description; ?></p>
+      <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
+      <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+    </article>
 
 <?php foreach ($comment as $c):
       //new comment
@@ -23,6 +29,8 @@
       //set id
       //set data
     ?>
+    
+
     <!--echo user + tekst + datum -->
     <div class="comment-form-container cfm">
       <form method="post" action="" onsubmit="return setComment();" id="container">
@@ -31,5 +39,34 @@
       </form>
     </div>
   <?php endforeach; ?> 
+
+  <script>
+       //comment plaatsen >> kan ook verplaatsen naar detailpagina? 
+      //click functie
+      $("submit_comment").on("click", function(event)){
+        console.log("");
+        var postId = $(this).data("id");
+        var userId = $(this).data("userId");
+        var commentText = $(this).data("commentText");
+    
+        e.preventDefault();
+
+        $.ajax({
+            method: "POST",
+            url: "ajax/comment.php",
+            data: {
+              postId: postId,
+              userId: userId,
+              commentText: commentText
+            },
+            dataType: "json"
+          })
+          .done(function(response){
+            if(response.status == "success"){
+              return response; //verwijzen naar hierboven
+            }
+          });
+        });
+    </script>
 </body>
 </html>
