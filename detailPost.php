@@ -1,5 +1,6 @@
 <?php
 include_once 'bootstrap.php';
+include_once 'classes/DetailPost.php';
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -16,11 +17,7 @@ include_once 'bootstrap.php';
 <!-- foto linken aan search oproep-->
 
 <article class="center-div-image">
-      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
-      <p><?php echo $post->img_description; ?></p>
-      <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
-      <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
-     <p><?php; // echo $response;?></p>
+      <?php $detailPost = Detail::addDetailPost(); ?>
 </article>
 
 

@@ -47,10 +47,10 @@ class Detail
         return $this;
     }
 
-    public function addDetail()
+    public function addDetailPost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('select * from posts where post_id = :postid');
+        $statement = $conn->prepare('select * from images where post_id = :postid');
         $statement->bindValue(':postid', $this->id);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
