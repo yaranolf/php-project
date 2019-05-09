@@ -7,9 +7,9 @@
 
         include_once '../bootstrap.php';
         $l = new Like();
-        $l->setPostId($postId);
+        //$l->setPostId($postId);
         $l->setUserId($userId);
-        $l->saveLike(); //voert de query uit (functie in Like.php)
+        $l->checkLike($postId); //voert de query uit (functie in Like.php)
 
         //JSON
         $result = [
