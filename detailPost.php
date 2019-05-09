@@ -1,5 +1,14 @@
 <?php
+if (!empty($_POST)) {
+    $postId = $_POST['postId'];
+    $userId = 1;
 
+    include_once '../bootstrap.php';
+    $detailpost = new Detail();
+    $detailpost->setPostId($postId);
+    $detailpost->setUserId($userId);
+    $detailpost->addDetail();
+}
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
