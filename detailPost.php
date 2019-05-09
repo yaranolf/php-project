@@ -1,5 +1,6 @@
 <?php
-include 'classes/Like.php';
+include_once 'bootstrap.php';
+include 'classes/Post.php';
 if (!empty($_POST)) {
     $postId = $_POST['postId'];
     $userId = $_POST['userId'];
@@ -14,7 +15,7 @@ if (!empty($_POST)) {
 if (isset($_POST['comment'])) {
     $comment = new Comment();
     $comment->setComment($_POST['comment']);
-
+    include_once '../bootstrap.php';
     $comment = $_POST['comment'];
 }
 
@@ -41,7 +42,7 @@ if (isset($_POST['comment'])) {
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
      <p><?php; // echo $response;?></p>
 </article>
-<?php; endforeach; ?> 
+<?php endforeach; ?> 
 
 <!-- commentaar eronder -->
 <?php //foreach ($comment as $c):
@@ -67,7 +68,7 @@ if (isset($_POST['comment'])) {
         <input type="submit" value="add" id="submit_comment">
       </form>
     </div>
-  <?php; // endforeach;?> 
+  <?php // endforeach;?> 
 
   <script>
     //comment plaatsen >> kan ook verplaatsen naar detailpagina? 
