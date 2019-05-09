@@ -31,7 +31,7 @@ if (!empty($_GET)) {
     $time_ago = strtotime($t);
   ?>
     <article class="center-div-image">
-      <a href="detailPost.php"><img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> </a>
+      <a href="detailPost?id=<?php echo $f['id']; ?>"><img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> </a>
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
