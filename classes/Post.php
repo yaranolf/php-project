@@ -152,22 +152,22 @@ class Post
         $result->bindValue(':postid', $post);
         $result->execute();
 
-        return $result->fetchAll(PDO::FETCH_CLASS);
+        return $result->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
-     * Get the value of id
-     */ 
+     * Get the value of id.
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * Set the value of id
+     * Set the value of id.
      *
-     * @return  self
-     */ 
+     * @return self
+     */
     public function setId($id)
     {
         $this->id = $id;
