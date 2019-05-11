@@ -47,6 +47,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" class="like" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+      <div><a href="#" class="report" data-id="<?php echo $post->id; ?>" >Report as inappropriate</a> <span class='inappropriate'><?php echo implode($post->getNrOfInappropriate()); ?></span> people report this </div>
     </article>
   <?php endforeach; ?>
   </div>
@@ -86,6 +87,29 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
  
             e.preventDefault();
         });
+
+        $(".report").on("click", function(e){
+            var postId = $(this).data('id');
+            var elInappropriate = $(this).parent().find(".inappropriate");
+            var inappropriate = elInappropriate.html();
+
+            $.ajax({
+              method: "POST",
+              url: "ajax/report.php",
+              data: { postId: postId },
+              dataType: "json"
+            })
+
+            .done(function(res){
+              if(res.status === "reported"){
+                elInappropriate.html(inappropriate);
+              }
+            })
+
+            
+            e.preventDefault();
+        });
+
       });
 
     </script>

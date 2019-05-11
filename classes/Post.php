@@ -8,6 +8,27 @@ class Post
     public $file_path;
     private $date_created;
     public $user_name;
+    public $inappropriate;
+
+    /**
+     * Get the value of id.
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * Get the value of user_id.
@@ -117,8 +138,6 @@ class Post
         $statement->bindValue(':file_path', $this->getFile_path());
         $statement->bindValue(':userid', $this->getUser_id());
 
-        $statement->execute();
-
         return $statement->execute();
     }
 
@@ -162,12 +181,12 @@ class Post
     public function getLikes()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('select count(*) as count from likes where post_id = :postid');
+        $statement = $conn->prepare('select count(*) as countLikes from likes where post_id = :postid');
         $statement->bindValue(':postid', $this->id);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        return $result['count'];
+        return $result['countLikes'];
     }
 
     public static function convertTime($time_ago)
@@ -196,5 +215,63 @@ class Post
                 return 'about '.$r.' '.$str.($r > 1 ? 's' : '').' ago';
             }
         }
+    }
+
+    /**
+     * Get the value of inappropriate.
+     */
+    public function getInappropriate()
+    {
+        return $this->inappropriate;
+    }
+
+    /**
+     * Set the value of inappropriate.
+     *
+     * @return self
+     */
+    public function setInappropriate($inappropriate)
+    {
+        $this->inappropriate = $inappropriate;
+
+        return $this;
+    }
+
+    public function reportPost($postId)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('UPDATE images SET inappropriate=inappropriate + 1 WHERE id=:id AND user_id=:userid');
+        $statement->bindValue(':id', $postId);
+        $statement->bindValue(':userid', $this->getUser_id());
+
+        return $statement->execute();
+    }
+
+    public function reportAsInappropriate($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT inappropriate FROM images WHERE id=:id AND user_id=:userid');
+        $statement->bindValue(':id', $postId);
+        $statement->bindValue(':userid', $this->getUser_id());
+        $statement->execute();
+        $result = implode($statement->fetch(PDO::FETCH_NUM));
+        if ($result > 4) {
+            $this->reportPost($postId);
+        }
+
+        return $result;
+    }
+
+    public function getNrOfInappropriate()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT inappropriate FROM images WHERE id=:id AND user_id=:userid');
+        $statement->bindValue(':id', $this->getId());
+        $statement->bindValue(':userid', $this->getUser_id());
+        $result = $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_NUM);
+
+        return $result;
     }
 }
