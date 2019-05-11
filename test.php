@@ -1,21 +1,24 @@
 <?php
-include_once 'bootstrap.php';
-include 'classes/Post.php';
+include 'bootstrap.php';
+//include 'classes/Post.php';
+
+$post = new Post();
+$t = $post->getDate_created();
+    $time_ago = strtotime($t);
+
 if (!empty($_POST)) {
     $postId = $_POST['postId'];
     $userId = $_POST['userId'];
 
-    include_once '../bootstrap.php';
-    $detailpost = new Detail();
-    $detailpost->setPostId($postId);
-    $detailpost->setUserId($userId);
-    $detailpost->addDetail();
+    $detailpost = new Post();
+    $detailpost->setId($postId);
+    $detailpost->setUser_id($userId);
+    $detailpost->detailPost($postId);
 }
 
 if (isset($_POST['comment'])) {
     $comment = new Comment();
     $comment->setComment($_POST['comment']);
-    include_once '../bootstrap.php';
     $comment = $_POST['comment'];
 }
 

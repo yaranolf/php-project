@@ -4,6 +4,8 @@ include_once 'bootstrap.php';
 include 'classes/Like.php';
 
 $posts = Post::getAll();
+$user = User::getUser();
+//var_dump($user);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -31,6 +33,7 @@ $posts = Post::getAll();
   ?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
+      <div><a href="#" data-id="<?php echo $user->id; ?>" class="username"><?php echo $post->user_id; ?></a></div>
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
