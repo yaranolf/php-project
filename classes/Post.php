@@ -130,6 +130,26 @@ class Post
         return $this;
     }
 
+    /**
+     * Get the value of inappropriate.
+     */
+    public function getInappropriate()
+    {
+        return $this->inappropriate;
+    }
+
+    /**
+     * Set the value of inappropriate.
+     *
+     * @return self
+     */
+    public function setInappropriate($inappropriate)
+    {
+        $this->inappropriate = $inappropriate;
+
+        return $this;
+    }
+
     public function savePost()
     {
         $conn = Db::getInstance();
@@ -217,26 +237,6 @@ class Post
         }
     }
 
-    /**
-     * Get the value of inappropriate.
-     */
-    public function getInappropriate()
-    {
-        return $this->inappropriate;
-    }
-
-    /**
-     * Set the value of inappropriate.
-     *
-     * @return self
-     */
-    public function setInappropriate($inappropriate)
-    {
-        $this->inappropriate = $inappropriate;
-
-        return $this;
-    }
-
     public function reportPost($postId)
     {
         $conn = Db::getInstance();
@@ -256,7 +256,9 @@ class Post
         $statement->bindValue(':userid', $this->getUser_id());
         $statement->execute();
         $result = implode($statement->fetch(PDO::FETCH_NUM));
-        if ($result > 4) {
+        var_dump($result);
+
+        if ($result < 3) {
             $this->reportPost($postId);
         }
 
