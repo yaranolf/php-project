@@ -23,14 +23,11 @@ $post->getData();
 
   
 <div id="resultlist">
-  
-
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" class="like" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
     </article>
-
   </div>
    
   <button class="loadmore btn--primary"> Load more </button>
