@@ -43,8 +43,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   $time_ago = strtotime($t);
   ?>
     <article class="center-div-image">
-      
-      <h3><?php echo $post->user_name; ?></h3>
+      <a href="profile.php?id=<?php $p['id']; ?>"> <h3 class="username"><?php echo $post->user_name; ?></h3></a>
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
