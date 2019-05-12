@@ -19,6 +19,7 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         $post->setFile_path($fileName);
         $post->setImg_description($description);
         $post->setUser_id($userId);
+        $post->setUser_name($user_name);
         $post->savePost();
     }
 } else {

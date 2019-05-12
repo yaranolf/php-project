@@ -1,12 +1,12 @@
 <?php
 
-    include 'Db.php';
+    include_once 'Db.php';
 
     class User
     {
         private $firstName;
         private $lastName;
-        private $userName;
+        public $userName;
         private $email;
         private $password;
         private $passwordCorfirmation;

@@ -40,9 +40,11 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   <?php
   foreach ($posts as $post):
   $t = $post->getDate_created();
-   $time_ago = strtotime($t);
+  $time_ago = strtotime($t);
+  var_dump($post);
   ?>
     <article class="center-div-image">
+      <h3><?php echo $post->user_name; ?></h3>
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>

@@ -112,10 +112,11 @@ class Post
     public function savePost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created, user_id) values (:imgdescription, :file_path, NOW(), :userid)');
+        $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created, user_id) values (:username, :imgdescription, :file_path, NOW(), :userid)');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
         $statement->bindValue(':userid', $this->getUser_id());
+        $statement->bindValue(':username', $this->getUser_name());
 
         $statement->execute();
 
