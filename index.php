@@ -44,6 +44,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   var_dump($post);
   ?>
     <article class="center-div-image">
+      
       <h3><?php echo $post->user_name; ?></h3>
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>

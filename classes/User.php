@@ -6,7 +6,7 @@
     {
         private $firstName;
         private $lastName;
-        public $userName;
+        private $userName;
         private $email;
         private $password;
         private $passwordCorfirmation;
@@ -179,7 +179,7 @@
             if (!isset($_SESSION)) {
                 session_start();
             }
-            $_SESSION['email'] = $this->email;
+            $_SESSION['userid'] = $this->id;
             header('Location: index.php');
         }
     }

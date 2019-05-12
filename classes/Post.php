@@ -198,4 +198,14 @@ class Post
             }
         }
     }
+
+    public function getName()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('select user_name from images where id = :id');
+        $statement->bindParam(':id', $this->id); // assign the parameter
+        $result = $statement->execute();
+
+        return $result;
+    }
 }
