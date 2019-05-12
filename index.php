@@ -41,7 +41,6 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   foreach ($posts as $post):
   $t = $post->getDate_created();
   $time_ago = strtotime($t);
-  var_dump($post);
   ?>
     <article class="center-div-image">
       
