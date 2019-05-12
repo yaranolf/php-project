@@ -248,6 +248,16 @@ class Post
         return $statement->execute();
     }
 
+    public function deletePost($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('DELETE FROM images WHERE id=:id AND user_id=:userid');
+        $statement->bindValue(':id', $postId);
+        $statement->bindValue(':userid', $this->getUser_id());
+
+        return $statement->execute();
+    }
+
     public function reportAsInappropriate($postId)
     {
         $conn = Db::getInstance();
@@ -260,6 +270,8 @@ class Post
 
         if ($result < 3) {
             $this->reportPost($postId);
+        } elseif ($result == 3) {
+            $this->deletePost($postId);
         }
 
         return $result;
