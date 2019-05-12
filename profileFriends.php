@@ -2,21 +2,6 @@
 include_once 'bootstrap.php';
 include 'classes/Like.php';
 
-$friendList = $_SESSION['userid'];
-$friends = Friends::getFriends($_SESSION['userid']);
-foreach ($friends as $friend):
-  $id = $friend['user_one'];
-  if ($id == $_SESSION['userid']) {
-      $friendList = $friendList.','.$friend['user_two'];
-  } else {
-      $friendList = $friendList.','.$id;
-  }
-
- endforeach;
- //$friendList = substr($friendList, 1);
-
-$posts = Post::getAllFromFriends($friendList, 0, 2);
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +10,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
-  <title><?php echo $post->user_name; ?></title>
+  <title> Profile </title>
 </head>
 <body>
 
@@ -45,8 +30,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
     </article>
 
   </div>
-    <input type="hidden" id="start" name="start" value="2"/>
-    <input type="hidden" id="ids" value="<?php echo $friendList; ?>">
+   
   <button class="loadmore btn--primary"> Load more </button>
 
   <script
