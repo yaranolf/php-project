@@ -199,12 +199,13 @@ class Post
         }
     }
 
-    public function getName()
+    public function getData()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('select user_name from images where id = :id');
-        $statement->bindParam(':id', $this->id); // assign the parameter
-        $result = $statement->execute();
+        $statement = $conn->prepare('select * as count from images where user_id = :id');
+        $statement->bindValue(':id', $this->id);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $result;
     }
