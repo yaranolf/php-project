@@ -11,6 +11,11 @@
         $l->setUser_id($userId);
         $l->reportAsInappropriate($postId);
 
+        // if user deze post nog niet geraporteerd heeft dan pas een insert doen
+        // ---> na de insert hier tellen of er al drie zijn, if er al drie zijn dan de kolom in tabel post updaten naar 1
+        // else geen update
+        // else gebeurt er niets
+
         //JSON
         $res = [
             'status' => 'reported',

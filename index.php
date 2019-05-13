@@ -103,7 +103,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
             .done(function(res){
               if(res.status === "reported"){
                 elInappropriate.html(inappropriate);
-              }
+              } 
             })
 
             
