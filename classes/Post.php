@@ -4,6 +4,7 @@ class Post
 {
     public $id;
     public $user_id;
+    public $user_name;
     public $img_description;
     public $file_path;
     private $date_created;
@@ -24,6 +25,18 @@ class Post
     public function setUser_id($user_id)
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getUser_name()
+    {
+        return $this->user_name;
+    }
+
+    public function setUser_name($user_name)
+    {
+        $this->user_name = $user_name;
 
         return $this;
     }
@@ -91,9 +104,10 @@ class Post
     public function newPost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created) values (:imgdescription, :file_path, NOW())');
+        $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created) values (:user_name, :imgdescription, :file_path, NOW())');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
+        $statement->bindValue(':user_name', $this->getUser_name());
 
         return $statement->execute();
     }
@@ -148,11 +162,14 @@ class Post
     public function detailPost()
     {
         $conn = Db::getInstance();
-        $result = $conn->prepare('select * from images where id = :postid');
-        $result->bindValue(':postid', 'id');
-        $result->execute();
+        $statement = $conn->prepare('select * from images where id ='.$this->id);
+        // $statement->bindValue(':postid', 'id');
+        //$this->user_name = $statement['user_name'];
+        $statement->bindValue(':file_path', $this->getFile_path());
+        $statement->bindValue(':user_name', $this->getUser_name());
+        $statement->execute();
 
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result = $statement->fetch();
     }
 
     /**
