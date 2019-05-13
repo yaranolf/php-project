@@ -257,12 +257,10 @@ class Post
         return $statement->execute();
     }
 
-    // deze functie vollededig naar de ajax-file zetten
     public function reportAsInappropriate($postId)
     {
         $conn = Db::getInstance();
 
-        // aantal reports tellen van een bepaalde post
         $statement = $conn->prepare('SELECT count(*) AS nrOfInappropriate FROM inappropriate WHERE post_id=:postid AND user_id=:userid');
         $statement->bindParam(':postid', $postId);
         $statement->bindValue(':userid', $this->getUser_id());
@@ -271,7 +269,6 @@ class Post
 
         //var_dump($result['nrOfInappropriate']);
 
-        // dit zou ik in de ajax-file doen
         if ($result['nrOfInappropriate'] == 0) {
             $this->reportPost($postId);
 
@@ -293,7 +290,6 @@ class Post
         $conn = Db::getInstance();
         $statement = $conn->prepare('SELECT count(*) AS nrOfInappropriate FROM inappropriate WHERE post_id=:postid');
         $statement->bindValue(':postid', $this->getId());
-        //$statement->bindValue(':userid', $this->getUser_id());
         $result = $statement->execute();
         $result = $statement->fetch(PDO::FETCH_NUM);
 
