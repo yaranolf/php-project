@@ -159,7 +159,7 @@ class Post
         }
     }
 
-    public function detailPost()
+    /*public function detailPost()
     {
         $conn = Db::getInstance();
         $statement = $conn->prepare('select * from images where id ='.$this->id);
@@ -170,6 +170,26 @@ class Post
         $statement->execute();
 
         return $result = $statement->fetch();
+    }*/
+
+    private static $conn;
+
+    public static function simpleFetch($query)
+    {
+        self::$conn = Db::getInstance();
+        $statement = self::$conn->prepare($query);
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getData()
+    {
+        $postRow = Db::simpleFetch('SELECT * FROM images WHERE id = '.$this->id);
+        $this->user_name = $postRow['user_name'];
+        $this->description = $postRow['description'];
+
+        return $this;
     }
 
     /**

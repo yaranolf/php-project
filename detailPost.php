@@ -4,7 +4,7 @@ include_once 'bootstrap.php';
 if (!empty($_GET)) {
     $post = new Post();
     $post->setId($_GET['id']);
-    $post->detailPost();
+    $post->getData();
     var_dump($post);
 }
     //$user = User::getUser();
