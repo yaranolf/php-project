@@ -202,8 +202,11 @@ class Post
     public function getData()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('select * as count from images where user_id = :id');
-        $statement->bindValue(':id', $this->id);
+        $statement = $conn->prepare('select * from images where id = :id');
+        $statement->bindValue(':postid', $this->id);
+        $this->user_name = $statement['user_name'];
+        $this->img_description = $statement['img_description'];
+        $this->file_path = $statement['file_path'];
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
