@@ -208,7 +208,7 @@ class Post
         $this->img_description = $statement['img_description'];
         $this->file_path = $statement['file_path'];
         $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll();
 
         return $result;
     }
