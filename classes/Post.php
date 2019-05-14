@@ -159,37 +159,13 @@ class Post
         }
     }
 
-    /*public function detailPost()
-    {
-        $conn = Db::getInstance();
-        $statement = $conn->prepare('select * from images where id ='.$this->id);
-        // $statement->bindValue(':postid', 'id');
-        //$this->user_name = $statement['user_name'];
-        $statement->bindValue(':file_path', $this->getFile_path());
-        $statement->bindValue(':user_name', $this->getUser_name());
-        $statement->execute();
-
-        return $result = $statement->fetch();
-    }*/
-
-    private static $conn;
-
-    public static function simpleFetch($query)
-    {
-        self::$conn = Db::getInstance();
-        $statement = self::$conn->prepare($query);
-        $statement->execute();
-
-        return $statement->fetch(PDO::FETCH_ASSOC);
-    }
-
     public function getData()
     {
-        $postRow = Db::simpleFetch('SELECT * FROM images WHERE id = '.$this->id);
-        $this->user_name = $postRow['user_name'];
-        $this->description = $postRow['description'];
+        $conn = Db::getInstance();
+        $postRow = $conn->query('SELECT * FROM images WHERE id = '.$this->id);
+        $result = $postRow->fetch(PDO::FETCH_ASSOC);
 
-        return $this;
+        return $result;
     }
 
     /**
