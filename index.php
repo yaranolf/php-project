@@ -13,7 +13,6 @@ foreach ($friends as $friend):
   }
 
  endforeach;
- //$friendList = substr($friendList, 1);
 
 $posts = Post::getAllFromFriends($friendList, 0, 2);
 
@@ -45,6 +44,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <p><?php echo $post->img_description; ?></p>
+      <p>(<?php echo $post->location; ?>)</p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" class="like" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
     </article>
@@ -79,7 +79,6 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
             })
             .done(function( res ) {
                 if(res.status === "liked") {
-                  //button.html("unlike");
                   elLikes.html(likes);
                 }
             });

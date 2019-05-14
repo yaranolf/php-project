@@ -8,6 +8,7 @@ class Post
     public $file_path;
     private $date_created;
     public $user_name;
+    public $location;
 
     /**
      * Get the value of user_id.
@@ -45,6 +46,26 @@ class Post
     public function setImg_description($img_description)
     {
         $this->img_description = $img_description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of img_description.
+     */
+    public function getlocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set the value of img_description.
+     *
+     * @return self
+     */
+    public function setlocation($location)
+    {
+        $this->location = $location;
 
         return $this;
     }
@@ -112,10 +133,11 @@ class Post
     public function savePost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created, user_id) values (:imgdescription, :file_path, NOW(), :userid)');
+        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created, user_id, location) values (:imgdescription, :file_path, NOW(), :userid, :location)');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
         $statement->bindValue(':userid', $this->getUser_id());
+        $statement->bindValue(':location', $this->getlocation());
 
         return $statement->execute();
     }
