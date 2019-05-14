@@ -202,8 +202,12 @@ class Post
         $conn = Db::getInstance();
         $statement = $conn->prepare('SELECT * FROM images WHERE id ='.$this->id);
         $statement->bindValue(':postid', $this->id);
+        $this->user_name = $statement['user_name'];
+        $this->file_path = $statement['file_path'];
         $statement->execute();
 
-        return $statement;
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }

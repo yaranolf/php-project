@@ -10,6 +10,7 @@ include_once 'bootstrap.php';
 
 $post = new Post();
 $post->setId($_GET['id']);
+$post->getFile_path();
 $post->setData();
 var_dump($post);
 
