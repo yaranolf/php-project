@@ -10,7 +10,7 @@ include_once 'bootstrap.php';
 
 $post = new Post();
 $post->setId($_GET['id']);
-$post->getData();
+$post->setData();
 var_dump($post);
 
     //$t = $post->getDate_created();

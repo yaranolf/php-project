@@ -179,18 +179,31 @@ class Post
         }
     }
 
-    public function getData()
-    {
-        /* $conn = Db::getInstance();
-         $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
-         $statement->bindValue(':postid', $this->id);
+    /* public static function simpleFetch($query)
+     {
+         $conn = Db::getInstance();
+         $statement = $conn->prepare($query);
          $statement->execute();
-         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-         return $result;*/
+         return $statement->fetch(PDO::FETCH_ASSOC);
+     }
+
+     public static function simpleFetchAll($query)
+     {
+         $conn = Db::getInstance();
+         $statement = $conn->prepare($query);
+         $statement->execute();
+
+         return $statement->fetch(PDO::FETCH_ASSOC);
+     }*/
+
+    public function setData()
+    {
         $conn = Db::getInstance();
-        $result = $conn->query('SELECT * FROM images');
+        $statement = $conn->prepare('SELECT * FROM images WHERE id ='.$this->id);
+        $statement->bindValue(':postid', $this->id);
+        $statement->execute();
 
-        return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+        return $statement;
     }
 }
