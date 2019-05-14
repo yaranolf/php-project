@@ -272,12 +272,9 @@ class Post
         if ($result['nrOfInappropriate'] == 0) {
             $this->reportPost($postId);
 
-            $statement = $conn->prepare('SELECT count(*) AS nrOfInappropriate FROM inappropriate WHERE post_id=:postid');
-            $statement->bindParam(':postid', $postId);
-            $statement->execute();
-            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->getNrOfInappropriate();
 
-            if ($result['nrOfInappropriate'] == 3) {
+            if ($result['amountOfInappropriate'] == 3) {
                 $this->deletePost($postId);
             }
         }
@@ -288,7 +285,7 @@ class Post
     public function getNrOfInappropriate()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('SELECT count(*) AS nrOfInappropriate FROM inappropriate WHERE post_id=:postid');
+        $statement = $conn->prepare('SELECT count(*) AS amountOfInappropriate FROM inappropriate WHERE post_id=:postid');
         $statement->bindValue(':postid', $this->getId());
         $result = $statement->execute();
         $result = $statement->fetch(PDO::FETCH_NUM);
