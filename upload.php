@@ -20,6 +20,7 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         $post->setImg_description($description);
         $post->setUser_id($userId);
         $post->savePost();
+        header('Location: index.php');
     }
 } else {
     $description = 'Please add a description';

@@ -117,8 +117,6 @@ class Post
         $statement->bindValue(':file_path', $this->getFile_path());
         $statement->bindValue(':userid', $this->getUser_id());
 
-        $statement->execute();
-
         return $statement->execute();
     }
 
