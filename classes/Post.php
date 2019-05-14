@@ -181,12 +181,16 @@ class Post
 
     public function getData()
     {
-        $conn = Db::getInstance();
-        $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
-        $statement->bindValue(':postid', $this->id);
-        $statement->execute();
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        /* $conn = Db::getInstance();
+         $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
+         $statement->bindValue(':postid', $this->id);
+         $statement->execute();
+         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        return $result;
+         return $result;*/
+        $conn = Db::getInstance();
+        $result = $conn->query('SELECT * FROM images');
+
+        return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }
 }

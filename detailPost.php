@@ -30,7 +30,7 @@ var_dump($post);
     <?php include_once 'nav.inc.php'; ?>
 
     <article class="center-div-image">
-        <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
+        <img src="<?php echo 'uploads/'.$post->getFile_path(); ?>" height=300 width=300 alt="">
         <p><?php echo $post['img_description']; ?></p>
         <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
         <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
