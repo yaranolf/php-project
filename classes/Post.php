@@ -10,6 +10,26 @@ class Post
     private $date_created;
 
     /**
+     * Get the value of id.
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Get the value of user_id.
      */
     public function getUser_id()
@@ -162,29 +182,11 @@ class Post
     public function getData()
     {
         $conn = Db::getInstance();
-        $postRow = $conn->query('SELECT * FROM images WHERE id = '.$this->id);
-        $result = $postRow->fetch(PDO::FETCH_ASSOC);
+        $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
+        $statement->bindValue(':postid', $this->id);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $result;
-    }
-
-    /**
-     * Get the value of id.
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set the value of id.
-     *
-     * @return self
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
     }
 }

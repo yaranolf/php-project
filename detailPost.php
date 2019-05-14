@@ -1,13 +1,17 @@
 <?php
 include_once 'bootstrap.php';
 
-if (!empty($_GET)) {
+/*if (!empty($_GET)) {
     $post = new Post();
     $post->setId($_GET['id']);
     $post->getData();
     var_dump($post);
-}
-    //$user = User::getUser();
+}*/
+
+$post = new Post();
+$post->setId($_GET['id']);
+$post->getData();
+var_dump($post);
 
     //$t = $post->getDate_created();
     //$time_ago = strtotime($t);
