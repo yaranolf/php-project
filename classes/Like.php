@@ -1,6 +1,6 @@
 <?php
 
-    include 'classes/Post.php';
+    //include 'classes/Post.php';
 
     class Like
     {
@@ -78,10 +78,12 @@
 
             if ($result['nrOfLikes'] == 0) {
                 $this->addLike($postid);
+
+                return true;
             } else {
                 $this->deleteLike($postid);
-            }
 
-            return $result;
+                return false;
+            }
         }
     }

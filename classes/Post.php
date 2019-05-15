@@ -243,7 +243,7 @@ class Post
 
         $statement = $conn->prepare('INSERT INTO inappropriate (user_id, post_id) VALUES (:userid, :postid)');
         $statement->bindParam(':postid', $postId);
-        $statement->bindParam(':userid', $this->getUser_id());
+        $statement->bindParam(':userid', $this->user_id);
 
         return $statement->execute();
     }
@@ -263,30 +263,31 @@ class Post
 
         $statement = $conn->prepare('SELECT count(*) AS nrOfInappropriate FROM inappropriate WHERE post_id=:postid AND user_id=:userid');
         $statement->bindParam(':postid', $postId);
-        $statement->bindValue(':userid', $this->getUser_id());
+        $statement->bindValue(':userid', $this->user_id);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        //var_dump($result['nrOfInappropriate']);
-
         if ($result['nrOfInappropriate'] == 0) {
             $this->reportPost($postId);
+            $result = $this->getNrOfInappropriate();
 
-            $this->getNrOfInappropriate();
-
-            if ($result['amountOfInappropriate'] == 3) {
+            if ($result[0] == 3) {
                 $this->deletePost($postId);
+
+                return false;
             }
+
+            return true;
         }
 
-        return $result;
+        return false;
     }
 
     public function getNrOfInappropriate()
     {
         $conn = Db::getInstance();
         $statement = $conn->prepare('SELECT count(*) AS amountOfInappropriate FROM inappropriate WHERE post_id=:postid');
-        $statement->bindValue(':postid', $this->getId());
+        $statement->bindValue(':postid', $this->id);
         $result = $statement->execute();
         $result = $statement->fetch(PDO::FETCH_NUM);
 

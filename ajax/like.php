@@ -9,13 +9,21 @@
         $l = new Like();
         $l->setPostId($postId);
         $l->setUserId($userId);
-        $l->likeUnlike($postId); //voert de query uit (functie in Like.php)
+        //$l->likeUnlike($postId);
+
+        if ($l->likeUnlike($postId)) {
+            $res = [
+                'status' => 'success',
+                'message' => 'Like has been saved',
+            ];
+        } else {
+            $res = [
+                'status' => 'fail',
+                'message' => 'Like has been saved',
+            ];
+        }
 
         //JSON
-        $res = [
-            'status' => 'liked',
-            'message' => 'Like has been saved',
-        ];
 
         echo json_encode($res); //vertaald json naar php
 
