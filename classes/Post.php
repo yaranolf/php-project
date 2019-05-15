@@ -8,7 +8,6 @@ class Post
     public $img_description;
     public $file_path;
     private $date_created;
-    public $user_name;
     public $location;
 
     /**
@@ -143,31 +142,9 @@ class Post
         return $this;
     }
 
-    /**
-     * Get the value of user_name.
-     */
-    public function getUser_name()
-    {
-        return $this->user_name;
-    }
-
-    /**
-     * Set the value of user_name.
-     *
-     * @return self
-     */
-    public function setUser_name($user_name)
-    {
-        $this->user_name = $user_name;
-
-        return $this;
-    }
-
     public function savePost()
     {
         $conn = Db::getInstance();
-
-       
 
         $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created, user_id, location) values (:user_name, :imgdescription, :file_path, NOW(), :userid, :location)');
         $statement->bindValue(':imgdescription', $this->getImg_description());
