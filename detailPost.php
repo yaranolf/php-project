@@ -1,6 +1,11 @@
 <?php
 include_once 'bootstrap.php';
 
+/* TO DO
+
+- knop follow
+- empty state wanneer je geen vrienden hebt */
+
 $postId = $_GET['id'];
 $post = Post::getData($postId);
 $like = Post::getLike($postId);
@@ -17,6 +22,8 @@ $t = Post::getDate($postId);
 <body>
 
     <?php include_once 'nav.inc.php'; ?>
+
+<h2>Your <br> inspiration</h2>
 
     <article class="center-div-image">
         <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
