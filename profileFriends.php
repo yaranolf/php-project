@@ -4,7 +4,8 @@ include 'classes/Like.php';
 
 $userId = $_GET['id'];
 $posts = Post::getPostsFromUser($userId);
-var_dump($posts);
+$like = Post::getLike($postId);
+//var_dump($posts);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,7 @@ var_dump($posts);
 
   <h2 class="username"></h2>
   
-<?php foreach ($posts as $post):?>
+<?php foreach ($posts as $post): ?>
   
 <div id="resultlist">
     <article class="center-div-image">
@@ -34,7 +35,7 @@ var_dump($posts);
   </div>
    
 <?php endforeach; ?>
-  <button class="loadmore btn--primary"> Load more </button>
+
 
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
