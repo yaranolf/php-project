@@ -2,6 +2,10 @@
 include_once 'bootstrap.php';
 include 'classes/Like.php';
 
+
+$posts = Post::getAll();
+$user = User::getUser();
+
 $friendList = $_SESSION['userid'];
 $friends = Friends::getFriends($_SESSION['userid']);
 foreach ($friends as $friend):
@@ -16,6 +20,7 @@ foreach ($friends as $friend):
 
 $posts = Post::getAllFromFriends($friendList, 0, 2);
 
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +29,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
-  <title>Document</title>
+  <title>Feed</title>
 </head>
 <body>
 
@@ -34,15 +39,18 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   <h2>Your <br> inspiration</h2>
 
   
+
 <div id="resultlist">
   
   <?php
   foreach ($posts as $post):
   $t = $post->getDate_created();
    $time_ago = strtotime($t);
+
   ?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
+      <div><a href="#" data-id="<?php echo $user->id; ?>" class="username"><?php echo $post->user_id; ?></a></div>
       <p><?php echo $post->img_description; ?></p>
       <p>(<?php echo $post->location; ?>)</p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
@@ -58,9 +66,15 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
   <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
 <script src="js/Posts.js" ></script>
+
   <script>
     
     $(document).ready(function(){

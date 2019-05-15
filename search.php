@@ -6,6 +6,9 @@ if (!empty($_GET)) {
     $postsFound = Search::searchPosts($_GET['search']);
 }
 
+$user = User::getUser();
+//var_dump($user);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +26,7 @@ if (!empty($_GET)) {
 
 <?php foreach ($postsFound as $f):
     $post = new Post();
+    $post->setId($f['id']);
     $post->setUser_id($f['user_id']);
     $post->setFile_path($f['file_path']);
     $post->setImg_description($f['img_description']);
@@ -31,7 +35,7 @@ if (!empty($_GET)) {
     $time_ago = strtotime($t);
   ?>
     <article class="center-div-image">
-      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
+      <a href="detailPost.php?id=<?php echo $post->getId(); ?>"><img src=" <?php echo 'uploads/'.$post->file_path; ?>" height=300 width=300 alt=""> </a>
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
