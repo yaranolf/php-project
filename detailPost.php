@@ -27,7 +27,30 @@ $t = Post::getDate($postId);
 
 
   <script>
-
+$(document).ready(function(){
+        $(".like").on("click", function(e){
+            var button = $(this);
+            var postId = $(this).data('id');
+            var elLikes = $(this).parent().find(".likes");
+            var likes = elLikes.html();
+ 
+            $.ajax({
+                method: "POST",
+                url: "ajax/like.php",
+                data: { postId: postId },
+                dataType: "json",
+                
+            })
+            .done(function( res ) {
+                if(res.status === "liked") {
+                  //button.html("unlike");
+                  elLikes.html(likes);
+                }
+            });
+ 
+            e.preventDefault();
+        });
+      });
   </script>
 </body>
 </html>
