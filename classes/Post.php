@@ -146,6 +146,7 @@ class Post
     {
         $conn = Db::getInstance();
 
+
         $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created, user_id, location) values (:user_name, :imgdescription, :file_path, NOW(), :userid, :location)');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
@@ -232,6 +233,7 @@ class Post
         }
     }
 
+
     public static function getData($postId)
     {
         $conn = Db::getInstance();
@@ -266,4 +268,5 @@ class Post
 
         return $result['count'];
     }
+
 }
