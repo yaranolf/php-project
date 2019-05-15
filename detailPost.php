@@ -23,6 +23,8 @@ $t = Post::getDate($postId);
 
     <?php include_once 'nav.inc.php'; ?>
 
+<h2>Your <br> inspiration</h2>
+
     <article class="center-div-image">
         <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
         <p><?php echo $post['img_description']; ?></p>

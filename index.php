@@ -31,12 +31,9 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
 </head>
 <body>
 
-  
-  <?php include_once 'nav.inc.php'; ?>
+<?php include_once 'nav.inc.php'; ?>
 
-  <h2>Your <br> inspiration</h2>
-
-  
+<h2>Your <br> inspiration</h2>
 
 <div id="resultlist">
   

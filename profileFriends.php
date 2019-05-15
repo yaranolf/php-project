@@ -5,7 +5,7 @@ include 'classes/Like.php';
 $userId = $_GET['id'];
 $postId = $_GET['id'];
 $posts = Post::getPostsFromUser($userId);
-$like = Post::getLike($postId);
+$like = Post::getLikeUser($userId);
 $info = Post::getUserInfo($userId);
 //var_dump($posts);
 
@@ -28,14 +28,14 @@ $info = Post::getUserInfo($userId);
   
 <?php foreach ($posts as $post):
 
-  $t = $post->getDate_created();
-  $time_ago = strtotime($t); ?>
+  //$t = $post->getDate_created();
+  //$time_ago = strtotime($t);?>
   
 <div id="resultlist">
     <article class="center-div-image">
         <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
         <p><?php echo $post['img_description']; ?></p>
-        <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
+        <p><?php; // echo $convertedDate = Post::convertTime($time_ago);?></p>
         <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
     </article>
   </div>
