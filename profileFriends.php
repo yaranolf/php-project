@@ -3,6 +3,7 @@ include_once 'bootstrap.php';
 include 'classes/Like.php';
 
 $userId = $_GET['id'];
+$postId = $_GET['id'];
 $posts = Post::getPostsFromUser($userId);
 $like = Post::getLike($postId);
 //var_dump($posts);
