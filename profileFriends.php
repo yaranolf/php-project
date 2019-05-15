@@ -2,8 +2,7 @@
 include_once 'bootstrap.php';
 include 'classes/Like.php';
 
-$post = new Post();
-$post->getData();
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
