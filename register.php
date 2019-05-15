@@ -60,7 +60,7 @@
         <input type="text" id="email" name="email" class="input">
 
         <label for="password" class="label">Password</label>
-        <input type="text" id="password" name="password" class="input">
+        <input type="password" id="password" name="password" class="input">
 
 		<label for="password" class="label">Password confirmation</label>
         <input type="text" id="passwordConfirmation" name="passwordConfirmation" class="input">

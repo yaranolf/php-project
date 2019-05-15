@@ -8,6 +8,8 @@ class Post
     public $img_description;
     public $file_path;
     private $date_created;
+    public $user_name;
+    public $location;
 
     /**
      * Get the value of id.
@@ -82,6 +84,26 @@ class Post
     }
 
     /**
+     * Get the value of img_description.
+     */
+    public function getlocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set the value of img_description.
+     *
+     * @return self
+     */
+    public function setlocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
      * Get the value of file_path.
      */
     public function getFile_path()
@@ -121,13 +143,57 @@ class Post
         return $this;
     }
 
-    public function newPost()
+    /**
+     * Get the value of user_name.
+     */
+    public function getUser_name()
+    {
+        return $this->user_name;
+    }
+
+    /**
+     * Set the value of user_name.
+     *
+     * @return self
+     */
+    public function setUser_name($user_name)
+    {
+        $this->user_name = $user_name;
+
+        return $this;
+    }
+
+    public function savePost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created) values (:user_name, :imgdescription, :file_path, NOW())');
+
+       
+
+        $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created, user_id, location) values (:user_name, :imgdescription, :file_path, NOW(), :userid, :location)');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
+        $statement->bindValue(':userid', $this->getUser_id());
+        $statement->bindValue(':location', $this->getlocation());
         $statement->bindValue(':user_name', $this->getUser_name());
+
+        return $statement->execute();
+    }
+
+    public function removePost($id)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('DELETE FROM images WHERE id = :id');
+        $statement->bindValue(':id', $id);
+
+        return $statement->execute();
+    }
+
+    public function modifyPost($id, $description)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('UPDATE images SET img_description = :description WHERE id = :id');
+        $statement->bindValue(':id', $id);
+        $statement->bindValue(':description', $description);
 
         return $statement->execute();
     }
@@ -136,6 +202,16 @@ class Post
     {
         $conn = Db::getInstance();
         $result = $conn->query('SELECT * FROM images');
+
+        return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+    }
+
+    public static function getAllFromFriends($ids, $start, $counter)
+    {
+        $conn = Db::getInstance();
+        $result = $conn->prepare('SELECT * FROM images WHERE user_id IN ('.$ids.') limit '.$start.','.$counter);
+        //$result->bindParam(':userids', $ids);
+        $result->execute();
 
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }

@@ -16,6 +16,8 @@ p{
 a{
     text-decoration: none;
     color: blue;
+    text-align: center;
+    margin: auto;
 }
 
 .input{
