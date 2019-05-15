@@ -44,7 +44,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   foreach ($posts as $post):
   $t = $post->getDate_created();
   $time_ago = strtotime($t);
-  var_dump($post);
+  //var_dump($post);
   ?>
     <article class="center-div-image">
       <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username"><?php echo $post->user_name; ?></h3></a>
