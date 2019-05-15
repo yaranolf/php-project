@@ -7,6 +7,7 @@ $postId = $_GET['id'];
 $posts = Post::getPostsFromUser($userId);
 $like = Post::getLike($postId);
 //var_dump($posts);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,12 +23,13 @@ $like = Post::getLike($postId);
   
   <?php include_once 'nav.inc.php'; ?>
 
-  <h2 class="username"></h2>
+  <h2 class="username">Hi ..</h2>
   
 <?php foreach ($posts as $post): ?>
   
 <div id="resultlist">
     <article class="center-div-image">
+      <h3 class="username"><?php echo $post['user_name']; ?></h3>
         <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
         <p><?php echo $post['img_description']; ?></p>
         <p><?php echo $post['date_created']; ?></p>
