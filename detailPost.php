@@ -1,6 +1,11 @@
 <?php
 include_once 'bootstrap.php';
 
+/* TO DO
+
+- knop follow
+- empty state wanneer je geen vrienden hebt */
+
 $postId = $_GET['id'];
 $post = Post::getData($postId);
 $like = Post::getLike($postId);
