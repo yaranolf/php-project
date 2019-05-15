@@ -14,6 +14,7 @@
         $html .= '<article class="center-div-image">';
         $html .= '<img src="uploads/'.$post->file_path.'"  height=300 width=300 alt="">';
         $html .= '<p>'.$post->img_description.'</p>';
+        $html .= '<p>('.$post->location.')</p>';
         $html .= '<p>'.$convertedDate = Post::convertTime($time_ago).'</p>';
         $html .= '<div><a href="#" data-id="'.$post->id.'" class="like">Like</a> <span class="likes">'.$post->getLikes().'</span> people like this </div>';
         $html .= '</article> ';

@@ -4,10 +4,31 @@ class Post
 {
     public $id;
     public $user_id;
+    public $user_name;
     public $img_description;
     public $file_path;
     private $date_created;
-    public $user_name;
+    public $location;
+
+    /**
+     * Get the value of id.
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * Get the value of user_id.
@@ -29,6 +50,18 @@ class Post
         return $this;
     }
 
+    public function getUser_name()
+    {
+        return $this->user_name;
+    }
+
+    public function setUser_name($user_name)
+    {
+        $this->user_name = $user_name;
+
+        return $this;
+    }
+
     /**
      * Get the value of img_description.
      */
@@ -45,6 +78,26 @@ class Post
     public function setImg_description($img_description)
     {
         $this->img_description = $img_description;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of img_description.
+     */
+    public function getlocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * Set the value of img_description.
+     *
+     * @return self
+     */
+    public function setlocation($location)
+    {
+        $this->location = $location;
 
         return $this;
     }
@@ -89,36 +142,17 @@ class Post
         return $this;
     }
 
-    /**
-     * Get the value of user_name.
-     */
-    public function getUser_name()
-    {
-        return $this->user_name;
-    }
-
-    /**
-     * Set the value of user_name.
-     *
-     * @return self
-     */
-    public function setUser_name($user_name)
-    {
-        $this->user_name = $user_name;
-
-        return $this;
-    }
-
     public function savePost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created, user_id) values (:username, :imgdescription, :file_path, NOW(), :userid)');
+
+
+        $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created, user_id, location) values (:user_name, :imgdescription, :file_path, NOW(), :userid, :location)');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
         $statement->bindValue(':userid', $this->getUser_id());
-        $statement->bindValue(':username', $this->getUser_name());
-
-        $statement->execute();
+        $statement->bindValue(':location', $this->getlocation());
+        $statement->bindValue(':user_name', $this->getUser_name());
 
         return $statement->execute();
     }
@@ -199,17 +233,40 @@ class Post
         }
     }
 
-    public function getData()
+
+    public static function getData($postId)
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('select * from images where id = :id');
-        $statement->bindValue(':postid', $this->id);
-        $this->user_name = $statement['user_name'];
-        $this->img_description = $statement['img_description'];
-        $this->file_path = $statement['file_path'];
+        $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
+        $statement->bindValue(':postid', $postId);
         $statement->execute();
-        $result = $statement->fetchAll();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC); //dus geen fetchAll!
 
         return $result;
     }
+
+    public static function getDate($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
+        $statement->bindValue(':postid', $postId);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC); //dus geen fetchAll!
+
+        return $result;
+    }
+
+    public static function getLike($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('select count(*) as count from likes where post_id = :postid');
+        $statement->bindValue(':postid', $postId);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result['count'];
+    }
+
 }
