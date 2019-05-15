@@ -1,22 +1,11 @@
 <?php
 include_once 'bootstrap.php';
 
-/*if (!empty($_GET)) {
-    $post = new Post();
-    $post->setId($_GET['id']);
-    $post->getData();
-    var_dump($post);
-}*/
-
-$post = new Post();
-$post->setId($_GET['id']);
-$post->getFile_path();
-$post->setData();
+$postId = $_GET['id'];
+$post = Post::getData($postId);
+$like = Post::getLike($postId);
+$t = Post::getDate($postId);
 var_dump($post);
-
-    //$t = $post->getDate_created();
-    //$time_ago = strtotime($t);
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,10 +20,10 @@ var_dump($post);
     <?php include_once 'nav.inc.php'; ?>
 
     <article class="center-div-image">
-        <img src="<?php echo 'uploads/'.$post->getFile_path(); ?>" height=300 width=300 alt="">
+        <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
         <p><?php echo $post['img_description']; ?></p>
-        <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
-        <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+        <p><?php echo $post['date_created']; ?></p>
+        <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
     </article>
 
 

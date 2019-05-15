@@ -179,35 +179,38 @@ class Post
         }
     }
 
-    /* public static function simpleFetch($query)
-     {
-         $conn = Db::getInstance();
-         $statement = $conn->prepare($query);
-         $statement->execute();
-
-         return $statement->fetch(PDO::FETCH_ASSOC);
-     }
-
-     public static function simpleFetchAll($query)
-     {
-         $conn = Db::getInstance();
-         $statement = $conn->prepare($query);
-         $statement->execute();
-
-         return $statement->fetch(PDO::FETCH_ASSOC);
-     }*/
-
-    public function setData()
+    public static function getData($postId)
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('SELECT * FROM images WHERE id ='.$this->id);
-        $statement->bindValue(':postid', $this->id);
-        $this->user_name = $statement['user_name'];
-        $this->file_path = $statement['file_path'];
+        $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
+        $statement->bindValue(':postid', $postId);
         $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        $result = $statement->fetch(PDO::FETCH_ASSOC); //dus geen fetchAll!
 
         return $result;
+    }
+
+    public static function getDate($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
+        $statement->bindValue(':postid', $postId);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC); //dus geen fetchAll!
+
+        return $result;
+    }
+
+    public static function getLike($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('select count(*) as count from likes where post_id = :postid');
+        $statement->bindValue(':postid', $postId);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result['count'];
     }
 }
