@@ -2,11 +2,9 @@
 include_once 'bootstrap.php';
 include 'classes/Like.php';
 
-$postId = $_GET['id'];
-$post = Post::getData($postId);
-$like = Post::getLike($postId);
-$t = Post::getDate($postId);
-
+$userId = $_GET['id'];
+$posts = Post::getPostsFromUser($userId);
+var_dump($posts);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +20,9 @@ $t = Post::getDate($postId);
   
   <?php include_once 'nav.inc.php'; ?>
 
-  <h2 class="username"><?php echo $post['user_name']; ?></h2>
-
+  <h2 class="username"></h2>
+  
+<?php foreach ($posts as $post):?>
   
 <div id="resultlist">
     <article class="center-div-image">
@@ -34,6 +33,7 @@ $t = Post::getDate($postId);
     </article>
   </div>
    
+<?php endforeach; ?>
   <button class="loadmore btn--primary"> Load more </button>
 
   <script
