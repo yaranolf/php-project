@@ -5,7 +5,6 @@ $postId = $_GET['id'];
 $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);
-var_dump($post);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
