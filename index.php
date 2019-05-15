@@ -2,7 +2,6 @@
 include_once 'bootstrap.php';
 include 'classes/Like.php';
 
-
 $posts = Post::getAll();
 $user = User::getUser();
 
@@ -19,7 +18,6 @@ foreach ($friends as $friend):
  endforeach;
 
 $posts = Post::getAllFromFriends($friendList, 0, 2);
-
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -45,13 +43,11 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   <?php
   foreach ($posts as $post):
   $t = $post->getDate_created();
-
-   $time_ago = strtotime($t);
-
-
+  $time_ago = strtotime($t);
+  var_dump($post);
   ?>
     <article class="center-div-image">
-      <a href="profileFriends.php?id=<?php $p['user_id']; ?>"> <h3 class="username"><?php echo $post->user_name; ?></h3></a>
+      <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username"><?php echo $post->user_name; ?></h3></a>
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
       <div><a href="#" data-id="<?php echo $user->id; ?>" class="username"><?php echo $post->user_id; ?></a></div>
       <p><?php echo $post->img_description; ?></p>
