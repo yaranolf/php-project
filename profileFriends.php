@@ -5,6 +5,7 @@ include 'classes/Like.php';
 $userId = $_GET['id'];
 $postId = $_GET['id'];
 $posts = Post::getPostsFromUser($userId);
+
 $like = Post::getLikeUser($userId);
 $info = Post::getUserInfo($userId);
 //var_dump($posts);
