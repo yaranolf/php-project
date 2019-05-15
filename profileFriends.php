@@ -6,6 +6,7 @@ $userId = $_GET['id'];
 $postId = $_GET['id'];
 $posts = Post::getPostsFromUser($userId);
 $like = Post::getLike($postId);
+$info = Post::getUserInfo($userId);
 //var_dump($posts);
 
 ?><!DOCTYPE html>
@@ -23,7 +24,7 @@ $like = Post::getLike($postId);
   
   <?php include_once 'nav.inc.php'; ?>
 
-  <h2 class="username">Hi ..</h2>
+  <h2 class="username">Hi <?php echo $info['user_name']; ?></h2>
   
 <?php foreach ($posts as $post): ?>
   

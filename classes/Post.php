@@ -278,4 +278,16 @@ class Post
 
         return $result;
     }
+
+    public static function getUserInfo($userId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE user_id = :userid');
+        $statement->bindValue(':userid', $userId);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
 }
