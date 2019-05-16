@@ -33,7 +33,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
 
 <?php include_once 'nav.inc.php'; ?>
 
-<h2>Your <br> inspiration</h2>
+<img src="images/logo.png" alt="Logo Tripophobia" class="logo">
 
 <div id="resultlist">
   
