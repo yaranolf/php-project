@@ -72,58 +72,61 @@ if (!empty($_POST)) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link   href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
+
+<?php include_once 'nav.inc.php'; ?>
+
     <div class="container">
 
                 <div class="span10 offset1">
                     <div class="row">
-                        <h3>Update a Customer</h3>
+                        <h2>Update a Customer</h2>
                     </div>
 
                     <form class="form-horizontal" action="profile.php" method="post">
                       <div class="control-group <?php echo !empty($firstname) ? 'error' : ''; ?>">
-                        <label class="control-label">Name</label>
+                        <label class="control-label label">Name</label>
                         <div class="controls">
-                            <input name="firstname" type="text"  placeholder="Name" value="<?php echo !empty($firstname) ? $firstname : ''; ?>">
+                            <input class="input" name="firstname" type="text"  placeholder="Name" value="<?php echo !empty($firstname) ? $firstname : ''; ?>">
                             <?php if (!empty($firstnameError)): ?>
                                 <span class="help-inline"><?php echo $firstnameError; ?></span>
                             <?php endif; ?>
                         </div>
                       </div>
                       <div class="control-group <?php echo !empty($lastname) ? 'error' : ''; ?>">
-                        <label class="control-label">Name</label>
+                        <label class="control-label label">Name</label>
                         <div class="controls">
-                            <input name="lastname" type="text"  placeholder="Name" value="<?php echo !empty($lastname) ? $lastname : ''; ?>">
+                            <input class="input" name="lastname" type="text"  placeholder="Name" value="<?php echo !empty($lastname) ? $lastname : ''; ?>">
                             <?php if (!empty($lastnameError)): ?>
                                 <span class="help-inline"><?php echo $lastnameError; ?></span>
                             <?php endif; ?>
                         </div>
                       </div>
                       <div class="control-group <?php echo !empty($emailError) ? 'error' : ''; ?>">
-                        <label class="control-label">Email Address</label>
+                        <label class="control-label label">Email Address</label>
                         <div class="controls">
-                            <input name="email" type="text" placeholder="Email Address" value="<?php echo !empty($email) ? $email : ''; ?>">
+                            <input class="input" name="email" type="text" placeholder="Email Address" value="<?php echo !empty($email) ? $email : ''; ?>">
                             <?php if (!empty($emailError)): ?>
                                 <span class="help-inline"><?php echo $emailError; ?></span>
                             <?php endif; ?>
                         </div>
                       </div>
                       <div class="control-group <?php echo !empty($usernameError) ? 'error' : ''; ?>">
-                        <label class="control-label">Username</label>
+                        <label class="control-label label">Username</label>
                         <div class="controls">
-                            <input name="username" type="text"  placeholder="Username" value="<?php echo !empty($username) ? $username : ''; ?>">
+                            <input class="input" name="username" type="text"  placeholder="Username" value="<?php echo !empty($username) ? $username : ''; ?>">
                             <?php if (!empty($usernameError)): ?>
                                 <span class="help-inline"><?php echo $usernameError; ?></span>
                             <?php endif; ?>
                         </div>
                         <div class="control-group <?php echo !empty($passwordError) ? 'error' : ''; ?>">
-                        <label class="control-label">Password</label>
+                        <label class="control-label label">Password</label>
                         <div class="controls">
-                            <input name="password" type="password"  placeholder="Password" value="<?php echo !empty($password) ? $password : ''; ?>">
+                            <input class="input" name="password" type="password"  placeholder="Password" value="<?php echo !empty($password) ? $password : ''; ?>">
                             <?php if (!empty($passwordError)): ?>
                                 <span class="help-inline"><?php echo $passwordError; ?></span>
                             <?php endif; ?>
@@ -131,8 +134,7 @@ if (!empty($_POST)) {
 
                       </div>
                       <div class="form-actions">
-                          <button type="submit" class="btn btn-success">Update</button>
-                          <a class="btn" href="index.php">Back</a>
+                          <button type="submit" class="btn btn-success btn--primary">Update</button>
                         </div>
                     </form>
                 </div>
@@ -150,9 +152,9 @@ if (!empty($_POST)) {
   ?>
     <article class="center-div-image">
       <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
-      <p> <input id="Description" type="text"  placeholder="Description" value="<?php echo $post->img_description; ?>"></p>
+      <p> <input class="input" id="Description" type="text"  placeholder="Description" value="<?php echo $post->img_description; ?>"></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
-      <div><button data-id="<?php echo $post->id; ?>" class="RemoveBtn">Delete</button><button data-id="<?php echo $post->id; ?>" class="ModifyBtn">Modify</button><br><br><br><br><br><br> </div>
+      <div><button data-id="<?php echo $post->id; ?>" class="RemoveBtn btn--secondary">Delete</button><button data-id="<?php echo $post->id; ?>" class="ModifyBtn btn--secondary">Modify</button><br><br><br><br><br><br> </div>
     </article>
   <?php endforeach; ?>
 

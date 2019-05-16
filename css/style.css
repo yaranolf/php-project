@@ -187,6 +187,12 @@ a {
     border-radius: 20px;
     margin: 30px auto 0px auto;
     display: block;
+    transition: 200ms;
+
+}
+
+.btn--secondary:hover{
+    opacity: 0.8;
 }
 
 span{

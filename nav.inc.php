@@ -11,7 +11,14 @@
       <li><a href="network.php">Build your network</a></li>
       <li><a href="logout.php" class="navbar__logout">Logout</a></li>
 
-      <form action="search.php" method="GET">
+    </ul>
+
+   
+
+  </div>
+</nav>
+
+<form action="search.php" method="GET">
         <input id="search" name="search" type="text" placeholder="search" class="input">
         <input id="sumbit" type="submit" value="Search" class="btn btn--primary">
       </form>
@@ -22,11 +29,6 @@
         <input id="distance" name="distance" type="hidden" value="100">
         <input id="sumbit" type="submit" value="Search nearby" class="btn btn--primary">
       </form>
-
-    </ul>
-
-  </div>
-</nav>
 
    
     <script>
