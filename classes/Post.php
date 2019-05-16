@@ -359,6 +359,8 @@ class Post
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $result['count'];
+    }
+
     public function reportPost($postId)
     {
         $conn = Db::getInstance();
