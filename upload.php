@@ -12,7 +12,8 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     $fileName = basename($_FILES['file']['name']);
     $targetFilePath = $targetDir.$fileName;
     $description = $_POST['description'];
-    $location = $_POST['lat'].','.$_POST['long'];
+    $long = $_POST['long'];
+    $lat = $_POST['lat'];
     echo $location;
     if (move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath) && !empty($description)) {
         $image_show = '<img src='.$targetFilePath.' height=200 width=200 />';
@@ -21,9 +22,9 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         $post->setFile_path($fileName);
         $post->setImg_description($description);
         $post->setUser_id($userId);
-        $post->setlocation($location);
+        $post->setlong($long);
+        $post->setlat($lat);
         $post->savePost();
-        $post->getLocation();
 
         header('Location: index.php');
     }

@@ -63,7 +63,7 @@
         <input type="password" id="password" name="password" class="input">
 
 		<label for="password" class="label">Password confirmation</label>
-        <input type="text" id="passwordConfirmation" name="passwordConfirmation" class="input">
+        <input type="password" id="passwordConfirmation" name="passwordConfirmation" class="input">
 
         <input type="submit" value="Sign me up!" class="btn btn--primary">
     </form>
