@@ -418,4 +418,15 @@ class Post
 
         return $result;
     }
+
+    public function getNrOfInappropriatePost($userId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT count(*) AS amountOfInappropriate FROM inappropriate WHERE user_id=:userid');
+        $statement->bindValue(':userid', $userId);
+        $result = $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_NUM);
+
+        return $result;
+    }
 }
