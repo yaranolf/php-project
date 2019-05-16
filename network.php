@@ -54,7 +54,7 @@ if ($statement->rowCount() > 0) {
             } else {
                 if (Friends::renderFriendShip($_SESSION['uid'], $id, 'isThereApprovalPending') == 1) {
                     ?>
-                         <button class="friendBtn friendBtn<?php echo $id; ?> approve btn--secondary" data-uid='<?php echo $id; ?>' data-type='approvefriend'>Approve</button>
+                         <button class="friendBtn friendBtn<?php echo $id; ?> approve btn--primary" data-uid='<?php echo $id; ?>' data-type='approvefriend'>Approve</button>
                          <button class='friendBtn friendBtn<?php echo $id; ?> unfriend btn--secondary' data-uid='<?php echo $id; ?>' data-type='destroyfriend'>Ignore</button>
                     <?php
                 } else {

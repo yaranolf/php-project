@@ -34,10 +34,12 @@ $info = Post::getUserInfo($userId);
   
 <div id="resultlist">
     <article class="center-div-image">
+      
         <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
         <p><?php echo $post['img_description']; ?></p>
         <p><?php; // echo $convertedDate = Post::convertTime($time_ago);?></p>
         <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
+        
     </article>
   </div>
    
