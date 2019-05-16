@@ -6,6 +6,9 @@ if (!empty($_GET)) {
     $postsFound = Search::searchPosts($_GET['search']);
 }
 
+$user = User::getUser();
+//var_dump($user);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +26,7 @@ if (!empty($_GET)) {
 
 <?php foreach ($postsFound as $f):
     $post = new Post();
+    $post->setId($f['id']);
     $post->setUser_id($f['user_id']);
     $post->setFile_path($f['file_path']);
     $post->setImg_description($f['img_description']);
@@ -31,13 +35,39 @@ if (!empty($_GET)) {
     $time_ago = strtotime($t);
   ?>
     <article class="center-div-image">
-      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
+      <a href="detailPost.php?id=<?php echo $post->getId(); ?>"><img src=" <?php echo 'uploads/'.$post->file_path; ?>" height=300 width=300 alt=""> </a>
       <p><?php echo $post->img_description; ?></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><a href="#" data-id="<?php echo $post->id; ?>" class="like">Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
     </article>
 <?php endforeach; ?>
 
+  <script>
+    $(document).ready(function(){
+            $(".like").on("click", function(e){
+                var button = $(this);
+                var postId = $(this).data('id');
+                var elLikes = $(this).parent().find(".likes");
+                var likes = elLikes.html();
+    
+                $.ajax({
+                    method: "POST",
+                    url: "ajax/like.php",
+                    data: { postId: postId },
+                    dataType: "json",
+                    
+                })
+                .done(function( res ) {
+                    if(res.status === "liked") {
+                      //button.html("unlike");
+                      elLikes.html(likes);
+                    }
+                });
+    
+                e.preventDefault();
+            });
+          });
+  </script>
 
 </body>
 </html>

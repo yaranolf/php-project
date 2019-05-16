@@ -1,16 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 15, 2019 at 03:39 PM
--- Server version: 5.6.38
--- PHP Version: 7.2.1
+-- Generation Time: May 16, 2019 at 07:32 AM
+-- Server version: 5.7.23
+-- PHP Version: 7.2.10
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
+--
+-- Database: `inspiration_hunter`
+--
 
-# Dump of table friends
-# ------------------------------------------------------------
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `comments`
@@ -30,157 +34,111 @@ CREATE TABLE `comments` (
 --
 
 CREATE TABLE `friends` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_one` int(11) NOT NULL,
   `user_two` int(11) NOT NULL,
   `official` tinyint(1) DEFAULT NULL,
-  `date_made` date NOT NULL,
-  PRIMARY KEY (`id`)
+  `date_made` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `friends` WRITE;
-/*!40000 ALTER TABLE `friends` DISABLE KEYS */;
-
-INSERT INTO `friends` (`id`, `user_one`, `user_two`, `official`, `date_made`)
-VALUES
-	(1,2,16,1,'2019-05-05'),
-	(2,4,16,1,'2019-05-05'),
-	(6,17,18,1,'2019-05-09'),
-	(8,22,19,1,'0000-00-00'),
-	(9,23,19,1,'0000-00-00');
-
-/*!40000 ALTER TABLE `friends` ENABLE KEYS */;
-UNLOCK TABLES;
+--
+-- Dumping data for table `friends`
+--
 
 INSERT INTO `friends` (`id`, `user_one`, `user_two`, `official`, `date_made`) VALUES
 (1, 2, 16, 1, '2019-05-05'),
 (2, 4, 16, 1, '2019-05-05'),
 (6, 17, 18, 1, '2019-05-09'),
-(7, 19, 17, 1, '2019-05-12');
+(7, 17, 19, 0, '2019-05-09'),
+(8, 18, 19, 0, '2019-05-09'),
+(9, 16, 19, 0, '2019-05-09'),
+(11, 19, 20, 1, '2019-05-15'),
+(12, 21, 19, 1, '2019-05-15');
 
-# Dump of table images
-# ------------------------------------------------------------
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `images`;
+--
+-- Table structure for table `images`
+--
 
 CREATE TABLE `images` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `user_name` varchar(255) NOT NULL,
   `img_description` varchar(255) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `file_path` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  `longitude` decimal(10,8) NOT NULL,
+  `latitude` decimal(10,8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `images` WRITE;
-/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+--
+-- Dumping data for table `images`
+--
 
-INSERT INTO `images` (`id`, `user_id`, `img_description`, `date_created`, `file_path`)
-VALUES
-	(5,17,'vacay','2019-04-27 17:12:48','_DSC4743.jpeg'),
-	(9,17,'Fruit','2019-04-27 20:25:42','09f7e88ccfe2e64f4baa408399765d9b.jpg'),
-	(10,16,'what a view!','2019-04-27 21:09:00','_04A7147.jpg'),
-	(20,17,'Beach','2019-05-09 08:18:13','photo-1469854523086-cc02fe5d8800-min.jpeg'),
-	(24,17,'Mountains','2019-05-09 08:54:03','photo-1467396555244-ddb071a5841d.jpeg'),
-	(25,18,'Airplane','2019-05-09 09:02:17','photo-1517479149777-5f3b1511d5ad.jpeg'),
-	(35,21,'flower','2019-05-09 19:36:05','90233bc0c2b85303894e242d15440be5.jpg'),
-	(54,19,'berg','2019-05-09 10:14:13','11.jpeg');
+INSERT INTO `images` (`id`, `user_id`, `img_description`, `date_created`, `file_path`, `longitude`, `latitude`) VALUES
+(35, 20, 'Vietnam - Ninh Binh', '2019-05-09 09:51:57', '59740504_314219309251336_5163639116109185024_n.jpg', '0.00000000', '0.00000000'),
+(36, 20, 'Ninh binh - rower', '2019-05-09 09:52:59', '59438771_374318446503692_8438972148017528832_n.jpg', '0.00000000', '0.00000000'),
+(38, 20, 'test', '2019-05-09 10:35:41', '59436123_389627524960329_5983074350260027392_n (1).jpg', '0.00000000', '0.00000000'),
+(39, 20, 'test', '2019-05-09 10:35:41', '59436123_389627524960329_5983074350260027392_n (1).jpg', '0.00000000', '0.00000000'),
+(40, 19, 'vietnam - abandoned waterpark', '2019-05-14 15:05:22', '59419220_1106452802878012_8560270824844558336_n.jpg', '0.00000000', '0.00000000'),
+(41, 19, 'test', '2019-05-15 09:04:55', '59740504_314219309251336_5163639116109185024_n.jpg', '4.48483890', '51.02471810'),
+(42, 21, 'geel buske', '2019-05-15 17:36:45', '59418928_2244928338932388_6499858176958005248_n.jpg', '4.76078700', '51.41757050'),
+(43, 19, 'testing', '2019-05-16 07:09:04', '59740504_314219309251336_5163639116109185024_n.jpg', '4.48787700', '51.02256940'),
+(44, 19, 'test_', '2019-05-16 07:26:31', '59436123_389627524960329_5983074350260027392_n.jpg', '4.48779410', '51.02258560');
 
-/*!40000 ALTER TABLE `images` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
-
-# Dump of table inappropriate
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `inappropriate`;
+--
+-- Table structure for table `inappropriate`
+--
 
 CREATE TABLE `inappropriate` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `post_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `inappropriate` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `inappropriate` WRITE;
-/*!40000 ALTER TABLE `inappropriate` DISABLE KEYS */;
+--
+-- Dumping data for table `inappropriate`
+--
 
-INSERT INTO `inappropriate` (`id`, `post_id`, `user_id`, `inappropriate`)
-VALUES
-	(72,53,19,NULL),
-	(73,53,22,NULL),
-	(75,53,23,NULL),
-	(76,52,23,NULL),
-	(77,52,19,NULL),
-	(78,52,22,NULL);
+INSERT INTO `inappropriate` (`id`, `post_id`, `user_id`) VALUES
+(1, 35, 19);
 
-/*!40000 ALTER TABLE `inappropriate` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
-INSERT INTO `images` (`id`, `user_id`, `user_name`, `img_description`, `date_created`, `file_path`) VALUES
-(5, 17, 'Noorve', 'vacay', '2019-04-27 15:12:48', '11.jpeg'),
-(9, 17, 'Noorve', 'Fruit', '2019-04-27 18:25:42', '32.jpg'),
-(10, 16, 'Banciu', 'what a view!', '2019-04-27 19:09:00', '_04A7147.jpg'),
-(20, 17, 'Banciu', 'Beach', '2019-05-09 06:18:13', 'photo-1469854523086-cc02fe5d8800-min.jpeg'),
-(24, 17, 'Noorve', 'Mountains', '2019-05-09 06:54:03', 'photo-1467396555244-ddb071a5841d.jpeg'),
-(25, 18, 'Banciu', 'Airplane', '2019-05-09 07:02:17', 'photo-1517479149777-5f3b1511d5ad.jpeg');
-
-# Dump of table likes
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `likes`;
+--
+-- Table structure for table `likes`
+--
 
 CREATE TABLE `likes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `date_created` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `date_created` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `likes` WRITE;
-/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-
-INSERT INTO `likes` (`id`, `post_id`, `user_id`, `date_created`)
-VALUES
-	(48,35,21,'2019-05-09 19:36:13'),
-	(49,0,1,'2019-05-11 11:14:42'),
-	(50,0,1,'2019-05-11 11:14:44'),
-	(51,0,1,'2019-05-11 11:14:45'),
-	(54,5,1,'2019-05-11 15:54:24'),
-	(55,5,1,'2019-05-11 15:54:25'),
-	(56,9,1,'2019-05-11 19:11:55'),
-	(57,9,1,'2019-05-11 19:11:56'),
-	(60,29,19,'2019-05-12 15:14:46'),
-	(63,29,23,'2019-05-12 15:15:08'),
-	(64,29,22,'2019-05-12 15:15:20');
-
-/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
-UNLOCK TABLES;
+--
+-- Dumping data for table `likes`
+--
 
 INSERT INTO `likes` (`id`, `post_id`, `user_id`, `date_created`) VALUES
-(4, 5, 1, '2019-05-03 15:43:58'),
-(5, 5, 1, '2019-05-03 15:44:02'),
-(6, 5, 1, '2019-05-05 16:13:14'),
-(7, 5, 1, '2019-05-05 16:13:16'),
-(10, 0, 17, '2019-05-15 13:51:46'),
-(11, 5, 17, '2019-05-15 17:36:25');
+(18, 35, 19, '2019-05-14 17:04:31'),
+(19, 36, 19, '2019-05-16 09:23:53');
 
-# Dump of table users
-# ------------------------------------------------------------
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `users`;
+--
+-- Table structure for table `users`
+--
 
 CREATE TABLE `users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(11) UNSIGNED NOT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `lastname` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -189,9 +147,11 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES
 (16, 'test', 'test', 'test', 'test@test.com', '$2y$10$8gSNoiBii3xCUnD6u8Z2IOTAlCDscjXcjwEyTq0yvptZGXlLMqDwa'),
-(17, 'Noortje', 'Veenhuizen', 'Noorve', 'noortjeveenhuizen@hotmail.com', '$2y$10$VEzHdhroQjTQ7HnC4OKiJuNPDDstvzkZVxEQCXl1sybhG2E57fgB2'),
+(17, 'Noortje', 'Veenhuizen', 'Noorse', 'noortjeveenhuizen@hotmail.com', '$2y$10$VEzHdhroQjTQ7HnC4OKiJuNPDDstvzkZVxEQCXl1sybhG2E57fgB2'),
 (18, 'Sarah', 'Van den Heuvel', 'Sarahvh', 'sarahvandenheuvel@hotmail.com', '$2y$10$bcEt632FKpDDdElcSI4jKO/V/BRozHIsLMfPi2ZRehcE9Il7mmwpa'),
-(19, 'Andreas', 'Banciu', 'Banciu', 'andreasbanciu@live.be', '$2y$10$IPqhyftGuKJ/g3ovR8u13un1iLfkv6EjNjs89cKiRBm4MGu3Q66lG');
+(19, 'Mathias', 'Geerts', 'Mathias', 'geertsmathias@gmail.com', '$2y$10$mUr76mHgvwj5fs.19r2CheFBXfQhXU5hRftICziGy7DAWDcxCjqiK'),
+(20, 'Raf', 'Snijders', 'Rafke', 'raf@gmail.com', '$2y$10$oD0F/EXqAJSGnuNlAq5Z6.kM6e9sq1i85IeRBSS/9cQPGVzBs3P92'),
+(21, 'Caroline', 'Sterkens', 'Caroline', 'sterkens@gmail.com', '$2y$10$WSc5ZoP3Fp5ooETZEAgwvuNUK7oxyAZbwcjUr9tKzYzYnYPaHuE1.');
 
 --
 -- Indexes for dumped tables
@@ -213,6 +173,12 @@ ALTER TABLE `friends`
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `inappropriate`
+--
+ALTER TABLE `inappropriate`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -241,22 +207,28 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `inappropriate`
+--
+ALTER TABLE `inappropriate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
