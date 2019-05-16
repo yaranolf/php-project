@@ -1,9 +1,8 @@
-
 <?php
-
-require_once 'bootstrap.php';
-
+session_start();
+include_once 'bootstrap.php';
 include 'classes/Post.php';
+include_once 'classes/User.php';
 
 $userId = $_SESSION['userid'];
 $user = new User();
@@ -34,7 +33,6 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
 } else {
     $description = 'Please add a description';
 }
-
 ?>
 
 <!DOCTYPE html>
