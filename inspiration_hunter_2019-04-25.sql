@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 16, 2019 at 07:32 AM
+-- Generation Time: May 16, 2019 at 09:02 AM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -64,6 +64,7 @@ INSERT INTO `friends` (`id`, `user_one`, `user_two`, `official`, `date_made`) VA
 CREATE TABLE `images` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
   `img_description` varchar(255) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `file_path` varchar(255) NOT NULL,
@@ -75,16 +76,16 @@ CREATE TABLE `images` (
 -- Dumping data for table `images`
 --
 
-INSERT INTO `images` (`id`, `user_id`, `img_description`, `date_created`, `file_path`, `longitude`, `latitude`) VALUES
-(35, 20, 'Vietnam - Ninh Binh', '2019-05-09 09:51:57', '59740504_314219309251336_5163639116109185024_n.jpg', '0.00000000', '0.00000000'),
-(36, 20, 'Ninh binh - rower', '2019-05-09 09:52:59', '59438771_374318446503692_8438972148017528832_n.jpg', '0.00000000', '0.00000000'),
-(38, 20, 'test', '2019-05-09 10:35:41', '59436123_389627524960329_5983074350260027392_n (1).jpg', '0.00000000', '0.00000000'),
-(39, 20, 'test', '2019-05-09 10:35:41', '59436123_389627524960329_5983074350260027392_n (1).jpg', '0.00000000', '0.00000000'),
-(40, 19, 'vietnam - abandoned waterpark', '2019-05-14 15:05:22', '59419220_1106452802878012_8560270824844558336_n.jpg', '0.00000000', '0.00000000'),
-(41, 19, 'test', '2019-05-15 09:04:55', '59740504_314219309251336_5163639116109185024_n.jpg', '4.48483890', '51.02471810'),
-(42, 21, 'geel buske', '2019-05-15 17:36:45', '59418928_2244928338932388_6499858176958005248_n.jpg', '4.76078700', '51.41757050'),
-(43, 19, 'testing', '2019-05-16 07:09:04', '59740504_314219309251336_5163639116109185024_n.jpg', '4.48787700', '51.02256940'),
-(44, 19, 'test_', '2019-05-16 07:26:31', '59436123_389627524960329_5983074350260027392_n.jpg', '4.48779410', '51.02258560');
+INSERT INTO `images` (`id`, `user_id`, `user_name`, `img_description`, `date_created`, `file_path`, `longitude`, `latitude`) VALUES
+(35, 20, 'Rafke', 'Vietnam - Ninh Binh', '2019-05-09 09:51:57', '59740504_314219309251336_5163639116109185024_n.jpg', '0.00000000', '0.00000000'),
+(36, 20, 'Rafke', 'Ninh binh - rower', '2019-05-09 09:52:59', '59438771_374318446503692_8438972148017528832_n.jpg', '0.00000000', '0.00000000'),
+(38, 20, 'Rafke', 'test', '2019-05-09 10:35:41', '59436123_389627524960329_5983074350260027392_n (1).jpg', '0.00000000', '0.00000000'),
+(39, 20, 'Rafke', 'test', '2019-05-09 10:35:41', '59436123_389627524960329_5983074350260027392_n (1).jpg', '0.00000000', '0.00000000'),
+(40, 19, 'Mathias', 'vietnam - abandoned waterpark', '2019-05-14 15:05:22', '59419220_1106452802878012_8560270824844558336_n.jpg', '0.00000000', '0.00000000'),
+(41, 19, 'Mathias', 'test', '2019-05-15 09:04:55', '59740504_314219309251336_5163639116109185024_n.jpg', '4.48483890', '51.02471810'),
+(42, 21, 'Caroline', 'geel buske', '2019-05-15 17:36:45', '59418928_2244928338932388_6499858176958005248_n.jpg', '4.76078700', '51.41757050'),
+(43, 19, 'Mathias', 'testing', '2019-05-16 07:09:04', '59740504_314219309251336_5163639116109185024_n.jpg', '4.48787700', '51.02256940'),
+(44, 19, 'Mathias', 'test_', '2019-05-16 07:26:31', '59436123_389627524960329_5983074350260027392_n.jpg', '4.48779410', '51.02258560');
 
 -- --------------------------------------------------------
 
@@ -103,7 +104,8 @@ CREATE TABLE `inappropriate` (
 --
 
 INSERT INTO `inappropriate` (`id`, `post_id`, `user_id`) VALUES
-(1, 35, 19);
+(1, 35, 19),
+(2, 36, 19);
 
 -- --------------------------------------------------------
 
@@ -123,8 +125,8 @@ CREATE TABLE `likes` (
 --
 
 INSERT INTO `likes` (`id`, `post_id`, `user_id`, `date_created`) VALUES
-(18, 35, 19, '2019-05-14 17:04:31'),
-(19, 36, 19, '2019-05-16 09:23:53');
+(20, 36, 19, '2019-05-16 09:33:16'),
+(24, 35, 19, '2019-05-16 11:01:35');
 
 -- --------------------------------------------------------
 
@@ -219,13 +221,13 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `inappropriate`
 --
 ALTER TABLE `inappropriate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
