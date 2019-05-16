@@ -8,6 +8,9 @@ class Post
     public $img_description;
     public $file_path;
     private $date_created;
+    // public $user_name;
+    public $long;
+    public $lat;
     public $location;
     public $inappropriate;
 
@@ -86,9 +89,9 @@ class Post
     /**
      * Get the value of img_description.
      */
-    public function getlocation()
+    public function getlong()
     {
-        return $this->location;
+        return $this->long;
     }
 
     /**
@@ -96,9 +99,29 @@ class Post
      *
      * @return self
      */
-    public function setlocation($location)
+    public function setlong($long)
     {
-        $this->location = $location;
+        $this->long = $long;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of img_description.
+     */
+    public function getlat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * Set the value of img_description.
+     *
+     * @return self
+     */
+    public function setlat($lat)
+    {
+        $this->lat = $lat;
 
         return $this;
     }
@@ -166,13 +189,12 @@ class Post
     public function savePost()
     {
         $conn = Db::getInstance();
-
-        $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created, user_id, location) values (:user_name, :imgdescription, :file_path, NOW(), :userid, :location)');
+        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created, user_id, longitude, latitude) values (:imgdescription, :file_path, NOW(), :userid, :long, :lat)');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
         $statement->bindValue(':userid', $this->getUser_id());
-        $statement->bindValue(':location', $this->getlocation());
-        $statement->bindValue(':user_name', $this->getUser_name());
+        $statement->bindValue(':long', $this->getlong());
+        $statement->bindValue(':lat', $this->getlat());
 
         return $statement->execute();
     }
@@ -208,7 +230,23 @@ class Post
     {
         $conn = Db::getInstance();
         $result = $conn->prepare('SELECT * FROM images WHERE user_id IN ('.$ids.') limit '.$start.','.$counter);
-        //$result->bindParam(':userids', $ids);
+        $result->execute();
+
+        return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
+    }
+
+    public static function getAllNearby($lat, $long, $distance)
+    {
+        $conn = Db::getInstance();
+        $result = $conn->prepare('SELECT *, (
+            6371 * acos (
+            cos ( radians('.$lat.') )
+            * cos( radians( latitude ) )
+            * cos( radians( longitude ) - radians('.$long.') )
+            + sin ( radians('.$lat.') )
+            * sin( radians( latitude ) )
+          )
+      ) AS distance FROM images HAVING distance < '.$distance.' ORDER BY distance');
         $result->execute();
 
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
