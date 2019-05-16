@@ -13,12 +13,17 @@ p{
     text-align: center;
 }
 
-a{
+nav {
+    display: inline-block;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+
     text-decoration: none;
     color: blue;
-    text-align: center;
     margin: auto;
 }
+
 
 .input{
     background-color:#f3f1f185;
@@ -50,6 +55,20 @@ a{
 .btn--primary:hover{
     background-color: rgb(0, 0, 177);
 }
+
+.btn--secondary{
+    color: blue;
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    width: 150px;
+    padding: 5px 0px;
+    border: 1px solid blue;
+    border-radius: 20px;
+    margin: 30px auto 0px auto;
+    display: block;
+}
+
 
 .label{
     display: block;

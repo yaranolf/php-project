@@ -50,7 +50,8 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
       <p><?php echo $post->img_description; ?></p>
       <p>(<?php echo $post->location; ?>)</p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
-      <div><a href="#" class="like" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+      <div><a href="#" class="like btn--secondary" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+      <div><a href="#" class="report btn--secondary" data-id="<?php echo $post->id; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($post->getNrOfInappropriate()); ?></span> people report this </div>
     </article>
   <?php endforeach; ?>
   </div>
@@ -70,34 +71,9 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
 <script src="js/Posts.js" ></script>
+<script src="js/Reports.js" ></script>
+<script src="js/Likes.js" ></script>
 
-  <script>
-    
-    $(document).ready(function(){
-        $(".like").on("click", function(e){
-            var button = $(this);
-            var postId = $(this).data('id');
-            var elLikes = $(this).parent().find(".likes");
-            var likes = elLikes.html();
- 
-            $.ajax({
-                method: "POST",
-                url: "ajax/like.php",
-                data: { postId: postId },
-                dataType: "json",
-                
-            })
-            .done(function( res ) {
-                if(res.status === "liked") {
-                  elLikes.html(likes);
-                }
-            });
- 
-            e.preventDefault();
-        });
-      });
-
-    </script>
 
 </body>
 </html>

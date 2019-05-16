@@ -1,6 +1,6 @@
 <?php
 
-    include 'classes/Post.php';
+    //include 'classes/Post.php';
 
     class Like
     {
@@ -51,7 +51,7 @@
         {
             $conn = Db::getInstance();
 
-            $statement = $conn->prepare('insert into likes (post_id, user_id, date_created) values (:postid, :userid, NOW())');
+            $statement = $conn->prepare('INSERT INTO likes (post_id, user_id, date_created) VALUES (:postid, :userid, NOW())');
             $statement->bindValue(':postid', $postId);
             $statement->bindValue(':userid', $this->getUserId());
 
@@ -70,7 +70,7 @@
         public function likeUnlike($postid)
         {
             $conn = db::getInstance();
-            $statement = $conn->prepare('SELECT COUNT(*) as nrOfLikes FROM likes WHERE post_id=:post_id AND user_id=:user_id');
+            $statement = $conn->prepare('SELECT COUNT(*) AS nrOfLikes FROM likes WHERE post_id=:post_id AND user_id=:user_id');
             $statement->bindValue(':post_id', $postid);
             $statement->bindValue(':user_id', $this->getUserId());
             $statement->execute();
@@ -78,10 +78,12 @@
 
             if ($result['nrOfLikes'] == 0) {
                 $this->addLike($postid);
+
+                return true;
             } else {
                 $this->deleteLike($postid);
-            }
 
-            return $result;
+                return false;
+            }
         }
     }

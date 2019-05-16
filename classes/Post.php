@@ -9,6 +9,7 @@ class Post
     public $file_path;
     private $date_created;
     public $location;
+    public $inappropriate;
 
     /**
      * Get the value of id.
@@ -142,6 +143,26 @@ class Post
         return $this;
     }
 
+    /**
+     * Get the value of inappropriate.
+     */
+    public function getInappropriate()
+    {
+        return $this->inappropriate;
+    }
+
+    /**
+     * Set the value of inappropriate.
+     *
+     * @return self
+     */
+    public function setInappropriate($inappropriate)
+    {
+        $this->inappropriate = $inappropriate;
+
+        return $this;
+    }
+
     public function savePost()
     {
         $conn = Db::getInstance();
@@ -196,12 +217,12 @@ class Post
     public function getLikes()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('select count(*) as count from likes where post_id = :postid');
+        $statement = $conn->prepare('select count(*) as countLikes from likes where post_id = :postid');
         $statement->bindValue(':postid', $this->id);
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-        return $result['count'];
+        return $result['countLikes'];
     }
 
     public static function convertTime($time_ago)
@@ -300,5 +321,60 @@ class Post
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $result['count'];
+    public function reportPost($postId)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('INSERT INTO inappropriate (user_id, post_id) VALUES (:userid, :postid)');
+        $statement->bindParam(':postid', $postId);
+        $statement->bindParam(':userid', $this->user_id);
+
+        return $statement->execute();
+    }
+
+    public function deletePost($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('DELETE FROM images WHERE id=:postid');
+        $statement->bindParam(':postid', $postId);
+
+        return $statement->execute();
+    }
+
+    public function reportAsInappropriate($postId)
+    {
+        $conn = Db::getInstance();
+
+        $statement = $conn->prepare('SELECT count(*) AS nrOfInappropriate FROM inappropriate WHERE post_id=:postid AND user_id=:userid');
+        $statement->bindParam(':postid', $postId);
+        $statement->bindValue(':userid', $this->user_id);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($result['nrOfInappropriate'] == 0) {
+            $this->reportPost($postId);
+            $result = $this->getNrOfInappropriate();
+
+            if ($result[0] == 3) {
+                $this->deletePost($postId);
+
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getNrOfInappropriate()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT count(*) AS amountOfInappropriate FROM inappropriate WHERE post_id=:postid');
+        $statement->bindValue(':postid', $this->id);
+        $result = $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_NUM);
+
+        return $result;
     }
 }
