@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once 'bootstrap.php';
 include 'classes/Post.php';
 include_once 'classes/User.php';
