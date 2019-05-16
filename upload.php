@@ -6,6 +6,8 @@ require_once 'bootstrap.php';
 include 'classes/Post.php';
 
 $userId = $_SESSION['userid'];
+$user = new User();
+$user_name = $user->getUserName();
 
 if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     $targetDir = 'uploads/';
@@ -15,6 +17,7 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     $long = $_POST['long'];
     $lat = $_POST['lat'];
     echo $location;
+
     if (move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath) && !empty($description)) {
         $image_show = '<img src='.$targetFilePath.' height=200 width=200 />';
         $image = addslashes(file_get_contents($targetFilePath));

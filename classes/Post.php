@@ -4,12 +4,34 @@ class Post
 {
     public $id;
     public $user_id;
+    public $user_name;
     public $img_description;
     public $file_path;
     private $date_created;
-    public $user_name;
+    // public $user_name;
     public $long;
     public $lat;
+    public $location;
+
+    /**
+     * Get the value of id.
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * Get the value of user_id.
@@ -27,6 +49,18 @@ class Post
     public function setUser_id($user_id)
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getUser_name()
+    {
+        return $this->user_name;
+    }
+
+    public function setUser_name($user_name)
+    {
+        $this->user_name = $user_name;
 
         return $this;
     }
@@ -127,26 +161,6 @@ class Post
     public function setDate_created($date_created)
     {
         $this->date_created = $date_created;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of user_name.
-     */
-    public function getUser_name()
-    {
-        return $this->user_name;
-    }
-
-    /**
-     * Set the value of user_name.
-     *
-     * @return self
-     */
-    public function setUser_name($user_name)
-    {
-        $this->user_name = $user_name;
 
         return $this;
     }
@@ -254,5 +268,75 @@ class Post
                 return 'about '.$r.' '.$str.($r > 1 ? 's' : '').' ago';
             }
         }
+    }
+
+    public static function getData($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
+        $statement->bindValue(':postid', $postId);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC); //dus geen fetchAll!
+
+        return $result;
+    }
+
+    public static function getDate($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
+        $statement->bindValue(':postid', $postId);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC); //dus geen fetchAll!
+
+        return $result;
+    }
+
+    public static function getLike($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('select count(*) as count from likes where post_id = :postid');
+        $statement->bindValue(':postid', $postId);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result['count'];
+    }
+
+    public static function getPostsFromUser($userId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE user_id = :userid');
+        $statement->bindValue(':userid', $userId);
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public static function getUserInfo($userId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE user_id = :userid');
+        $statement->bindValue(':userid', $userId);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    public static function getLikeUser($userId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('select count(*) as count from likes where user_id = :userid');
+        $statement->bindValue(':userid', $userId);
+        $statement->execute();
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result['count'];
     }
 }

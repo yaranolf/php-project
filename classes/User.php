@@ -1,6 +1,9 @@
 <?php
 
-    include 'Db.php';
+
+
+    //include 'Db.php';
+
 
     class User
     {
@@ -111,6 +114,14 @@
             return $this;
         }
 
+        public static function getUser()
+        {
+            $conn = Db::getInstance();
+            $result = $conn->query('SELECT users.username FROM users, images where images.user_id = users.id');
+
+            return $result->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function register()
         {
             // connectie
@@ -179,7 +190,7 @@
             if (!isset($_SESSION)) {
                 session_start();
             }
-            $_SESSION['email'] = $this->email;
+            $_SESSION['userid'] = $this->id;
             header('Location: index.php');
         }
     }

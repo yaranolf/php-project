@@ -43,7 +43,7 @@
     <?php if (isset($error)): ?>
 		<div class="form__error">
 			<p>
-			💩 <?php echo $error; ?>
+			<?php echo $error; ?>
 			</p>
 		</div>
     <?php endif; ?>
