@@ -57,16 +57,22 @@ nav {
 }
 
 .btn--secondary{
+    text-decoration: none;
+    text-align: center;
     color: blue;
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 700;
     text-transform: uppercase;
     width: 150px;
     padding: 5px 0px;
-    border: 1px solid blue;
+    border: 2px solid blue;
     border-radius: 20px;
     margin: 30px auto 0px auto;
     display: block;
+}
+
+span{
+    text-align: center;
 }
 
 
@@ -83,7 +89,7 @@ nav {
 
 .center-div{
     margin: 20px auto;
-    width: 130px; 
+    width: 140px; 
 }
 
 .center-div-upload{

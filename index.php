@@ -50,8 +50,8 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
       <p><?php echo $post->img_description; ?></p>
       <p>(<?php echo $post->latitude.','.$post->longitude; ?>)</p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
-      <div><a href="#" class="like btn--secondary" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
-      <div><a href="#" class="report btn--secondary" data-id="<?php echo $post->id; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($post->getNrOfInappropriate()); ?></span> people report this </div>
+      <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+      <div class="center-div"><a href="#" class="report btn--secondary" data-id="<?php echo $post->id; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($post->getNrOfInappropriate()); ?></span> people report this </div>
     </article>
   <?php endforeach; ?>
   </div>

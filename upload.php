@@ -45,6 +45,8 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
 </head>
 <body>
 
+<?php include_once 'nav.inc.php'; ?>
+
     <h2>Upload <br>an image</h2>
 
     <div class="center-div-upload">
