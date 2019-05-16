@@ -419,13 +419,25 @@ class Post
         return $result;
     }
 
-    public function getNrOfInappropriatePost($userId)
+    public static function getNrOfInappropriatePost($userId)
     {
         $conn = Db::getInstance();
         $statement = $conn->prepare('SELECT count(*) AS amountOfInappropriate FROM inappropriate WHERE user_id=:userid');
         $statement->bindValue(':userid', $userId);
         $result = $statement->execute();
         $result = $statement->fetch(PDO::FETCH_NUM);
+
+        return $result;
+    }
+
+    public static function getIdFromPosts($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE post_id = :postid');
+        $statement->bindValue(':postid', $postId);
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
     }

@@ -1,11 +1,12 @@
 <?php
 include_once 'bootstrap.php';
 include 'classes/Like.php';
+include 'classes/Post.php';
 
 $userId = $_GET['id'];
 $postId = $_GET['id'];
 $posts = Post::getPostsFromUser($userId);
-
+$idPosts = Post::getIdFromPosts($postId);
 $like = Post::getLikeUser($userId);
 $info = Post::getUserInfo($userId);
 $report = Post::getNrOfInappropriatePost($userId);
@@ -29,9 +30,8 @@ $report = Post::getNrOfInappropriatePost($userId);
   <h2 class="username"><?php echo $info['user_name']; ?></h2>
   
 <?php foreach ($posts as $post):
-
-//$t = $post->getDate_created();
-//$time_ago = strtotime($t);?>
+$t = $post->getDate_created();
+$time_ago = strtotime($t); ?>
   
 <div id="resultlist">
     <article class="center-div-image">
@@ -39,8 +39,8 @@ $report = Post::getNrOfInappropriatePost($userId);
         <p><?php echo $post['img_description']; ?></p>
         <p>(<?php echo $post['latitude'].','.$post['longitude']; ?>)</p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
-      <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $post['id']; ?>" >Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
-      <div class="center-div"><a href="#" class="report btn--secondary" data-id="<?php echo $post['id']; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($report); ?></span> people report this </div>
+      <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $idPost['id']; ?>" >Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
+      <div class="center-div"><a href="#" class="report btn--secondary" data-id="<?php echo $idPost['id']; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($report); ?></span> people report this </div>
     </article>
   </div>
    
