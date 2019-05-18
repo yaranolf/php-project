@@ -10,6 +10,7 @@ $postId = $_GET['id'];
 $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,13 +33,31 @@ $t = Post::getDate($postId);
         <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
     </article>
 
+    <p>Comments</p>
+
     <!--comments-->
-    <form>
-        <textarea id="commentText" name="commentText" form="commentText"></textarea>
-        <input id="submitComment" data-photoid="<?php echo $photo->getId(); ?>" data-userid="<?php echo $_SESSION['userid']; ?>" type="submit" value="Post comment">
+    <form method="POST">
+        <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
+        <input id="submit" type="submit" value="Post" class="btn btn--primary" data-id="<?php echo $post['id']; ?>" data-user_id="<?php echo $post['user_id']; ?>" >
     </form>
 
-    <p>Comments</p>
+    <div id="comments" class="comments">
+    <?php
+        $commentArray = $post->getComments();
+
+        foreach ($commentArray as $commentRow):
+            $comment = new Comment();
+            $comment->setId($commentRow['id']);
+        ?>
+        
+            <div class="commentBox">
+                <p><?php echo $comment->getCommentText(); ?></p>
+                <p class="commentDate"><?php echo $comment->getDateCreated(); ?></p>
+            </div>
+        
+    <?php endforeach; ?>
+    </div>
+    
 
 
 <script>
@@ -66,9 +85,9 @@ $(document).ready(function(){
         });
     
     //comment toevoegen
-    $("#submitComment").on("click", function(e) {
-        var postId = $(this).data("postid");
-        var userId = $(this).data("userid");
+    $("#submit").on("click", function(e) {
+        var postId = $(this).data("id");
+        var userId = $(this).data("user_id");
         var commentText = $("#commentText").val();
 
         e.preventDefault();
@@ -77,7 +96,7 @@ $(document).ready(function(){
             method: "POST",
             url: "ajax/comment.php", 
             data: { 
-                photoId: postId,
+                postId: postId,
                 userId: userId,
                 commentText: commentText
             },

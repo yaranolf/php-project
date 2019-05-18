@@ -418,4 +418,14 @@ class Post
 
         return $result;
     }
+
+    public function getComments()
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM comments WHERE post_id = :postId ORDER BY date');
+        $statement->bindParam(':postId', $this->id);
+        $result = $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

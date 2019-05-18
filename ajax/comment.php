@@ -1,8 +1,8 @@
 <?php
 
 if (!empty($_POST)) {
-    $postId = $_POST['postid'];
-    $userId = $_POST['userid'];
+    $postId = $_POST['post_id'];
+    $userId = $_POST['user_id'];
     $commentText = $_POST['commentText'];
     //datum
 
@@ -12,7 +12,7 @@ if (!empty($_POST)) {
         $comment->setPostId($postId);
         $comment->setUserId($userId);
         $comment->setCommentText($commentText);
-        $comment->saveComment($postId, $userId, $commentText);
+        $comment->saveComment();
 
         //JSON
         $result = [
