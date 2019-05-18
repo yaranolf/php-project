@@ -47,10 +47,10 @@ $t = Post::getDate($postId);
         $comments = Post::getComments($postId);
 
         foreach ($comments as $c):
-
             $comment = new Comment();
+            $comment->setId($c['id']);
             $comment = Comment::getComments($postId);
-            //var_dump($comment);
+            var_dump($c);
         ?>
         
         <div class="commentBox">

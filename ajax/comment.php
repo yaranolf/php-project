@@ -1,5 +1,6 @@
 <?php
 
+require_once '../bootstrap.php';
 if (!empty($_POST)) {
     $postId = $_POST['post_id'];
     $userId = $_POST['user_id'];
@@ -7,7 +8,6 @@ if (!empty($_POST)) {
     //datum
 
     try {
-        include_once '../bootstrap.php';
         $comment = new Comment();
         $comment->setPostId($postId);
         $comment->setUserId($userId);
