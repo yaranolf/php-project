@@ -1,15 +1,15 @@
 $(document).ready(function(){
     //comment toevoegen
-    $("#submit").on("click", function(e) {
-        var postId = $(this).data("post_id");
-        var userId = $(this).data("user_id");
+    $("#commentSubmit").on("click", function(e) {
+        var postId = $(this).data("postId");
+        var userId = $(this).data("userId");
         var commentText = $("#commentText").val();
 
         e.preventDefault();
         //ajax comment
         $.ajax({
             method: "POST",
-            url: "../ajax/comment.php", 
+            url: "ajax/comment.php", 
             data: { 
                 postId: postId,
                 userId: userId,

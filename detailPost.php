@@ -53,9 +53,9 @@ $t = Post::getDate($postId);
     </div>
 
     <!--comments maken-->
-    <form method="post" name="postComment" >
+    <form name="postComment" method="post">
         <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
-        <input id="submit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['post_id']; ?>" data-user_id="<?php echo $post['user_id']; ?>">
+        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['post_id']; ?>" data-user_id="<?php echo $post['user_id']; ?>">
     </form>
 
 <script
