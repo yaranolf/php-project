@@ -18,7 +18,7 @@
                 $user->setPassword($_POST['password']);
                 if ($user->register()) {
                     $user->logMeIn();
-                    header('Location: login.php');
+                    //header('Location: login.php');
                 }
             } else {
                 $error = 'Your passwords are not secure or do not match.';
