@@ -30,7 +30,7 @@ class Comment
 
     public function setPostId($postId)
     {
-        $this->photoId = $postId;
+        $this->postId = $postId;
 
         return $this;
     }
@@ -83,11 +83,11 @@ class Comment
         return $result;
     }
 
-    public function saveComment()
+    public function saveComment($postId)
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('insert into comments (user_id, post_id, date_created, comment) values (:user_id, :post_id, :comment, NOW())');
-        $statement->bindValue(':post_id', $this->getPostId());
+        $statement = $conn->prepare('INSERT INTO comments (user_id, post_id, date_created, comment) VALUES (:user_id, :post_id, :comment, NOW())');
+        $statement->bindValue(':post_id', $postId);
         $statement->bindValue(':user_id', $this->getUserId());
         $statement->bindValue(':comment', $this->getCommentText());
 

@@ -40,12 +40,13 @@ $t = Post::getDate($postId);
     <?php
     $comments = Post::getComments($postId);
     foreach ($comments as $c):
+
     //var_dump($c);
     ?>
         
-    <div class="commentBox">
+    <div>
         <p><?php echo $c['comment']; ?></p>
-        <p class="commentDate"><?php echo $c['date_created']; ?></p>
+        <p><?php echo $c['date_created']; ?></p>
     </div>
         
     <?php endforeach; ?>
@@ -54,7 +55,7 @@ $t = Post::getDate($postId);
     <!--comments maken-->
     <form method="POST">
         <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
-        <input id="submit" type="submit" value="Post" class="btn btn--primary" data-id="<?php echo $post['id']; ?>" data-user_id="<?php echo $post['user_id']; ?>" >
+        <input id="submit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['post_id']; ?>" data-user_id="<?php echo $post['user_id']; ?>" >
     </form>
 
    

@@ -8,11 +8,11 @@ if (!empty($_POST)) {
     //datum
 
     try {
-        $comment = new Comment();
-        $comment->setPostId($postId);
-        $comment->setUserId($userId);
-        $comment->setCommentText($commentText);
-        $comment->saveComment();
+        $com = new Comment();
+        $com->setPostId($postId);
+        $com->setUserId($userId);
+        $com->setCommentText($commentText);
+        $com->saveComment($postId);
 
         //JSON
         $result = [
