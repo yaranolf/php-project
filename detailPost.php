@@ -53,68 +53,25 @@ $t = Post::getDate($postId);
     </div>
 
     <!--comments maken-->
-    <form method="POST">
+    <form method="post" name="postComment" >
         <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
-        <input id="submit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['post_id']; ?>" data-user_id="<?php echo $post['user_id']; ?>" >
+        <input id="submit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['post_id']; ?>" data-user_id="<?php echo $post['user_id']; ?>">
     </form>
 
-   
-    
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
-<script>
-$(document).ready(function(){
-    $(".like").on("click", function(e){
-        var button = $(this);
-        var postId = $(this).data('id');
-        var elLikes = $(this).parent().find(".likes");
-        var likes = elLikes.html();
- 
-        $.ajax({
-            method: "POST",
-            url: "ajax/like.php",
-            data: { postId: postId },
-            dataType: "json",      
-        })
-        .done(function( res ) {
-            if(res.status === "liked") {
-            //button.html("unlike");
-            elLikes.html(likes);
-            }
-        });
- 
-            e.preventDefault();
-        });
-    
-    //comment toevoegen
-    $("#submit").on("click", function(e) {
-        var postId = $(this).data("post_id");
-        var userId = $(this).data("user_id");
-        var commentText = $("#commentText").val();
-
-        e.preventDefault();
-        //ajax comment
-        $.ajax({
-            method: "POST",
-            url: "ajax/comment.php", 
-            data: { 
-                postId: postId,
-                userId: userId,
-                commentText: commentText
-            },
-                dataType: "JSON" 
-            }).done(function(res) {
-                console.log(res);
-                if(res.status == 'success') {
-                    var newComment =  $("#commentText").val();
-
-                    $("#comments").append(newComment);
-
-                    $("#commentText").val("");
-                }
-            });
-    }
-});
-  </script>
+<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
+<script src="js/Posts.js" ></script>
+<script src="js/Reports.js" ></script>
+<script src="js/Likes.js" ></script>
+<script src="js/Comments.js" ></script>
 </body>
 </html>
