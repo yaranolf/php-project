@@ -33,31 +33,38 @@ $t = Post::getDate($postId);
     </article>
 
 
-  <script>
+<script>
 $(document).ready(function(){
-        $(".like").on("click", function(e){
-            var button = $(this);
-            var postId = $(this).data('id');
-            var elLikes = $(this).parent().find(".likes");
-            var likes = elLikes.html();
+    $(".like").on("click", function(e){
+        var button = $(this);
+        var postId = $(this).data('id');
+        var elLikes = $(this).parent().find(".likes");
+        var likes = elLikes.html();
  
-            $.ajax({
-                method: "POST",
-                url: "ajax/like.php",
-                data: { postId: postId },
-                dataType: "json",
-                
-            })
-            .done(function( res ) {
-                if(res.status === "liked") {
-                  //button.html("unlike");
-                  elLikes.html(likes);
-                }
-            });
+        $.ajax({
+            method: "POST",
+            url: "ajax/like.php",
+            data: { postId: postId },
+            dataType: "json",      
+        })
+        .done(function( res ) {
+            if(res.status === "liked") {
+            //button.html("unlike");
+            elLikes.html(likes);
+            }
+        });
  
             e.preventDefault();
         });
       });
+
+    $("#submitComment").on("click", function(e) {
+        var postId = $(this).data("postid");
+        var userId = $(this).data("userid");
+        var commentText = $("#commentText").val();
+
+        e.preventDefault();
+    }
   </script>
 </body>
 </html>
