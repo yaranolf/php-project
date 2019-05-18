@@ -33,13 +33,8 @@ $t = Post::getDate($postId);
         <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
     </article>
 
+    <!--comments posten-->
     <p>Comments</p>
-
-    <!--comments-->
-    <form method="POST">
-        <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
-        <input id="submit" type="submit" value="Post" class="btn btn--primary" data-id="<?php echo $post['id']; ?>" data-user_id="<?php echo $post['user_id']; ?>" >
-    </form>
 
     <div id="comments" class="comments">
     <?php
@@ -55,6 +50,14 @@ $t = Post::getDate($postId);
         
     <?php endforeach; ?>
     </div>
+
+    <!--comments maken-->
+    <form method="POST">
+        <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
+        <input id="submit" type="submit" value="Post" class="btn btn--primary" data-id="<?php echo $post['id']; ?>" data-user_id="<?php echo $post['user_id']; ?>" >
+    </form>
+
+   
     
 
 
