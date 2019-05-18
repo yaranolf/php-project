@@ -43,20 +43,15 @@ $t = Post::getDate($postId);
 
     <div id="comments" class="comments">
     <?php
-
-        $comments = Post::getComments($postId);
-
-        foreach ($comments as $c):
-            $comment = new Comment();
-            $comment->setId($c['id']);
-            $comment = Comment::getComments($postId);
-            var_dump($c);
-        ?>
+    $comments = Post::getComments($postId);
+    foreach ($comments as $c):
+    //var_dump($c);
+    ?>
         
-        <div class="commentBox">
-            <p><?php echo $comment['comment']; ?></p>
-            <p class="commentDate"><?php echo $comment['date_created']; ?></p>
-        </div>
+    <div class="commentBox">
+        <p><?php echo $c['comment']; ?></p>
+        <p class="commentDate"><?php echo $c['date_created']; ?></p>
+    </div>
         
     <?php endforeach; ?>
     </div>
