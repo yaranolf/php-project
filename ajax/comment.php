@@ -7,18 +7,19 @@ if (!empty($_POST)) {
     $commentText = $_POST['commentText'];
     //datum
 
-    $com = new Comment();
-    $com->setPostId($postId);
-    $com->setUserId($userId);
-    $com->setCommentText($commentText);
-    $com->saveComment();
+    try {
+        $comment = new Comment();
+        $comment->setPostId($postId);
+        $comment->setUserId($userId);
+        $comment->setCommentText($commentText);
+        $comment->saveComment();
 
-    //JSON
-    $result = [
+        //JSON
+        $result = [
             'status' => 'success',
             'message' => 'Comment has been saved',
-        ];
-    /*} catch (Throwable $t) {
+    ];
+    } catch (Throwable $t) {
         $result = [
             'status' => 'error',
             'message' => 'Comment hasn/t been saved',

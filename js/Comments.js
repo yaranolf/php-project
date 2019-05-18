@@ -1,8 +1,8 @@
 $(document).ready(function(){
     //comment toevoegen
     $("#commentSubmit").on("click", function(e) {
-        var postId = $(this).data("postId");
-        var userId = $(this).data("userId");
+        var postId = $(this).data("post_id");
+        var userId = $(this).data("user_id");
         var commentText = $("#commentText").val();
 
         e.preventDefault();
@@ -17,7 +17,7 @@ $(document).ready(function(){
             },
                 dataType: "JSON" 
             }).done(function(res) {
-                //console.log(res);
+                console.log(res);
                 if(res.status == 'success') {
                     var newComment =  "<p>" + $("#commentText").val() + "</p>";
 
@@ -26,5 +26,8 @@ $(document).ready(function(){
                     $("#commentText").val("");
                 }
             });
-    });
+    
+            e.preventDefault();
+        });
 });
+            
