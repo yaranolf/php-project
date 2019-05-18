@@ -56,7 +56,7 @@ $(document).ready(function(){
  
             e.preventDefault();
         });
-      });
+    
 
     $("#submitComment").on("click", function(e) {
         var postId = $(this).data("postid");
@@ -65,6 +65,7 @@ $(document).ready(function(){
 
         e.preventDefault();
     }
+});
   </script>
 </body>
 </html>
