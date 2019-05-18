@@ -76,22 +76,22 @@ $(document).ready(function(){
         $.ajax({
             method: "POST",
             url: "ajax/comment.php", 
-                data: { 
-                    photoId: postId,
-                    userId: userId,
-                    commentText: commentText
-                },
-                    dataType: "JSON" 
-                }).done(function(res) {
-                    console.log(res);
-                    if(res.status == 'success') {
-                        var newComment =  $("#commentText").val();
+            data: { 
+                photoId: postId,
+                userId: userId,
+                commentText: commentText
+            },
+                dataType: "JSON" 
+            }).done(function(res) {
+                console.log(res);
+                if(res.status == 'success') {
+                    var newComment =  $("#commentText").val();
 
-                        $("#comments").append(newComment);
+                    $("#comments").append(newComment);
 
-                        $("#commentText").val("");
-                    }
-                });
+                    $("#commentText").val("");
+                }
+            });
     }
 });
   </script>
