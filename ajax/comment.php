@@ -12,7 +12,7 @@ if (!empty($_POST)) {
         $comment->setPostId($postId);
         $comment->setUserId($userId);
         $comment->setCommentText($commentText);
-        $comment->saveComment();
+        $comment->saveComment($postId, $userId, $commentText);
 
         //JSON
         $result = [
