@@ -74,7 +74,7 @@ class Comment
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('insert into comments ');
+        $statement = $conn->prepare('insert into comments  ');
 
         return $statement->execute();
     }
