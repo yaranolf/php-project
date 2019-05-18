@@ -43,17 +43,19 @@ $t = Post::getDate($postId);
 
     <div id="comments" class="comments">
     <?php
-        $post = new Post();
-        $comments = $post->getComments();
+
+        $comments = Post::getComments($postId);
 
         foreach ($comments as $c):
+
             $comment = new Comment();
-            $comment->setId($c['id']);
+            $comment = Comment::getComments($postId);
+            //var_dump($comment);
         ?>
         
         <div class="commentBox">
-            <p><?php echo $comment->getCommentText(); ?></p>
-            <p class="commentDate"><?php echo $comment->getDateCreated(); ?></p>
+            <p><?php echo $comment['comment']; ?></p>
+            <p class="commentDate"><?php echo $comment['date_created']; ?></p>
         </div>
         
     <?php endforeach; ?>
@@ -87,7 +89,7 @@ $(document).ready(function(){
     
     //comment toevoegen
     $("#submit").on("click", function(e) {
-        var postId = $(this).data("id");
+        var postId = $(this).data("post_id");
         var userId = $(this).data("user_id");
         var commentText = $("#commentText").val();
 

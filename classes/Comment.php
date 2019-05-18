@@ -72,13 +72,13 @@ class Comment
     }
 
     //fetch
-    public static function setComment($id)
+    public static function getComments($postId)
     {
         $conn = Db::getInstance();
-        $statement = $conn->query('select * from comments where id = :id'); //getest in DB
-        $statement->bindValue(':id', $id);
+        $statement = $conn->prepare('select * from comments where post_id = :postid'); //getest in DB
+        $statement->bindValue(':postid', $postId);
         $statement->execute();
-        $result = $statement->fetchAll(PDO::FETCH_ARRAY);
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $result;
     }

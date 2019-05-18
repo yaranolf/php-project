@@ -419,11 +419,11 @@ class Post
         return $result;
     }
 
-    public function getComments()
+    public static function getComments($postId)
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('SELECT * FROM comments WHERE post_id = :postId ORDER BY date');
-        $statement->bindParam(':postId', $this->id);
+        $statement = $conn->prepare('SELECT * FROM comments WHERE post_id = :postId');
+        $statement->bindParam(':postId', $postId);
         $result = $statement->execute();
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
