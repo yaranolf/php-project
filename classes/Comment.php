@@ -2,12 +2,61 @@
 
 class Comment
 {
+    private $id;
     private $userId;
-    private $text;
+    private $commentText;
     private $postId;
     //datum
 
     //getters en setter
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $id;
+    }
+
+    public function getPostId()
+    {
+        return $this->postId;
+    }
+
+    public function setPostId($postId)
+    {
+        $this->photoId = $postId;
+
+        return $this;
+    }
+
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
+
+        return $this;
+    }
+
+    public function getCommentText()
+    {
+        return $this->commentText;
+    }
+
+    public function setCommentText($commentText)
+    {
+        $this->commentText = $commentText;
+
+        return $this;
+    }
 
     //fetch
     public function setComment()
