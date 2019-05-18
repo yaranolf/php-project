@@ -59,7 +59,7 @@ class Comment
     }
 
     //fetch
-    public function setComment($id)
+    public static function setComment($id)
     {
         $conn = Db::getInstance();
         $statement = $conn->query('select * from comments where id = :id by id desc');
