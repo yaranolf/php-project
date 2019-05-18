@@ -39,7 +39,7 @@ $t = Post::getDate($postId);
     </form>
 
     <p>Comments</p>
-    
+
 
 <script>
 $(document).ready(function(){
@@ -65,13 +65,33 @@ $(document).ready(function(){
             e.preventDefault();
         });
     
-
+    //comment toevoegen
     $("#submitComment").on("click", function(e) {
         var postId = $(this).data("postid");
         var userId = $(this).data("userid");
         var commentText = $("#commentText").val();
 
         e.preventDefault();
+        //ajax comment
+        $.ajax({
+            method: "POST",
+            url: "ajax/comment.php", 
+                data: { 
+                    photoId: postId,
+                    userId: userId,
+                    commentText: commentText
+                },
+                    dataType: "JSON" 
+                }).done(function(res) {
+                    console.log(res);
+                    if(res.status == 'success') {
+                        var newComment =  $("#commentText").val();
+
+                        $("#comments").append(newComment);
+
+                        $("#commentText").val("");
+                    }
+                });
     }
 });
   </script>
