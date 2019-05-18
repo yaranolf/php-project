@@ -46,7 +46,6 @@ $t = Post::getDate($postId);
         
     <div>
         <p><?php echo $c['comment']; ?></p>
-        <p><?php echo $c['date_created']; ?></p>
     </div>
         
     <?php endforeach; ?>

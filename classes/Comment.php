@@ -86,7 +86,7 @@ class Comment
     public function saveComment()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO comments (user_id, post_id, date_created, comment) VALUES (:user_id, :post_id, :comment, NOW())');
+        $statement = $conn->prepare('INSERT INTO comments (user_id, post_id, comment) VALUES (:user_id, :post_id, :comment)');
         $statement->bindValue(':post_id', $this->getPostId());
         $statement->bindValue(':user_id', $this->getUserId());
         $statement->bindValue(':comment', $this->getCommentText());
