@@ -59,21 +59,22 @@ class Comment
     }
 
     //fetch
-    public function setComment()
+    public function setComment($id)
     {
         $conn = Db::getInstance();
-        //comment       //db::simplefetch > mogelijkheid
-        $result = $conn->query('select * from comments by id desc'); //where id = '.this->id
-        //$this->userId = $comment["userId"]
-        return $result->fetchAll(PDO::FETCH_ARRAY);
+        $statement = $conn->query('select * from comments where id = :id by id desc');
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+        $result = $statement->fetchAll(PDO::FETCH_ARRAY);
+
+        return $result;
     }
 
     public function saveComment()
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('insert into comments (comment, date_created) values (:comment, NOW())');
-        $statement->bindValue(':comment', $this->getComment());
+        $statement = $conn->prepare('insert into comments ');
 
         return $statement->execute();
     }
