@@ -1,8 +1,8 @@
 <?php
 
 if (!empty($_POST)) {
-    $postId = $_POST['postId'];
-    $userId = $_POST['userId'];
+    $postId = $_POST['postid'];
+    $userId = $_POST['userid'];
     $commentText = $_POST['commentText'];
     //datum
 
@@ -11,6 +11,7 @@ if (!empty($_POST)) {
         $comment = new Comment();
         $comment->setPostId($postId);
         $comment->setUserId($userId);
+        $comment->setCommentText($commentText);
         $comment->saveComment();
 
         //JSON
@@ -20,9 +21,9 @@ if (!empty($_POST)) {
         ];
     } catch (Throwable $t) {
         $result = [
-    'status' => 'error',
-    'message' => 'Comment hasn/t been saved',
-    ];
+            'status' => 'error',
+            'message' => 'Comment hasn/t been saved',
+         ];
     }
     echo json_encode($result); //vertaald json naar php
 }

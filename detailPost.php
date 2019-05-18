@@ -38,6 +38,9 @@ $t = Post::getDate($postId);
         <input id="submitComment" data-photoid="<?php echo $photo->getId(); ?>" data-userid="<?php echo $_SESSION['userid']; ?>" type="submit" value="Post comment">
     </form>
 
+    <p>Comments</p>
+    
+
 <script>
 $(document).ready(function(){
     $(".like").on("click", function(e){
