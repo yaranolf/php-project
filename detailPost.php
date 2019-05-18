@@ -43,17 +43,18 @@ $t = Post::getDate($postId);
 
     <div id="comments" class="comments">
     <?php
-        $commentArray = $post->getComments();
+        $post = new Post();
+        $comments = $post->getComments();
 
-        foreach ($commentArray as $commentRow):
+        foreach ($comments as $c):
             $comment = new Comment();
-            $comment->setId($commentRow['id']);
+            $comment->setId($c['id']);
         ?>
         
-            <div class="commentBox">
-                <p><?php echo $comment->getCommentText(); ?></p>
-                <p class="commentDate"><?php echo $comment->getDateCreated(); ?></p>
-            </div>
+        <div class="commentBox">
+            <p><?php echo $comment->getCommentText(); ?></p>
+            <p class="commentDate"><?php echo $comment->getDateCreated(); ?></p>
+        </div>
         
     <?php endforeach; ?>
     </div>
