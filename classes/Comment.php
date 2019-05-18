@@ -6,6 +6,7 @@ class Comment
     private $userId;
     private $commentText;
     private $postId;
+    private $dateCreated;
     //datum
 
     //getters en setter
@@ -58,11 +59,23 @@ class Comment
         return $this;
     }
 
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+
+    public function setDateCreated($dateCreated)
+    {
+        $this->id = $dateCreated;
+
+        return $dateCreated;
+    }
+
     //fetch
     public static function setComment($id)
     {
         $conn = Db::getInstance();
-        $statement = $conn->query('select * from comments where id = :id by id desc');
+        $statement = $conn->query('select * from comments where id = :id'); //getest in DB
         $statement->bindValue(':id', $id);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ARRAY);
@@ -74,7 +87,7 @@ class Comment
     {
         $conn = Db::getInstance();
 
-        $statement = $conn->prepare('insert into comments  ');
+        $statement = $conn->prepare('insert into comments (user_id, post_id, date_created, comment)');
 
         return $statement->execute();
     }
