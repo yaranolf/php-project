@@ -32,6 +32,11 @@ $t = Post::getDate($postId);
         <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
     </article>
 
+    <!--comments-->
+    <form>
+        <textarea id="commentText" name="commentText" form="commentText"></textarea>
+        <input id="submitComment" data-photoid="<?php echo $photo->getId(); ?>" data-userid="<?php echo $_SESSION['userid']; ?>" type="submit" value="Post comment">
+    </form>
 
 <script>
 $(document).ready(function(){
