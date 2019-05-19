@@ -29,8 +29,8 @@ $t = Post::getDate($postId);
     <article class="center-div-image">
         <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
         <p><?php echo $post['img_description']; ?></p>
-        <p><?php echo $post['date_created']; ?></p>
-        <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
+        <p><?php; // echo $post['date_created'];?></p>
+        <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $post['id']; ?>" >Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
     </article>
 
     <!--comments posten-->
