@@ -374,6 +374,18 @@ class Post
         return $result['count'];
     }
 
+    public static function getDateCreated($userId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT date_created FROM images WHERE user_id = :userid');
+        $statement->bindValue(':userid', $userId);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
     public function reportPost($postId)
     {
         $conn = Db::getInstance();

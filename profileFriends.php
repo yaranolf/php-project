@@ -3,12 +3,8 @@ include_once 'bootstrap.php';
 include 'classes/Like.php';
 
 $userId = $_GET['id'];
-$postId = $_GET['id'];
 $posts = Post::getPostsFromUser($userId);
-
-$like = Post::getLikeUser($userId);
 $info = Post::getUserInfo($userId);
-//var_dump($posts);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -21,66 +17,39 @@ $info = Post::getUserInfo($userId);
   <title> Profile </title>
 </head>
 <body>
-
   
-  <?php include_once 'nav.inc.php'; ?>
+<?php include_once 'nav.inc.php'; ?>
 
-  <h2 class="username"><?php echo $info['user_name']; ?></h2>
+<h2 class="username"><?php echo $info['user_name']; ?></h2>
   
 <?php foreach ($posts as $post):
-
-  //$t = $post->getDate_created();
-  //$time_ago = strtotime($t);?>
+  $id = new Post();
+  $id->setId($post['id']);
+?>
   
 <div id="resultlist">
     <article class="center-div-image">
-      
-        <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
-        <p><?php echo $post['img_description']; ?></p>
-        <p><?php; // echo $convertedDate = Post::convertTime($time_ago);?></p>
-        <div><a href="#" data-id="<?php echo $post['id']; ?>" class="like">Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
+    <a href="detailPost.php?id=<?php echo $id->getId(); ?>"> <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt=""></a>
         
     </article>
   </div>
    
 <?php endforeach; ?>
 
+<script 
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
 
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
 <script src="js/Posts.js" ></script>
-  <script>
-    
-    $(document).ready(function(){
-        $(".like").on("click", function(e){
-            var button = $(this);
-            var postId = $(this).data('id');
-            var elLikes = $(this).parent().find(".likes");
-            var likes = elLikes.html();
- 
-            $.ajax({
-                method: "POST",
-                url: "ajax/like.php",
-                data: { postId: postId },
-                dataType: "json",
-                
-            })
-            .done(function( res ) {
-                if(res.status === "liked") {
-                  //button.html("unlike");
-                  elLikes.html(likes);
-                }
-            });
- 
-            e.preventDefault();
-        });
-      });
-
-    </script>
+<script src="js/Reports.js" ></script>
+<script src="js/Likes.js" ></script>
 
 </body>
 </html>
