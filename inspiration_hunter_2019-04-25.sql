@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 16, 2019 at 09:02 AM
--- Server version: 5.7.23
--- PHP Version: 7.2.10
+-- Generation Time: May 19, 2019 at 07:27 PM
+-- Server version: 5.6.38
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,9 +23,22 @@ SET time_zone = "+00:00";
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `post_id` int(11) NOT NULL,
   `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `post_id`, `comment`) VALUES
+(1, 19, 35, 'Mooie foto! '),
+(2, 23, 40, 'Mooi zeg!'),
+(3, 22, 35, 'Prachtig'),
+(6, 20, 35, 'Hi'),
+(7, 20, 35, 'hoi'),
+(8, 20, 35, 'Mooi'),
+(9, 20, 35, 'hi');
 
 -- --------------------------------------------------------
 
@@ -53,7 +66,10 @@ INSERT INTO `friends` (`id`, `user_one`, `user_two`, `official`, `date_made`) VA
 (8, 18, 19, 0, '2019-05-09'),
 (9, 16, 19, 0, '2019-05-09'),
 (11, 19, 20, 1, '2019-05-15'),
-(12, 21, 19, 1, '2019-05-15');
+(12, 21, 19, 1, '2019-05-15'),
+(13, 23, 20, 1, '2019-05-18'),
+(14, 23, 22, 1, '2019-05-17'),
+(15, 23, 19, 1, '2019-05-14');
 
 -- --------------------------------------------------------
 
@@ -105,7 +121,10 @@ CREATE TABLE `inappropriate` (
 
 INSERT INTO `inappropriate` (`id`, `post_id`, `user_id`) VALUES
 (1, 35, 19),
-(2, 36, 19);
+(2, 36, 19),
+(3, 44, 17),
+(4, 35, 17),
+(5, 38, 17);
 
 -- --------------------------------------------------------
 
@@ -126,7 +145,11 @@ CREATE TABLE `likes` (
 
 INSERT INTO `likes` (`id`, `post_id`, `user_id`, `date_created`) VALUES
 (20, 36, 19, '2019-05-16 09:33:16'),
-(24, 35, 19, '2019-05-16 11:01:35');
+(24, 35, 19, '2019-05-16 11:01:35'),
+(26, 35, 17, '2019-05-19 20:36:26'),
+(31, 40, 17, '2019-05-19 21:18:24'),
+(32, 36, 17, '2019-05-19 21:22:05'),
+(33, 39, 17, '2019-05-19 21:22:08');
 
 -- --------------------------------------------------------
 
@@ -153,7 +176,9 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (18, 'Sarah', 'Van den Heuvel', 'Sarahvh', 'sarahvandenheuvel@hotmail.com', '$2y$10$bcEt632FKpDDdElcSI4jKO/V/BRozHIsLMfPi2ZRehcE9Il7mmwpa'),
 (19, 'Mathias', 'Geerts', 'Mathias', 'geertsmathias@gmail.com', '$2y$10$mUr76mHgvwj5fs.19r2CheFBXfQhXU5hRftICziGy7DAWDcxCjqiK'),
 (20, 'Raf', 'Snijders', 'Rafke', 'raf@gmail.com', '$2y$10$oD0F/EXqAJSGnuNlAq5Z6.kM6e9sq1i85IeRBSS/9cQPGVzBs3P92'),
-(21, 'Caroline', 'Sterkens', 'Caroline', 'sterkens@gmail.com', '$2y$10$WSc5ZoP3Fp5ooETZEAgwvuNUK7oxyAZbwcjUr9tKzYzYnYPaHuE1.');
+(21, 'Caroline', 'Sterkens', 'Caroline', 'sterkens@gmail.com', '$2y$10$WSc5ZoP3Fp5ooETZEAgwvuNUK7oxyAZbwcjUr9tKzYzYnYPaHuE1.'),
+(22, 'Andreas', 'Banciu', 'Banciu', 'andreasbanciu@live.be', '$2y$10$348RIoMLKJI6oEbwcYBn2uP9oztifE4t77Ox95yYy7ZRlXI6IiRvK'),
+(23, 'Noortje', 'Veenhuizen', 'Noorve', 'noortjeveenhuizen@hotmail.com', '$2y$10$2h15P4FSx26UQYRiwNgc2uouTwm57RX0R15Pjnls9hc/vP0WvkK6m');
 
 --
 -- Indexes for dumped tables
@@ -203,13 +228,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `images`
@@ -221,16 +246,16 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `inappropriate`
 --
 ALTER TABLE `inappropriate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
