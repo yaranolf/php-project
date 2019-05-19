@@ -25,6 +25,20 @@ $user = User::getUser();
 
 <h2>Your <br> results</h2>
 
+<?php foreach ($userFound as $u):
+    $user = new User();
+    $user->setId($u['id']);
+    $user->setUserName($u['userName']);
+    $user->setFirstName($u['firstName']);
+    $user->setLastName($u['LastName']);
+?>
+<article class="center-div-image">
+<a href="profileFriends.php?id=<?php echo $u->id; ?>"> <h3 class="username"><?php echo $u->userName; ?></h3></a>
+<p><?php echo $user->img_description; ?></p>
+</article>
+
+<?php endforeach; ?>
+
 <?php foreach ($postsFound as $f):
     $post = new Post();
     $post->setId($f['id']);
