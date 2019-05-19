@@ -1,9 +1,6 @@
 <?php
 
-
-
     //include 'Db.php';
-
 
     class User
     {

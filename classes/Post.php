@@ -304,6 +304,18 @@ class Post
         return $result;
     }
 
+    public static function getDataUserId($id)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE user_id = :id');
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC); //dus geen fetchAll!
+
+        return $result;
+    }
+
     public static function getDate($postId)
     {
         $conn = Db::getInstance();
@@ -362,6 +374,18 @@ class Post
         return $result['count'];
     }
 
+    public static function getDateCreated($userId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT date_created FROM images WHERE user_id = :userid');
+        $statement->bindValue(':userid', $userId);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
     public function reportPost($postId)
     {
         $conn = Db::getInstance();
@@ -417,5 +441,15 @@ class Post
         $result = $statement->fetch(PDO::FETCH_NUM);
 
         return $result;
+    }
+
+    public static function getComments($postId)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM comments WHERE post_id = :postId');
+        $statement->bindParam(':postId', $postId);
+        $result = $statement->execute();
+
+        return $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
