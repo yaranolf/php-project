@@ -6,10 +6,15 @@ include_once 'bootstrap.php';
 - knop follow
 - empty state wanneer je geen vrienden hebt */
 
-$postId = htmlspecialchars($_GET['id']);
+/*$postId = htmlspecialchars($_GET['id']);
 $post = Post::getData($postId);
 $like = Post::getLike($postId);
-$t = Post::getDate($postId);
+$t = Post::getDate($postId);*/
+
+/* welke user post er een comment: adhv sessie*/
+$currentUser = new User();
+$currentUser->setId($_SESSION['userid']);
+var_dump($currentUser);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -39,14 +44,22 @@ $t = Post::getDate($postId);
 
     <div id="comments" class="comments">
     <?php
-    $comments = Post::getComments($postId);
+    $comment = new Post();
+    $comment->setId($_GET['id']);
+    var_dump($comment);
+    $comments = $comment->getComments($postId);
 
     foreach ($comments as $c):
-
+        $comment = new Comment();
+        $comment->setId($c['id']);
+        $comment->setUserId($c['userId']);
+        $comment->setUserName($c['userName']);
+        $comment->setCommentText($c['commentText']);
+        var_dump($comment);
     ?>
         
     <div>
-        <p><?php echo $c['comment']; ?></p>
+        <p><?php echo $c->comment; ?></p>
     </div>
         
     <?php endforeach; ?>
@@ -55,7 +68,7 @@ $t = Post::getDate($postId);
     <!--comments maken-->
     <form name="postComment" method="post">
         <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
-        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $post['user_id']; ?>" data-username="<?php $user['username']; ?>">
+        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $_SESSION['user_id']; ?>">
     </form>
 
 <script
