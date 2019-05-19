@@ -11,4 +11,13 @@ class Search
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function searchUsers($foundUsers)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("select * from users where firstName like '%$foundUsers%' or lastName like '%$foundUsers%' or userName like '%$foundUsers%'");
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
