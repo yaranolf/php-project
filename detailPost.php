@@ -11,7 +11,12 @@ $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);*/
 
-/* welke user post er een comment: adhv sessie*/
+//welke post is er
+$comment = new Post();
+$comment->setId($_GET['id']);
+var_dump($comment);
+
+//welke user post er een comment: adhv sessie
 $currentUser = new User();
 $currentUser->setId($_SESSION['userid']);
 var_dump($currentUser);
