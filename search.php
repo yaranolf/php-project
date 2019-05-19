@@ -3,7 +3,7 @@ include_once 'bootstrap.php';
 include 'classes/Post.php';
 
 if (!empty($_GET)) {
-    $postsFound = Search::searchPosts($_GET['search']);
+    $postsFound = Search::searchPosts(htmlspecialchars($_GET['search']));
 }
 
 $user = User::getUser();

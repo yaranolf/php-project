@@ -6,7 +6,7 @@ include_once 'bootstrap.php';
 - knop follow
 - empty state wanneer je geen vrienden hebt */
 
-$postId = $_GET['id'];
+$postId = htmlspecialchars($_GET['id']);
 $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);
