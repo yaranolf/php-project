@@ -40,11 +40,13 @@ $t = Post::getDate($postId);
     <?php
     $comments = Post::getComments($postId);
     foreach ($comments as $c):
-
+    //$userComment = $c->getUserComment();
     //var_dump($c);
+    var_dump($userComment);
     ?>
         
     <div>
+        <p><?php echo $c['user_name']; ?></p>
         <p><?php echo $c['comment']; ?></p>
     </div>
         

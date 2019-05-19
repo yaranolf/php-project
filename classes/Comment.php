@@ -4,6 +4,7 @@ class Comment
 {
     private $id;
     private $userId;
+    private $userName;
     private $commentText;
     private $postId;
     private $dateCreated;
@@ -31,6 +32,18 @@ class Comment
     public function setPostId($postId)
     {
         $this->postId = $postId;
+
+        return $this;
+    }
+
+    public function getUserName()
+    {
+        return $this->userName;
+    }
+
+    public function setUserName($userName)
+    {
+        $this->userName = $userName;
 
         return $this;
     }
@@ -96,5 +109,8 @@ class Comment
 
     public function getUserComment()
     {
+        $userComment = new User();
+        $userComment->setId($this->userId);
+        $userComment->getUserNameComment();
     }
 }

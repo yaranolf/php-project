@@ -1,9 +1,6 @@
 <?php
 
-
-
     //include 'Db.php';
-
 
     class User
     {
@@ -224,5 +221,15 @@
             $result = $statement->fetch(PDO::FETCH_OBJ);
 
             return $result->id;
+        }
+
+        public function getUserNameComment()
+        {
+            $conn = Db::getInstance();
+            $statement = $conn->prepare('select username from users where id ='.$this->id);
+            $statement->execute();
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+            return $result;
         }
     }

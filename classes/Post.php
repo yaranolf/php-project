@@ -304,6 +304,18 @@ class Post
         return $result;
     }
 
+    public static function getDataUserId($id)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare('SELECT * FROM images WHERE user_id = :id');
+        $statement->bindValue(':id', $id);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC); //dus geen fetchAll!
+
+        return $result;
+    }
+
     public static function getDate($postId)
     {
         $conn = Db::getInstance();
@@ -426,6 +438,6 @@ class Post
         $statement->bindParam(':postId', $postId);
         $result = $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 }
