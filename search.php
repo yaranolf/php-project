@@ -4,6 +4,7 @@ include 'classes/Post.php';
 
 if (!empty($_GET)) {
     $postsFound = Search::searchPosts($_GET['search']);
+    $userFound = Search::searchUser($_GET['search']);
 }
 
 $user = User::getUser();
