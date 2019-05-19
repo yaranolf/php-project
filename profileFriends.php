@@ -2,7 +2,7 @@
 include_once 'bootstrap.php';
 include 'classes/Like.php';
 
-$userId = $_GET['id'];
+$userId = htmlspecialchars($_GET['id']);
 $posts = Post::getPostsFromUser($userId);
 $info = Post::getUserInfo($userId);
 
