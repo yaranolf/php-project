@@ -226,9 +226,9 @@
         public function getUserNameComment()
         {
             $conn = Db::getInstance();
-            $statement = $conn->prepare('select username from users where id ='.$this->id);
+            $statement = $conn->prepare('select * from users where id ='.$this->id);
             $statement->execute();
-            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             return $result;
         }

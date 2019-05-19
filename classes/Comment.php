@@ -110,7 +110,7 @@ class Comment
     public function getUserComment()
     {
         $userComment = new User();
-        $userComment->setId($this->userId);
+        $userComment->setId($this->getUserId());
         $userComment->getUserNameComment();
     }
 }

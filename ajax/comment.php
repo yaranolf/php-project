@@ -4,7 +4,6 @@ require_once '../bootstrap.php';
 if (!empty($_POST)) {
     $postId = $_POST['postId'];
     $userId = $_POST['userId'];
-    $userName = $_POST['userName'];
     $commentText = $_POST['commentText'];
     //datum
 
@@ -12,7 +11,6 @@ if (!empty($_POST)) {
         $comment = new Comment();
         $comment->setPostId($postId);
         $comment->setUserId($userId);
-        $comment->setUserName($userName);
         $comment->setCommentText($commentText);
         $comment->saveComment();
 
