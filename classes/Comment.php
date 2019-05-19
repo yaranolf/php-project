@@ -84,7 +84,6 @@ class Comment
         return $dateCreated;
     }
 
-    //fetch
     public static function getComments($postId)
     {
         $conn = Db::getInstance();
@@ -106,12 +105,4 @@ class Comment
 
         return $statement->execute();
     }
-
-   /* public function getUserComment()
-    {
-        $userComment = new User();
-        $userComment->setId($this->getUserId());
-        $userComment->getUserNameComment();
-    }*/
-
 }
