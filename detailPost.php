@@ -11,6 +11,9 @@ $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);
 
+$userId = $_GET['user_id'];
+$commentUser = User::getUserNameComment($userId);
+var_dump($userId);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,11 +43,13 @@ $t = Post::getDate($postId);
     <?php
     $comments = Post::getComments($postId);
 
+    $commentUser = $comments->getUserComment();
     foreach ($comments as $c):
 
     ?>
         
     <div>
+        <p><?php echo $commentUser['user_name']; ?></p>
         <p><?php echo $c['comment']; ?></p>
     </div>
         
