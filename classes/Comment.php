@@ -93,4 +93,8 @@ class Comment
 
         return $statement->execute();
     }
+
+    public function getUserComment()
+    {
+    }
 }
