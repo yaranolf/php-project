@@ -31,6 +31,7 @@ $user = User::getUser();
     $post->setUser_name($f['user_name']);
     $post->setFile_path($f['file_path']);
     $post->setImg_description($f['img_description']);
+    $post->setDate_created($f['date_created']);
 
     $t = $post->getDate_created();
     $time_ago = strtotime($t);
