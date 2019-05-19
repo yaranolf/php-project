@@ -7,6 +7,7 @@ if (!empty($_GET)) {
     $userFound = Search::searchUsers($_GET['search']);
 }
 
+var_dump($userFound);
 $user = User::getUser();
 //var_dump($user);
 
@@ -26,15 +27,11 @@ $user = User::getUser();
 <h2>Your <br> results</h2>
 
 <?php foreach ($userFound as $u):
-    $user = new User();
-    $user->setId($u['id']);
-    $user->setUserName($u['userName']);
-    $user->setFirstName($u['firstName']);
-    $user->setLastName($u['LastName']);
+
 ?>
 <article class="center-div-image">
-<a href="profileFriends.php?id=<?php echo $u->id; ?>"> <h3 class="username"><?php echo $u->userName; ?></h3></a>
-<p><?php echo $user->img_description; ?></p>
+<a href="profileFriends.php?id=<?php echo $u['id']; ?>"> <h3 class="username"><?php echo $u['username']; ?></h3></a>
+<p><?php echo $u['firstname'].' '.$u['lastname']; ?></p>
 </article>
 
 <?php endforeach; ?>
