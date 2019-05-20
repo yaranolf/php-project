@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: May 19, 2019 at 07:27 PM
+-- Generation Time: May 20, 2019 at 10:45 AM
 -- Server version: 5.6.38
 -- PHP Version: 7.2.1
 
@@ -23,6 +23,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `user_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_id` int(11) NOT NULL,
   `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -31,14 +32,15 @@ CREATE TABLE `comments` (
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`id`, `user_id`, `post_id`, `comment`) VALUES
-(1, 19, 35, 'Mooie foto! '),
-(2, 23, 40, 'Mooi zeg!'),
-(3, 22, 35, 'Prachtig'),
-(6, 20, 35, 'Hi'),
-(7, 20, 35, 'hoi'),
-(8, 20, 35, 'Mooi'),
-(9, 20, 35, 'hi');
+INSERT INTO `comments` (`id`, `user_id`, `user_name`, `post_id`, `comment`) VALUES
+(1, 19, 'Mathias', 35, 'Mooie foto! '),
+(2, 25, 'Kalsy', 40, 'Mooi zeg!'),
+(3, 22, 'Banciu', 35, 'Prachtig'),
+(8, 20, 'Rafke', 35, 'Mooi'),
+(10, 20, 'Rafke', 38, 'Cool'),
+(35, 17, 'Noorve', 35, 'Heel mooi!'),
+(36, 17, 'Noorve', 36, 'Mooi!'),
+(37, 25, 'Kalsy', 38, 'Leuk!');
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,7 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `user_id`, `user_name`, `img_description`, `date_created`, `file_path`, `longitude`, `latitude`) VALUES
-(35, 20, 'Rafke', 'Vietnam - Ninh Binh', '2019-05-09 09:51:57', '59740504_314219309251336_5163639116109185024_n.jpg', '0.00000000', '0.00000000'),
+(35, 20, 'Rafke', 'Vietnam - Ninh Binh #goodlife', '2019-05-09 09:51:57', '59740504_314219309251336_5163639116109185024_n.jpg', '0.00000000', '0.00000000'),
 (36, 20, 'Rafke', 'Ninh binh - rower', '2019-05-09 09:52:59', '59438771_374318446503692_8438972148017528832_n.jpg', '0.00000000', '0.00000000'),
 (38, 20, 'Rafke', 'test', '2019-05-09 10:35:41', '59436123_389627524960329_5983074350260027392_n (1).jpg', '0.00000000', '0.00000000'),
 (39, 20, 'Rafke', 'test', '2019-05-09 10:35:41', '59436123_389627524960329_5983074350260027392_n (1).jpg', '0.00000000', '0.00000000'),
@@ -124,7 +126,9 @@ INSERT INTO `inappropriate` (`id`, `post_id`, `user_id`) VALUES
 (2, 36, 19),
 (3, 44, 17),
 (4, 35, 17),
-(5, 38, 17);
+(5, 38, 17),
+(6, 40, 17),
+(7, 41, 17);
 
 -- --------------------------------------------------------
 
@@ -146,10 +150,11 @@ CREATE TABLE `likes` (
 INSERT INTO `likes` (`id`, `post_id`, `user_id`, `date_created`) VALUES
 (20, 36, 19, '2019-05-16 09:33:16'),
 (24, 35, 19, '2019-05-16 11:01:35'),
-(26, 35, 17, '2019-05-19 20:36:26'),
-(31, 40, 17, '2019-05-19 21:18:24'),
 (32, 36, 17, '2019-05-19 21:22:05'),
-(33, 39, 17, '2019-05-19 21:22:08');
+(33, 39, 17, '2019-05-19 21:22:08'),
+(36, 38, 17, '2019-05-19 22:01:03'),
+(37, 40, 17, '2019-05-19 22:03:46'),
+(39, 35, 17, '2019-05-19 23:10:47');
 
 -- --------------------------------------------------------
 
@@ -172,13 +177,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`) VALUES
 (16, 'test', 'test', 'test', 'test@test.com', '$2y$10$8gSNoiBii3xCUnD6u8Z2IOTAlCDscjXcjwEyTq0yvptZGXlLMqDwa'),
-(17, 'Noortje', 'Veenhuizen', 'Noorse', 'noortjeveenhuizen@hotmail.com', '$2y$10$VEzHdhroQjTQ7HnC4OKiJuNPDDstvzkZVxEQCXl1sybhG2E57fgB2'),
+(17, 'Noortje', 'Veenhuizen', 'Noorve', 'noortjeveenhuizen@hotmail.com', '$2y$10$VEzHdhroQjTQ7HnC4OKiJuNPDDstvzkZVxEQCXl1sybhG2E57fgB2'),
 (18, 'Sarah', 'Van den Heuvel', 'Sarahvh', 'sarahvandenheuvel@hotmail.com', '$2y$10$bcEt632FKpDDdElcSI4jKO/V/BRozHIsLMfPi2ZRehcE9Il7mmwpa'),
 (19, 'Mathias', 'Geerts', 'Mathias', 'geertsmathias@gmail.com', '$2y$10$mUr76mHgvwj5fs.19r2CheFBXfQhXU5hRftICziGy7DAWDcxCjqiK'),
 (20, 'Raf', 'Snijders', 'Rafke', 'raf@gmail.com', '$2y$10$oD0F/EXqAJSGnuNlAq5Z6.kM6e9sq1i85IeRBSS/9cQPGVzBs3P92'),
 (21, 'Caroline', 'Sterkens', 'Caroline', 'sterkens@gmail.com', '$2y$10$WSc5ZoP3Fp5ooETZEAgwvuNUK7oxyAZbwcjUr9tKzYzYnYPaHuE1.'),
 (22, 'Andreas', 'Banciu', 'Banciu', 'andreasbanciu@live.be', '$2y$10$348RIoMLKJI6oEbwcYBn2uP9oztifE4t77Ox95yYy7ZRlXI6IiRvK'),
-(23, 'Noortje', 'Veenhuizen', 'Noorve', 'noortjeveenhuizen@hotmail.com', '$2y$10$2h15P4FSx26UQYRiwNgc2uouTwm57RX0R15Pjnls9hc/vP0WvkK6m');
+(25, 'Sylvia', 'Kalshoven', 'Kalsy', 'sylviakalshoven@live.be', '$2y$10$qy06/1f5PzaMsUJWsRZBaedhoDu3w/XXtS8aebvGP2LnMBNONbHxa');
 
 --
 -- Indexes for dumped tables
@@ -228,7 +233,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `friends`
@@ -246,16 +251,16 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT for table `inappropriate`
 --
 ALTER TABLE `inappropriate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
