@@ -2,7 +2,7 @@ $(document).ready(function(){
     //comment toevoegen
     $("#commentSubmit").on("click", function(e) {
         var postId = $(this).data("post_id");
-        var userId = $(this).data("user_id");
+        var userId = $(this).data("userid");
         var userName = $(this).data("user_name");
         var commentText = $("#commentText").val();
 
@@ -21,7 +21,7 @@ $(document).ready(function(){
             }).done(function(res) {
                 console.log(res);
                 if(res.status == 'success') {
-                    var newComment =  "<p>" + $("#commentText").val() + "</p>";
+                    var newComment = "<div>" + "<p>" + userName + "</p>" + "</div>" + "<p>" + $("#commentText").val() + "</p>";
 
                     $("#comments").append(newComment);
 
