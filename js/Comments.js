@@ -3,6 +3,7 @@ $(document).ready(function(){
     $("#commentSubmit").on("click", function(e) {
         var postId = $(this).data("post_id");
         var userId = $(this).data("userid");
+        var userName = $(this).data("username");
         var commentText = $("#commentText").val();
 
         e.preventDefault();
@@ -13,6 +14,7 @@ $(document).ready(function(){
             data: { 
                 postId: postId,
                 userId: userId,
+                userName: userName,
                 commentText: commentText
             },
                 dataType: "JSON" 

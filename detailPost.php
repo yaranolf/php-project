@@ -11,7 +11,7 @@ $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);
 
-//linken aan user
+//linken aan user en username opvragen
 $user = new User();
 $user->setId($_SESSION['userid']);
 $username = $user->getName();
@@ -48,10 +48,15 @@ var_dump($username);
     $comments = Post::getComments($postId);
 
     foreach ($comments as $c):
-
+        $user = new User();
+        $user->setId($c['user_id']);
+        $username = $user->getName();
+        var_dump($user);
+        var_dump($username);
     ?>
         
     <div>
+    <p><?php echo $username['username']; ?></p> 
         <p><?php echo $c['comment']; ?></p>
     </div>
         
@@ -61,7 +66,7 @@ var_dump($username);
     <!--comments maken-->
     <form name="postComment" method="post">
         <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
-        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $_SESSION['username']; ?>" data-user_name="<?php echo $_SESSION['userid']; ?>">
+        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $_SESSION['userid']; ?>" data-user_name="<?php echo $username; ?>">
     </form>
 
 <script
