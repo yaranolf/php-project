@@ -105,4 +105,13 @@ class Comment
 
         return $statement->execute();
     }
+
+    public function getUserFromComment()
+    {
+        $commentUser = new User();
+        $commentUser->setId($this->userId);
+        $commentUser->getName();
+
+        return $commentUser;
+    }
 }

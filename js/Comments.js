@@ -2,7 +2,7 @@ $(document).ready(function(){
     //comment toevoegen
     $("#commentSubmit").on("click", function(e) {
         var postId = $(this).data("post_id");
-        var userName = $(this).data("user_name");
+        var userId = $(this).data("userid");
         var commentText = $("#commentText").val();
 
         e.preventDefault();
@@ -13,7 +13,6 @@ $(document).ready(function(){
             data: { 
                 postId: postId,
                 userId: userId,
-                userName: userName,
                 commentText: commentText
             },
                 dataType: "JSON" 

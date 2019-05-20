@@ -222,4 +222,12 @@
 
             return $result->id;
         }
+
+        public function getName()
+        {
+            $conn = Db::getInstance();
+            $result = $conn->query('SELECT username FROM users where id='.$this->id);
+
+            return $result->fetch(PDO::FETCH_ASSOC);
+        }
     }

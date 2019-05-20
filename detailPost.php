@@ -11,9 +11,12 @@ $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);
 
+//linken aan user
 $user = new User();
 $user->setId($_SESSION['userid']);
+$username = $user->getName();
 var_dump($user);
+var_dump($username);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +61,7 @@ var_dump($user);
     <!--comments maken-->
     <form name="postComment" method="post">
         <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
-        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $_SESSION['userid']; ?>">
+        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $_SESSION['username']; ?>" data-user_name="<?php echo $_SESSION['userid']; ?>">
     </form>
 
 <script
