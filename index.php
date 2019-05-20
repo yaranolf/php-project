@@ -31,43 +31,40 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
 </head>
 <body>
 
+
+
 <?php include_once 'nav.inc.php'; ?>
 
-<img src="images/logo.png" alt="Logo Tripophobia" class="logo">
+<h2>Your <br>inspiration</h2>
 
 <div id="resultlist">
-  
-  <?php
-  foreach ($posts as $post):
+  <div class="resultitem">
+  <?php foreach ($posts as $post):
   $t = $post->getDate_created();
   $time_ago = strtotime($t);
   //var_dump($post);
   ?>
     <article class="center-div-image">
-      <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username"><?php echo $post->user_name; ?></h3></a>
-      <a href="detailPost.php?id=<?php echo $post->getId(); ?>"><img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> </a>
+      <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username position--left"><?php echo $post->user_name; ?></h3></a>
+      <p class="position--right date"><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
+      <p class="position--right location">(<?php echo $post->latitude.','.$post->longitude; ?>)</p>
+      <a href="detailPost.php?id=<?php echo $post->getId(); ?>"><img src=" <?php echo 'uploads/'.$post->file_path; ?> "  width=300 alt=""> </a>
       <p><?php echo $post->img_description; ?></p>
-      <p>(<?php echo $post->latitude.','.$post->longitude; ?>)</p>
-      <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
-      <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
-      <div class="center-div"><a href="#" class="report btn--secondary" data-id="<?php echo $post->id; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($post->getNrOfInappropriate()); ?></span> people report this </div>
+      
+      
+      <div ><a href="#" class="like" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
+      <div ><a href="#" class="report" data-id="<?php echo $post->id; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($post->getNrOfInappropriate()); ?></span> people report this </div>
     </article>
   <?php endforeach; ?>
+  </div>
   </div>
     <input type="hidden" id="start" name="start" value="2"/>
     <input type="hidden" id="ids" value="<?php echo $friendList; ?>">
   <button class="loadmore btn--primary"> Load more </button>
 
-  <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-
-  <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.0.0.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-3.0.1.js"></script>
 <script src="js/Posts.js" ></script>
 <script src="js/Reports.js" ></script>

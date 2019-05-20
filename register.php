@@ -67,6 +67,10 @@
         <input type="password" id="passwordConfirmation" name="passwordConfirmation" class="input">
 
         <input type="submit" value="Sign me up!" class="btn btn--primary">
+
+        <p>Already having an account? <a href="login.php">Login</a></p>
+
+
     </form>
     </div>
 </body>

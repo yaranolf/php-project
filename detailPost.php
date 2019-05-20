@@ -35,7 +35,7 @@ $username = $user->getName();
 
     <article class="center-div-image">
         <a href="profileFriends.php?id=<?php echo $post['user_id']; ?>"> <h3 class="username"><?php echo htmlspecialchars($post['user_name']); ?></h3></a>
-        <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" height=300 width=300 alt="">
+        <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" width=300 alt="">
         <p><?php echo htmlspecialchars($post['img_description']); ?></p>
         <p>(<?php echo $lat.','.$long; ?>) </p>
         <p><?php; // echo $post['date_created'];?></p>
