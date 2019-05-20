@@ -20,4 +20,13 @@ class Search
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function searchTags($foundTags)
+    {
+        $conn = Db::getInstance();
+        $statement = $conn->prepare("select * from images where img_description like '%$foundTags%'");
+        $statement->execute();
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
