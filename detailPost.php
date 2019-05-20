@@ -32,9 +32,9 @@ $username = $user->getName();
 <h2>Your <br> inspiration</h2>
 
     <article class="center-div-image">
-        <a href="profileFriends.php?id=<?php echo $post['user_id']; ?>"> <h3 class="username"><?php echo $post['user_name']; ?></h3></a>
-        <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt="">
-        <p><?php echo $post['img_description']; ?></p>
+        <a href="profileFriends.php?id=<?php echo $post['user_id']; ?>"> <h3 class="username"><?php echo htmlspecialchars($post['user_name']); ?></h3></a>
+        <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" height=300 width=300 alt="">
+        <p><?php echo htmlspecialchars($post['img_description']); ?></p>
         <p><?php; // echo $post['date_created'];?></p>
         <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $post['id']; ?>" >Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
     </article>
@@ -51,8 +51,8 @@ $username = $user->getName();
     ?>
         
     <div>
-        <p><?php echo $c['user_name']; ?></p> 
-        <p><?php echo $c['comment']; ?></p>
+        <p><?php echo htmlspecialchars($c['user_name']); ?></p> 
+        <p><?php echo htmlspecialchars($c['comment']); ?></p>
     </div>
         
     <?php endforeach; ?>
@@ -61,7 +61,7 @@ $username = $user->getName();
     <!--comments maken-->
     <form name="postComment" method="post">
         <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
-        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $_SESSION['userid']; ?>" data-user_name="<?php echo $username['username']; ?>">
+        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $_SESSION['userid']; ?>" data-user_name="<?php echo htmlspecialchars($username['username']); ?>">
     </form>
 
 <script

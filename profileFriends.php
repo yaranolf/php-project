@@ -29,7 +29,7 @@ $info = Post::getUserInfo($userId);
   
 <div id="resultlist">
     <article class="center-div-image">
-    <a href="detailPost.php?id=<?php echo $id->getId(); ?>"> <img src="<?php echo 'uploads/'.$post['file_path']; ?>" height=300 width=300 alt=""></a>
+    <a href="detailPost.php?id=<?php echo $id->getId(); ?>"> <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" height=300 width=300 alt=""></a>
         
     </article>
   </div>

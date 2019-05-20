@@ -6,16 +6,16 @@
     if (!empty($_POST)) {
         try {
             $security = new Security();
-            $security->password = htmlspecialchars($_POST['password']);
-            $security->passwordConfirmation = htmlspecialchars($_POST['passwordConfirmation']);
+            $security->password = $_POST['password'];
+            $security->passwordConfirmation = $_POST['passwordConfirmation'];
 
             if ($security->passwordsAreSecure()) {
                 $user = new User();
-                $user->setFirstName(htmlspecialchars($_POST['firstname']));
-                $user->setLastName(htmlspecialchars($_POST['lastname']));
-                $user->setUserName(htmlspecialchars($_POST['username']));
-                $user->setEmail(htmlspecialchars($_POST['email']));
-                $user->setPassword(htmlspecialchars($_POST['password']));
+                $user->setFirstName($_POST['firstname']);
+                $user->setLastName($_POST['lastname']);
+                $user->setUserName($_POST['username']);
+                $user->setEmail($_POST['email']);
+                $user->setPassword($_POST['password']);
                 if ($user->register()) {
                     $user->logMeIn();
                     //header('Location: login.php');

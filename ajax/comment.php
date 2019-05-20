@@ -2,10 +2,10 @@
 
 require_once '../bootstrap.php';
 if (!empty($_POST)) {
-    $postId = htmlspecialchars($_POST['postId']);
+    $postId = $_POST['postId'];
     $userId = $_SESSION['userid'];
-    $userName = htmlspecialchars($_POST['userName']);
-    $commentText = htmlspecialchars($_POST['commentText']);
+    $userName = $_POST['userName'];
+    $commentText = $_POST['commentText'];
     //datum
 
     try {

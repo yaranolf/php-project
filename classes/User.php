@@ -145,7 +145,6 @@
             // connectie
             $conn = Db::getInstance();
 
-            // query (sql injectie!!!)
             $statement = $conn->prepare('INSERT INTO users (firstname, lastname, username, email, password) VALUES(:firstname, :lastname, :username, :email, :password)');
             $statement->bindParam(':firstname', $this->firstName);
             $statement->bindParam(':lastname', $this->lastName);

@@ -4,11 +4,11 @@
     require_once 'bootstrap.php';
     if (!empty($_POST)) {
         $user = new User();
-        $user->setEmail(htmlspecialchars($_POST['email']));
-        $user->setPassword(htmlspecialchars($_POST['password']));
+        $user->setEmail($_POST['email']);
+        $user->setPassword($_POST['password']);
 
-        $email = htmlspecialchars($_POST['email']);
-        $password = htmlspecialchars($_POST['password']);
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
         if ($user->login($email, $password)) {
             $_SESSION['email'] = $email;
