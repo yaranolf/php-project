@@ -5,6 +5,7 @@ include 'classes/Post.php';
 if (!empty($_GET)) {
     $postsFound = Search::searchPosts(htmlspecialchars($_GET['search']));
     $userFound = Search::searchUsers(htmlspecialchars($_GET['search']));
+    $tagFound = Search::searchTags('#'.htmlspecialchars($_GET['search']));
 }
 
 $user = User::getUser();
@@ -54,6 +55,28 @@ $user = User::getUser();
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
       <div class="center-div"><a href="#" class="report btn--secondary" data-id="<?php echo $post->id; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($post->getNrOfInappropriate()); ?></span> people report this </div>
+    </article>
+<?php endforeach; ?>
+
+<?php foreach ($tagFound as $tag):
+    $post = new Post();
+    $post->setId($tag['id']);
+    $post->setUser_id($tag['user_id']);
+    $post->setUser_name($tag['user_name']);
+    $post->setFile_path($tag['file_path']);
+    $post->setImg_description($tag['img_description']);
+    $post->setDate_created($tag['date_created']);
+
+    $t = $post->getDate_created();
+    $time_ago = strtotime($t);
+  ?>
+    <article class="center-div-image">
+      <a href="profileFriends.php?id=<?php echo $tag->user_id; ?>"> <h3 class="username"><?php echo $tag->user_name; ?></h3></a>
+      <a href="detailPost.php?id=<?php echo $tag->getId(); ?>"><img src=" <?php echo 'uploads/'.$tag->file_path; ?>" height=300 width=300 alt=""> </a>
+      <p><?php echo $tag->img_description; ?></p>
+      <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
+      <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $tag->id; ?>" >Like</a> <span class='likes'><?php echo $tag->getLikes(); ?></span> people like this </div>
+      <div class="center-div"><a href="#" class="report btn--secondary" data-id="<?php echo $tag->id; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($tag->getNrOfInappropriate()); ?></span> people report this </div>
     </article>
 <?php endforeach; ?>
 
