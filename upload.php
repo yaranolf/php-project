@@ -1,7 +1,5 @@
 <?php
 include_once 'bootstrap.php';
-include 'classes/Post.php';
-include_once 'classes/User.php';
 
 $userId = $_SESSION['userid'];
 $user = new User();
@@ -14,7 +12,6 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     $description = $_POST['description'];
     $long = $_POST['long'];
     $lat = $_POST['lat'];
-    echo $location;
 
     if (move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath) && !empty($description)) {
         $image_show = '<img src='.$targetFilePath.' width=200 />';
@@ -26,8 +23,6 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         $post->setlong($long);
         $post->setlat($lat);
         $post->savePost();
-
-        header('Location: index.php');
     }
 } else {
     $description = 'Please add a description';
@@ -69,21 +64,6 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         <input type="submit" value="Upload" name="Submit1" class="btn btn--primary"> <br/>
         
     </form>
-    <script>
-    function getLocation(){
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(storePosition);
-        } 
-        
-    }
-    function storePosition(position) {
-            var x = document.getElementById("lat");
-            var y = document.getElementById("long");
-            x.value = position.coords.latitude;
-            y.value = position.coords.longitude;
-        }
-getLocation();
-    </script>
- 
+    
 </body>
 </html>
