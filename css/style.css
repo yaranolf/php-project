@@ -63,6 +63,15 @@ nav a{
     background-color: #ffffff;
     overflow: hidden;
   }
+
+.posts--list{
+  display: inline-block;
+  width: 300px;
+  height: 600px;
+  margin: 1em;
+  vertical-align: top;
+}
+
   nav {
     background-color: #ffffff;
     height: 65px;

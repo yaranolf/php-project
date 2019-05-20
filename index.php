@@ -44,6 +44,8 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
   $time_ago = strtotime($t);
   //var_dump($post);
   ?>
+
+  <section class="posts--list">
     <article class="center-div-image">
       <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username position--left"><?php echo $post->user_name; ?></h3></a>
       <p class="position--right date"><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
@@ -55,6 +57,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
       <div ><a href="#" class="like" data-id="<?php echo $post->id; ?>" >Like</a> <span class='likes'><?php echo $post->getLikes(); ?></span> people like this </div>
       <div ><a href="#" class="report" data-id="<?php echo $post->id; ?>" >Inappropriate</a> <span class='inappropriate'><?php echo implode($post->getNrOfInappropriate()); ?></span> people report this </div>
     </article>
+  </section>
   <?php endforeach; ?>
   </div>
   </div>
