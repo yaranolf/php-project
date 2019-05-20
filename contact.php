@@ -17,23 +17,23 @@
 <h2>Get <br> in touch</h2>
 
 <form id="contact" method="post" action="ajax/contact.php">
-    <div class="field">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+    <div class="form_field">
+        <label for="name" class="label">Name:</label>
+        <input type="text" id="name" name="name" class="input" required>
     </div>
 
-    <div class="field">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+    <div class="form_field">
+        <label for="email" class="label">Email:</label>
+        <input type="email" id="email" name="email" class="input" required>
     </div>
 
-    <div class="field">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" required></textarea>
+    <div class="form_field">
+        <label for="message" class="label">Message:</label>
+        <textarea id="message" name="message" class="input" required></textarea>
     </div>
 
-    <div class="field">
-        <button type="submit">Send</button>
+    <div class="form_field">
+        <button type="submit" class="btn btn--primary">Send</button>
     </div>
 </form>
     
