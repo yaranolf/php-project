@@ -22,6 +22,7 @@
       <li><a href="upload.php">Upload</a></li>
       <li><a href="profile.php">Profile</a></li>
       <li><a href="network.php">Friends</a></li>
+      <li><a href="contact.php">Contact</a></li>
       <li><a href="logout.php" class="navbar__logout">Logout</a></li>
 
     </ul>
