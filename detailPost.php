@@ -48,15 +48,11 @@ var_dump($username);
     $comments = Post::getComments($postId);
 
     foreach ($comments as $c):
-        $user = new User();
-        $user->setId($c['user_id']);
-        $username = $user->getName();
-        var_dump($user);
-        var_dump($username);
+
     ?>
         
     <div>
-    <p><?php echo $username['username']; ?></p> 
+        <p><?php echo $c['user_name']; ?></p> 
         <p><?php echo $c['comment']; ?></p>
     </div>
         
