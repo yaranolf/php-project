@@ -21,15 +21,40 @@ $info = Post::getUserInfo($userId);
 <?php include_once 'nav.inc.php'; ?>
 
 <h2 class="username"><?php echo $info['user_name']; ?></h2>
+<?php
+            //display buttons adding as friend
+            if (Friends::renderFriendShip($_SESSION['uid'], $userId, 'isThereRequestPending') == 1) {
+                ?>
+                     <button class="request_pending btn--secondary" disabled>Request Pending</button>
+                <?php
+            } else {
+                if (Friends::renderFriendShip($_SESSION['uid'], $userId, 'isThereApprovalPending') == 1) {
+                    ?>
+                         <button class="friendBtn friendBtn<?php echo $userId; ?> approve btn--primary" data-uid='<?php echo $userId; ?>' data-type='approvefriend'>Approve</button>
+                         <button class='friendBtn friendBtn<?php echo $userId; ?> unfriend btn--secondary' data-uid='<?php echo $userId; ?>' data-type='destroyfriend'>Ignore</button>
+                    <?php
+                } else {
+                    if (Friends::renderFriendShip($_SESSION['uid'], $userId, 'isThereFriendShip') == 0) {
+                        ?>
+                        <button class='friendBtn friendBtn<?php echo $userId; ?> add btn--secondary' data-uid='<?php echo $userId; ?>' data-type='addfriend'>Add as friend</button>
+                    <?php
+                    } else {
+                        ?>
+                        <button class='friendBtn friendBtn<?php echo $userId; ?> unfriend btn--secondary' data-uid='<?php echo $userId; ?>' data-type='destroyfriend'>Unfriend</button>
+                        
+                    <?php
+                    }
+                }
+            } ?>
   
 <?php foreach ($posts as $post):
-  $id = new Post();
-  $id->setId($post['id']);
+  $userId = new Post();
+  $userId->setId($post['id']);
 ?>
   
 <div id="resultlist">
     <article class="center-div-image">
-    <a href="detailPost.php?id=<?php echo $id->getId(); ?>"> <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" width=300 alt=""></a>
+    <a href="detailPost.php?id=<?php echo $userId->getId(); ?>"> <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" height=300 width=300 alt=""></a>
         
     </article>
   </div>
@@ -50,6 +75,7 @@ crossorigin="anonymous"></script>
 <script src="js/Posts.js" ></script>
 <script src="js/Reports.js" ></script>
 <script src="js/Likes.js" ></script>
+<script src="js/Friends.js" ></script>
 
 </body>
 </html>

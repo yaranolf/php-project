@@ -8,7 +8,6 @@ class Post
     public $img_description;
     public $file_path;
     private $date_created;
-    // public $user_name;
     public $long;
     public $lat;
     public $location;

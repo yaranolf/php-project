@@ -11,7 +11,7 @@ $(function(){
                 if(id != "")
                 {
                 
-                   $.post('http://localhost:8888/php-project2/parse.php', {tags: 'addFriend', uid: id}, function(data){
+                   $.post('./parse.php', {tags: 'addFriend', uid: id}, function(data){
                       
                         if(data.code == 1)
                         {
@@ -31,7 +31,7 @@ $(function(){
                 if(id != "")
                 {
                 
-                   $.post('http://localhost:8888/php-project2/parse.php', {tags: 'approveFriend', uid: id}, function(data){
+                   $.post('./parse.php', {tags: 'approveFriend', uid: id}, function(data){
                       
                         if(data.code == 1)
                         {
@@ -52,7 +52,7 @@ $(function(){
             if(id != "")
             {
             
-               $.post('http://localhost:8888/php-project2/parse.php', {tags: 'destroyFriend', uid: id}, function(data){
+               $.post('./parse.php', {tags: 'destroyFriend', uid: id}, function(data){
                   
                     if(data.code == 1)
                     {

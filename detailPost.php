@@ -10,6 +10,8 @@ $postId = htmlspecialchars($_GET['id']);
 $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);
+$lat = $post['latitude'];
+$long = $post['longitude'];
 
 //linken aan user en username opvragen
 $user = new User();
@@ -35,6 +37,7 @@ $username = $user->getName();
         <a href="profileFriends.php?id=<?php echo $post['user_id']; ?>"> <h3 class="username"><?php echo htmlspecialchars($post['user_name']); ?></h3></a>
         <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" width=300 alt="">
         <p><?php echo htmlspecialchars($post['img_description']); ?></p>
+        <p>(<?php echo $lat.','.$long; ?>) </p>
         <p><?php; // echo $post['date_created'];?></p>
         <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $post['id']; ?>" >Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
     </article>

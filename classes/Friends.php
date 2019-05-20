@@ -60,10 +60,6 @@ class Friends
 
                     $response['code'] = 1;
                     $response['msg'] = 'Request sent!';
-                //header('Content-Type: application/json');
-                   // echo json_encode(array('code' => '1', 'msg' => 'Request sent!'));
-
-                // return false;
                 } else {
                     $response['code'] = 0;
                     $response['msg'] = 'Already friends!';
@@ -136,10 +132,6 @@ class Friends
             // echo $uid.$user_two;
             if ($uid != $user_two) {
                 $f = new Friends();
-                // $check = $f->renderFriendShip($uid, $user_two, 'isThereFriendShip');
-                // echo $check;
-                //if ($check == 0) {
-                // $insert = $pdo->prepare("INSERT INTO friends VALUES('','".$uid."', '".$user_two."', '0', now())");
                 $statement = $pdo->prepare('DELETE FROM friends WHERE (user_one = :user1 AND user_two = :user2) OR (user_one = :user2 AND user_two = :user1)');
                 $statement->bindParam(':user1', $uid);
                 $statement->bindParam(':user2', $user_two);
