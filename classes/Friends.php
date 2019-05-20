@@ -60,10 +60,6 @@ class Friends
 
                     $response['code'] = 1;
                     $response['msg'] = 'Request sent!';
-                //header('Content-Type: application/json');
-                   // echo json_encode(array('code' => '1', 'msg' => 'Request sent!'));
-
-                // return false;
                 } else {
                     $response['code'] = 0;
                     $response['msg'] = 'Already friends!';
@@ -136,10 +132,6 @@ class Friends
             // echo $uid.$user_two;
             if ($uid != $user_two) {
                 $f = new Friends();
-                // $check = $f->renderFriendShip($uid, $user_two, 'isThereFriendShip');
-                // echo $check;
-                //if ($check == 0) {
-                // $insert = $pdo->prepare("INSERT INTO friends VALUES('','".$uid."', '".$user_two."', '0', now())");
                 $statement = $pdo->prepare('DELETE FROM friends WHERE (user_one = :user1 AND user_two = :user2) OR (user_one = :user2 AND user_two = :user1)');
                 $statement->bindParam(':user1', $uid);
                 $statement->bindParam(':user2', $user_two);
@@ -166,4 +158,22 @@ class Friends
             return $result->fetchAll(\PDO::FETCH_ASSOC);
         }
     }
+
+    /* public static function getFriend($uid, $friendid)
+     {
+         if ($uid != $user_two) {
+             $statement = $PDO->prepare('SELECT * FROM friends WHERE (user_one = :userid AND user_two = :friendid) OR (user_one = :friendid AND user_two = :userid)');
+             $statement->bindParam(':userid', $uid);
+             $statement->bindParam(':friendid', $friendid);
+             $statement->execute();
+
+             return $statement->fetchAll(\PDO::FETCH_ASSOC);
+         } else {
+             $response['code'] = 0;
+             $response['msg'] = "You can't friend yourself!";
+             echo json_encode($response);
+
+             return false;
+         }
+     }*/
 }
