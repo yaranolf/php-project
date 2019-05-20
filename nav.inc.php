@@ -9,6 +9,7 @@
       <li><a href="upload.php">Upload</a></li>
       <li><a href="profile.php">View profile</a></li>
       <li><a href="network.php">Build your network</a></li>
+      <li><a href="contact.php">Contact</a></li>
       <li><a href="logout.php" class="navbar__logout">Logout</a></li>
 
     </ul>
