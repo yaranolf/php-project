@@ -232,7 +232,7 @@ nav a{
   transition: 200ms;
   margin-left: 10px;
   margin-right: -125px;
-  
+  margin-top: 20px;
 }
 
 .btn--search:hover{
@@ -255,7 +255,7 @@ nav a{
   transition: 200ms;
   margin-left: 5px;
   margin-right: 10px;
-  margin-top: 40px;
+  margin-top: 60px;
 
 }
 
@@ -273,7 +273,10 @@ nav a{
   height: 30px;
   text-align: center;
   font-size: 14px;
+  margin-top: 20px;
 }
+
+
 
 span{
     text-align: center;

@@ -18,6 +18,9 @@
 
 <?php include_once 'nav.inc.php'; ?>
 
+<h2>Your <br>friends</h2>
+
+
 <?php
 
 require 'bootstrap.php';

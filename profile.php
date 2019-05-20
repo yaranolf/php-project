@@ -84,7 +84,7 @@ if (!empty($_POST)) {
 
                 <div class="span10 offset1">
                     <div class="row">
-                        <h2>Update a Customer</h2>
+                        <h2>Your <br>profile</h2>
                     </div>
 
                     <form class="form-horizontal" action="profile.php" method="post">
