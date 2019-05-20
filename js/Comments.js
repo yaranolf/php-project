@@ -21,7 +21,7 @@ $(document).ready(function(){
             }).done(function(res) {
                 console.log(res);
                 if(res.status == 'success') {
-                    var newComment =  "<p>" + $("#commentText").val() + "</p>";
+                    var newComment = "<div>" + "<p>" + userName + "</p>" + "</div>" + "<p>" + $("#commentText").val() + "</p>";
 
                     $("#comments").append(newComment);
 
