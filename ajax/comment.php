@@ -3,7 +3,7 @@
 require_once '../bootstrap.php';
 if (!empty($_POST)) {
     $postId = htmlspecialchars($_POST['postId']);
-    $userId = htmlspecialchars($_POST['userId']);
+    $userId = $_SESSION['userid'];
     $commentText = htmlspecialchars($_POST['commentText']);
     //datum
 

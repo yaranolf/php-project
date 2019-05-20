@@ -11,6 +11,9 @@ $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);
 
+$user = new User();
+$user->setId($_SESSION['userid']);
+var_dump($user);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +58,7 @@ $t = Post::getDate($postId);
     <!--comments maken-->
     <form name="postComment" method="post">
         <textarea id="commentText" name="commentText" type="text" class="input"></textarea>
-        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $post['user_id']; ?>">
+        <input id="commentSubmit" type="submit" value="Post" class="btn btn--primary" data-post_id="<?php echo $post['id']; ?>" data-user_id="<?php echo $_SESSION['userid']; ?>">
     </form>
 
 <script

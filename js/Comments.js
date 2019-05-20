@@ -2,7 +2,6 @@ $(document).ready(function(){
     //comment toevoegen
     $("#commentSubmit").on("click", function(e) {
         var postId = $(this).data("post_id");
-        var userId = $(this).data("user_id");
         var userName = $(this).data("user_name");
         var commentText = $("#commentText").val();
 
