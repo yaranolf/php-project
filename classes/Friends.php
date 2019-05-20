@@ -158,22 +158,4 @@ class Friends
             return $result->fetchAll(\PDO::FETCH_ASSOC);
         }
     }
-
-    /* public static function getFriend($uid, $friendid)
-     {
-         if ($uid != $user_two) {
-             $statement = $PDO->prepare('SELECT * FROM friends WHERE (user_one = :userid AND user_two = :friendid) OR (user_one = :friendid AND user_two = :userid)');
-             $statement->bindParam(':userid', $uid);
-             $statement->bindParam(':friendid', $friendid);
-             $statement->execute();
-
-             return $statement->fetchAll(\PDO::FETCH_ASSOC);
-         } else {
-             $response['code'] = 0;
-             $response['msg'] = "You can't friend yourself!";
-             echo json_encode($response);
-
-             return false;
-         }
-     }*/
 }

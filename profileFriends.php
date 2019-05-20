@@ -37,13 +37,11 @@ $info = Post::getUserInfo($userId);
                     if (Friends::renderFriendShip($_SESSION['uid'], $userId, 'isThereFriendShip') == 0) {
                         ?>
                         <button class='friendBtn friendBtn<?php echo $userId; ?> add btn--secondary' data-uid='<?php echo $userId; ?>' data-type='addfriend'>Add as friend</button>
-                        <button class="request_pending hidden btn--secondary" disabled>Request Pending</button>
                     <?php
                     } else {
                         ?>
                         <button class='friendBtn friendBtn<?php echo $userId; ?> unfriend btn--secondary' data-uid='<?php echo $userId; ?>' data-type='destroyfriend'>Unfriend</button>
                         
-                        <button class="request_pending hidden btn--secondary" disabled>Request Pending</button>
                     <?php
                     }
                 }
