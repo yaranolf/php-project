@@ -292,16 +292,13 @@ class Post
         }
     }
 
-    public static function getData($postId)
+    public function getData()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('SELECT * FROM images WHERE id = :postid');
-        $statement->bindValue(':postid', $postId);
-        $statement->execute();
+        $statement = $conn->prepare('SELECT * FROM images WHERE id ='.$this->id);
+        $result = $statement->execute();
 
-        $result = $statement->fetch(PDO::FETCH_ASSOC); //dus geen fetchAll!
-
-        return $result;
+        return $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function getDataUserId($id)
@@ -443,11 +440,10 @@ class Post
         return $result;
     }
 
-    public static function getComments($postId)
+    public function getComments()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('SELECT * FROM comments WHERE post_id = :postId');
-        $statement->bindParam(':postId', $postId);
+        $statement = $conn->prepare('SELECT * FROM comments WHERE id = '.$this->id);
         $result = $statement->execute();
 
         return $result = $statement->fetchAll(PDO::FETCH_ASSOC);

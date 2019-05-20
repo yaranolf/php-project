@@ -12,9 +12,8 @@ $like = Post::getLike($postId);
 $t = Post::getDate($postId);*/
 
 //welke post is er
-$comment = new Post();
-$comment->setId($_GET['id']);
-var_dump($comment);
+
+var_dump($comments);
 
 //welke user post er een comment: adhv sessie
 $currentUser = new User();
@@ -49,18 +48,20 @@ var_dump($currentUser);
 
     <div id="comments" class="comments">
     <?php
-    $comment = new Post();
-    $comment->setId($_GET['id']);
-    var_dump($comment);
-    $comments = $comment->getComments($postId);
 
+    $comments = new Post();
+    $comments->setId($_GET['id']);
+    $comments->setUser_id($c['user_id']);
+    $comments->getData();
     foreach ($comments as $c):
-        $comment = new Comment();
+        $comment = new Post();
+        $comment->setUser_id($c['user_id']);
+        /*$comment = new Comment();
         $comment->setId($c['id']);
         $comment->setUserId($c['userId']);
         $comment->setUserName($c['userName']);
         $comment->setCommentText($c['commentText']);
-        var_dump($comment);
+        var_dump($comment);*/
     ?>
         
     <div>

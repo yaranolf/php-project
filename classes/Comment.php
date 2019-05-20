@@ -84,11 +84,10 @@ class Comment
         return $dateCreated;
     }
 
-    public static function getComments($postId)
+    public function getComments()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('select * from comments where post_id = :postid'); //getest in DB
-        $statement->bindValue(':postid', $postId);
+        $statement = $conn->prepare('select * from comments where id = '.$this->id); //getest in DB
         $statement->execute();
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
