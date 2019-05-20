@@ -15,8 +15,7 @@ $t = Post::getDate($postId);
 $user = new User();
 $user->setId($_SESSION['userid']);
 $username = $user->getName();
-var_dump($user);
-var_dump($username);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
