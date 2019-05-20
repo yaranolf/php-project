@@ -17,7 +17,7 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     echo $location;
 
     if (move_uploaded_file($_FILES['file']['tmp_name'], $targetFilePath) && !empty($description)) {
-        $image_show = '<img src='.$targetFilePath.' height=200 width=200 />';
+        $image_show = '<img src='.$targetFilePath.' width=200 />';
         $image = addslashes(file_get_contents($targetFilePath));
         $post = new Post();
         $post->setFile_path($fileName);
@@ -65,7 +65,6 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         <input type="hidden" name="long" id="long" value="">
         <div class="center-div-upload">
         <input type="file" name="file" id="file" class="inputfile" />
-        <label for="file" class="inputfile-label">Choose a file</label>
         </div>
         <input type="submit" value="Upload" name="Submit1" class="btn btn--primary"> <br/>
         

@@ -1,5 +1,10 @@
+*{
+  box-sizing: border-box;
+}
+
 body{
     font-family: 'Helvetica', sans-serif;
+    color: rgb(45,45,45);
     font-size: 16px;
 }
 
@@ -9,25 +14,41 @@ h2{
 
 }
 
+h3{
+  color: rgb(45,45,45);
+
+}
+
 p{
     text-align: center;
 }
 
 .logo{
     display: block;
-    margin: 10px 100px 60px;
-    width: 300px;
+    width: 150px;
+}
+
+#resultlist{
+  display: flex;
+  flex-flow: row wrap;
+  padding: 5px;
+  justify-content: space-evenly;
 }
 /* navigatie */
 
 a {
     text-decoration: none;
     color: blue;
+    font-size: 16px;
     opacity:1;
-    font-size: 1.3em;
     font-weight: 400;
     transition: 200ms;
   }
+
+nav a{
+  font-size: 1.3em;
+}
+
   a:hover {
     opacity:0.5;
   }
@@ -55,7 +76,6 @@ a {
     top: 25px;
     left: 25px;
     z-index: 1;
-    -webkit-user-select: none;
     user-select: none;
   }
   
@@ -116,13 +136,12 @@ a {
   #menu
   {
     position: absolute;
-    width: 180px;
+    width: 300px;
     height: 600px;
     margin: -50px 0 0 -50px;
     padding: 50px;
     padding-top: 125px;
     background-color: #ffffff;
-    -webkit-font-smoothing: antialiased;
     transform-origin: 0% 0%;
     transform: translate(-100%, 0);
     transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
@@ -147,7 +166,7 @@ a {
     border: 0px;
     width: 300px;
     height: 40px;
-    border-radius: 15px;
+    border-radius: 20px;
     margin:  10px auto;
     display: block;
     text-align: center;
@@ -166,12 +185,11 @@ a {
     border:0px;
     margin: 30px auto 0px auto;
     display: block;
-    padding: auto;
     transition: 200ms;
 }
 
 .btn--primary:hover{
-    opacity: 0.8;
+    opacity: 0.5;
 }
 
 .btn--secondary{
@@ -195,16 +213,78 @@ a {
     opacity: 0.8;
 }
 
+
+
+.btn--search{
+  position: relative;
+  float: right;
+  text-decoration: none;
+  text-align: center;
+  color: #ffffff;
+  background-color: blue;
+  border:0px;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  width: 120px;
+  height: 30px;
+  opacity: 1;
+  transition: 200ms;
+  margin-left: 10px;
+  margin-right: -125px;
+  
+}
+
+.btn--search:hover{
+  opacity: 0.5;
+}
+
+.btn--searchnearby{
+  position: relative;
+  float: right;
+  text-decoration: none;
+  text-align: center;
+  color: blue;
+  border: 2px solid blue;
+  border-radius: 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  width: 120px;
+  height: 30px;
+  opacity: 1;
+  transition: 200ms;
+  margin-left: 5px;
+  margin-right: 10px;
+  margin-top: 40px;
+
+}
+
+.btn--searchnearby:hover{
+  opacity: 0.5;
+}
+
+.input--search{
+  position: relative;
+  float: right;
+  background-color: #f3f1f185;
+  border-radius: 15px;
+  border: 0px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  font-size: 14px;
+}
+
 span{
     text-align: center;
 }
 
 
-.label{
+label{
     display: block;
     text-align: center;
     margin-top: 20px; 
-    margin-bottom: -10px;
+    
 }
 
 .label__inline{
@@ -232,34 +312,6 @@ span{
     
 }
 
-.inputfile {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-    z-index: -1;
-    
-}
-
-.inputfile-label {
-    font-size: 1.25em;
-    font-weight: 700;
-    color: white;
-    background-color: rgb(253, 166, 160);
-    display: block;
-    width: 150px;
-    text-align: center;
-    padding: 10px 10px;
-    border-radius: 50px;
-    cursor: pointer;
-    margin: auto;
-}
-
-.inputfile-label:focus,
-.inputfile-label:hover {
-    background-color: #FA7268;
-}
 
 textarea{
     border: 0px;
@@ -272,4 +324,24 @@ textarea{
     height: 10px;;
 }
 
+.position--left{
+  position: relative;
+  float:left;
+}
 
+.position--right{
+  position: relative;
+  float:right;
+}
+
+.date{
+  padding-top: 10px;
+  font-size: 0.9em;
+  color: rgb(122, 122, 122)
+}
+
+.location{
+  margin-top: -10px;
+  font-size: 0.9em;
+  color: rgb(122, 122, 122)
+}

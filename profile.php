@@ -151,7 +151,7 @@ if (!empty($_POST)) {
    $time_ago = strtotime($t);
   ?>
     <article class="center-div-image">
-      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  height=300 width=300 alt=""> 
+      <img src=" <?php echo 'uploads/'.$post->file_path; ?> "  width=300 alt=""> 
       <p> <input class="input" id="Description" type="text"  placeholder="Description" value="<?php echo $post->img_description; ?>"></p>
       <p><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <div><button data-id="<?php echo $post->id; ?>" class="RemoveBtn btn--secondary">Delete</button><button data-id="<?php echo $post->id; ?>" class="ModifyBtn btn--secondary">Modify</button><br><br><br><br><br><br> </div>
