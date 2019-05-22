@@ -18,6 +18,9 @@ $user = new User();
 $userId = $user->setId($_SESSION['userid']);
 $username = $user->getName();
 
+$userPage = new User();
+$userIdPage = $post['user_id'];
+$userPage->setId($userIdPage);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +38,7 @@ $username = $user->getName();
 
 <section class="posts--list">
     <article class="center-div-image">
-    <a href="profileFriends.php?id=<?php echo $post['user_id']; ?>"> <h3 class="username position--left"><?php echo $user->getName()['username']; ?></h3></a>
+    <a href="profileFriends.php?id=<?php echo $post['user_id']; ?>"> <h3 class="username position--left"><?php echo $userPage->getName()['username']; ?></h3></a>
         <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" width=300 alt="">
         <p><?php echo htmlspecialchars($post['img_description']); ?></p>
         <p>(<?php echo $lat.','.$long; ?>) </p>
