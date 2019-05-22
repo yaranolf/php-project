@@ -3,9 +3,9 @@ include_once 'bootstrap.php';
 include 'classes/Post.php';
 
 if (!empty($_GET)) {
-    $postsFound = Search::searchPosts(htmlspecialchars($_GET['search']));
-    $userFound = Search::searchUsers(htmlspecialchars($_GET['search']));
-    $tagFound = Search::searchTags(htmlspecialchars('#'.$_GET['search']));
+    $postsFound = Search::searchPosts($_GET['search']);
+    $userFound = Search::searchUsers($_GET['search']);
+    $tagFound = Search::searchTags('#'.$_GET['search']);
 }
 
 $user = User::getUser();
