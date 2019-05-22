@@ -6,7 +6,7 @@
         //$end = $_POST['end'];
         $ids = $_POST['ids'];
         $html = '';
-        $posts = Post::getAllFromFriends($ids, $start, 2);
+        $posts = Post::getAllFromFriends($ids, $start, 3);
         foreach ($posts as $post):
         $t = $post->getDate_created();
         $time_ago = strtotime($t);

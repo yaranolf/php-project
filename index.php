@@ -16,7 +16,7 @@ foreach ($friends as $friend):
 
  endforeach;
 
-$posts = Post::getAllFromFriends($friendList, 0, 2);
+$posts = Post::getAllFromFriends($friendList, 0, 3);
 
 ?><!DOCTYPE html>
 <html lang="en">
