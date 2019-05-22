@@ -1,13 +1,8 @@
 <?php
 include_once 'bootstrap.php';
 include_once 'classes/User.php';
-//include 'classes/Db.php';
 
-$id = null;
-if (!empty($_GET['id'])) {
-    $id = $_REQUEST['id'];
-}
-$id = $_SESSION['userid'];
+    $id = $_SESSION['userid'];
 
 if (null == $id) {
     header('Location: login.php');
@@ -62,7 +57,7 @@ if (!empty($_POST)) {
                 $user->setPassword($password);
                 $result = $user->updateWithPassword($id);
             } else {
-                $passwordError = 'Your passwords are not secure or do not match.';
+                $passwordError = 'Your password is not secure.';
             }
         }
     }
