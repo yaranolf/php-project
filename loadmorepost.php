@@ -3,7 +3,6 @@
     include 'classes/Post.php';
 
         $start = $_POST['start'];
-        //$end = $_POST['end'];
         $ids = $_POST['ids'];
         $html = '';
         $posts = Post::getAllFromFriends($ids, $start, 3);

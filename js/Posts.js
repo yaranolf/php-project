@@ -17,10 +17,9 @@ $(function(){
                    $.post('./loadmorepost.php', {start: startpos, ids: ids}, function(data){
                    
                    
-                   $('.center-div-image:last').after(data).show();
+                   $('.posts--list:last').after(data).show();
                 
                   
-                    // $('#end').val(endpos + 20);
                         
                     }); 
                 }

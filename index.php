@@ -45,7 +45,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 3);
 
   $t = $post->getDate_created();
   $time_ago = strtotime($t);
-  //var_dump($post);
+
   ?>
 
   <section class="posts--list">
@@ -64,7 +64,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 3);
   <?php endforeach; ?>
   </div>
   </div>
-    <input type="hidden" id="start" name="start" value="2"/>
+    <input type="hidden" id="start" name="start" value="3"/>
     <input type="hidden" id="ids" value="<?php echo $friendList; ?>">
   <button class="loadmore btn--primary"> Load more </button>
 
