@@ -11,7 +11,6 @@ body{
 h2{
     font-size: 44px;
     margin-left: 100px;
-
 }
 
 h3{
@@ -23,21 +22,20 @@ p{
     text-align: center;
 }
 
-.logo{
-    display: block;
-    width: 150px;
-}
-
-
 .posts--list{
   display: inline-block;
-  width: 300px;
+  width: 30%;
   height: 600px;
   margin: 1em;
   vertical-align: top;
 }
 
 /* navigatie */
+
+.logo{
+  display: block;
+  width: 150px;
+}
 
 a {
     text-decoration: none;

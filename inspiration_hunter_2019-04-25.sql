@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.38)
 # Database: inspiration_hunter
-# Generation Time: 2019-05-22 17:16:39 +0000
+# Generation Time: 2019-05-22 19:52:52 +0000
 # ************************************************************
 
 
@@ -28,11 +28,30 @@ DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_id` int(11) NOT NULL,
   `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+LOCK TABLES `comments` WRITE;
+/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
+
+INSERT INTO `comments` (`id`, `user_id`, `user_name`, `post_id`, `comment`)
+VALUES
+	(1,19,'Mathias',35,'Mooie foto! '),
+	(2,25,'Kalsy',40,'Mooi zeg!'),
+	(3,22,'Banciu',35,'Prachtig'),
+	(8,20,'Rafke',35,'Mooi'),
+	(10,20,'Rafke',38,'Cool'),
+	(35,17,'Noorve',35,'Heel mooi!'),
+	(36,17,'Noorve',36,'Mooi!'),
+	(37,25,'Kalsy',38,'Leuk!'),
+	(38,22,'lisse',53,'test'),
+	(39,22,'lisse',53,'xxx');
+
+/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table friends
@@ -103,8 +122,7 @@ VALUES
 	(45,22,'test_','2019-05-16 09:26:31','59436123_389627524960329_5983074350260027392_n.jpg',4.48779410,51.02258560),
 	(53,22,'open road','2019-05-20 21:22:31','_04A4475+copia.jpg',0.00000000,0.00000000),
 	(55,22,'open road','2019-05-20 21:22:31','_04A4475+copia.jpg',0.00000000,0.00000000),
-	(56,22,'test_','2019-05-16 09:26:31','59436123_389627524960329_5983074350260027392_n.jpg',4.48779410,51.02258560),
-	(89,22,'totebag','2019-05-22 09:22:09','Totebag_example.jpeg',0.00000000,0.00000000);
+	(94,22,'by the pool','2019-05-22 20:47:36','_DSC4743.jpeg',0.00000000,0.00000000);
 
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -182,21 +200,3 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 VALUES
 	(16,'test','test','test','test@test.com','$2y$10$8gSNoiBii3xCUnD6u8Z2IOTAlCDscjXcjwEyTq0yvptZGXlLMqDwa'),
 	(17,'Noortje','Veenhuizen','Noorse','noortjeveenhuizen@hotmail.com','$2y$10$VEzHdhroQjTQ7HnC4OKiJuNPDDstvzkZVxEQCXl1sybhG2E57fgB2'),
-	(18,'Sarah','Van den Heuvel','Sarahvh','sarahvandenheuvel@hotmail.com','$2y$10$bcEt632FKpDDdElcSI4jKO/V/BRozHIsLMfPi2ZRehcE9Il7mmwpa'),
-	(19,'Mathias','Geerts','Mathias','geertsmathias@gmail.com','$2y$10$mUr76mHgvwj5fs.19r2CheFBXfQhXU5hRftICziGy7DAWDcxCjqiK'),
-	(20,'Raf','Snijders','Rafke','raf@gmail.com','$2y$10$oD0F/EXqAJSGnuNlAq5Z6.kM6e9sq1i85IeRBSS/9cQPGVzBs3P92'),
-	(21,'Caroline','Sterkens','Caroline','sterkens@gmail.com','$2y$10$WSc5ZoP3Fp5ooETZEAgwvuNUK7oxyAZbwcjUr9tKzYzYnYPaHuE1.'),
-	(22,'lisse','thys','lisse','lisse.thys@hotmail.com','$2y$10$kzOoxFXYHOaGQ5/gt0ecTuIR/vfaOf.tAGwWreJXDtg2q1qBHuaGm'),
-	(23,'test','test','test','t@test.com','$2y$10$C9n9o.Nw3J29swv44c/Rgek3CqBAUqVZHIEw8eUPAwT/ZhX3GvF7e');
-
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
