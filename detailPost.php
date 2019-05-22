@@ -1,12 +1,7 @@
 <?php
 include_once 'bootstrap.php';
 
-/* TO DO
-
-- knop follow
-- empty state wanneer je geen vrienden hebt */
-
-$postId = htmlspecialchars($_GET['id']);
+$postId = $_GET['id'];
 $post = Post::getData($postId);
 $like = Post::getLike($postId);
 $t = Post::getDate($postId);
@@ -38,7 +33,7 @@ $userPage->setId($userIdPage);
 
 <section class="posts--list">
     <article class="center-div-image">
-    <a href="profileFriends.php?id=<?php echo $post['user_id']; ?>"> <h3 class="username position--left"><?php echo $userPage->getName()['username']; ?></h3></a>
+    <a href="profileFriends.php?id=<?php echo $post['user_id']; ?>"> <h3 class="username position--left"><?php echo htmlspecialchars($userPage->getName()['username']); ?></h3></a>
         <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" width=300 alt="">
         <p><?php echo htmlspecialchars($post['img_description']); ?></p>
         <p>(<?php echo $lat.','.$long; ?>) </p>

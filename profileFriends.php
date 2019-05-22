@@ -1,7 +1,7 @@
 <?php
 include_once 'bootstrap.php';
 
-$userId = htmlspecialchars($_GET['id']);
+$userId = $_GET['id'];
 $posts = Post::getPostsFromUser($userId);
 $info = Post::getUserInfo($userId);
 $user = new User();
