@@ -23,11 +23,12 @@ p{
     text-align: center;
 }
 
+
 .posts--list{
-  display: inline-block;
-  width: 33%;
-  height: 650px;
-  vertical-align: top;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 /* navigatie */
