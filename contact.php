@@ -12,7 +12,6 @@
 <body>
 <?php include_once 'nav.inc.php'; ?>
 
-<img src="images/logo.png" alt="Logo Tripophobia" class="logo">
 
 <h2>Get <br> in touch</h2>
 
