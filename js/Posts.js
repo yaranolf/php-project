@@ -1,11 +1,11 @@
 $(function(){
     $(document).on('click','.loadmore',function(){
-       // var $this = $(this);
+       
         var startpos = Number($('#start').val())
-       // var endpos = Number($('#end').val());
+       
 
        
-       var num = startpos + 2;
+       var num = startpos + 3;
        var n = num.toString();
          $('input[name=start]').val(n);
          

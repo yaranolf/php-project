@@ -20,7 +20,7 @@
         $html .= '<div><a href="#" data-id="'.$post->id.'" class="like ">Like</a> <span class="likes">'.$post->getLikes().'</span> people like this </div>';
         $html .= '<div><a href="#" class="report " data-id="'.$post->id.'" >Inappropriate</a> <span class="inappropriate">'.implode($post->getNrOfInappropriate()).'</span> people report this </div>';
         $html .= '</article>';
-        $html .= '</section';
+        $html .= '</section>';
 
         endforeach;
 

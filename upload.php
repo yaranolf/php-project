@@ -63,6 +63,21 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         <input type="submit" value="Upload" name="Submit1" class="btn btn--primary"> <br/>
         
     </form>
+    <script>
+    function getLocation(){
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(storePosition);
+        } 
+        
+    }
+    function storePosition(position) {
+            var x = document.getElementById("lat");
+            var y = document.getElementById("long");
+            x.value = position.coords.latitude;
+            y.value = position.coords.longitude;
+        }
+getLocation();
+    </script>
     
 </body>
 </html>
