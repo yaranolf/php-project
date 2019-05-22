@@ -181,6 +181,40 @@
             return $result;
         }
 
+        public function getData($id)
+        {
+            $pdo = Db::getInstance();
+            $statement = $pdo->prepare("SELECT * FROM users WHERE id = $id");
+            $statement->execute();
+            $data = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->firstName = $data['firstname'];
+            $this->lastName = $data['lastname'];
+            $this->email = $data['email'];
+            $this->userName = $data['username'];
+        }
+
+        public function updateWithPassword($id)
+        {
+            // connectie
+            $conn = Db::getInstance();
+
+            // query (sql injectie!!!)
+            $statement = $conn->prepare('UPDATE users SET firstname = :firstname, lastname = :lastname, username = :username, email = :email, password = :password  WHERE id = :id');
+            $statement->bindParam(':firstname', $this->firstName);
+            $statement->bindParam(':lastname', $this->lastName);
+            $statement->bindParam(':username', $this->userName);
+            $statement->bindParam(':email', $this->email);
+            $statement->bindParam(':id', intval($id));
+            $statement->bindParam(':password', $password);
+
+            $password = password_hash($this->password, PASSWORD_BCRYPT);
+
+            // execute
+            $result = $statement->execute();
+
+            return $result;
+        }
+
         public function login($email, $password)
         {
             $conn = Db::getInstance();

@@ -52,20 +52,27 @@ if (!empty($_POST)) {
         $user->setLastName($lastname);
         $user->setUserName($username);
         $user->setEmail($email);
-        $result = $user->update($id);
-        echo 'database geupdated';
-        // echo $result;
+        if (empty($password)) {
+            $result = $user->update($id);
+            echo 'database geupdated';
+        } else {
+            $security = new Security();
+            $security->password = $password;
+            if ($security->passwordIsStrongEnough()) {
+                $user->setPassword($password);
+                $result = $user->updateWithPassword($id);
+            } else {
+                $passwordError = 'Your passwords are not secure or do not match.';
+            }
+        }
     }
 } else {
-    $pdo = Db::getInstance();
-    $statement = $pdo->prepare("SELECT * FROM users WHERE id = $id");
-    $statement->execute();
-    $data = $statement->fetch(PDO::FETCH_ASSOC);
-
-    $firstname = $data['firstname'];
-    $lastname = $data['lastname'];
-    $email = $data['email'];
-    $username = $data['username'];
+    $user = new User();
+    $result = $user->getData($id);
+    $firstname = $user->getFirstName();
+    $lastname = $user->getLastName();
+    $email = $user->getEmail();
+    $username = $user->getUserName();
 }
 
 ?><!DOCTYPE html>
