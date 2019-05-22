@@ -188,13 +188,12 @@ class Post
     public function savePost()
     {
         $conn = Db::getInstance();
-        $statement = $conn->prepare('INSERT INTO images (user_name, img_description, file_path, date_created, user_id, longitude, latitude) values (:user_name, :imgdescription, :file_path, NOW(), :userid, :long, :lat)');
+        $statement = $conn->prepare('INSERT INTO images (img_description, file_path, date_created, user_id, longitude, latitude) values (:imgdescription, :file_path, NOW(), :userid, :long, :lat)');
         $statement->bindValue(':imgdescription', $this->getImg_description());
         $statement->bindValue(':file_path', $this->getFile_path());
         $statement->bindValue(':userid', $this->getUser_id());
         $statement->bindValue(':long', $this->getlong());
         $statement->bindValue(':lat', $this->getlat());
-        $statement->bindValue(':user_name', $this->getUser_name());
 
         return $statement->execute();
     }
@@ -221,7 +220,7 @@ class Post
     public static function getAll()
     {
         $conn = Db::getInstance();
-        $result = $conn->query('SELECT * FROM images');
+        $result = $conn->query('SELECT *, users.id AS userid FROM images, users WHERE images.user_id = users.id');
 
         return $result->fetchAll(PDO::FETCH_CLASS, __CLASS__);
     }

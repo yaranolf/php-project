@@ -3,7 +3,6 @@ include_once 'bootstrap.php';
 include 'classes/Like.php';
 
 $posts = Post::getAll();
-$user = User::getUser();
 
 $friendList = $_SESSION['userid'];
 $friends = Friends::getFriends($_SESSION['userid']);
@@ -47,7 +46,7 @@ $posts = Post::getAllFromFriends($friendList, 0, 2);
 
   <section class="posts--list">
     <article class="center-div-image">
-      <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username position--left"><?php echo $post->user_name; ?></h3></a>
+      <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username position--left"><?php echo $post->username; ?></h3></a>
       <p class="position--right date"><?php echo $convertedDate = Post::convertTime($time_ago); ?></p>
       <p class="position--right location">(<?php echo $post->latitude.','.$post->longitude; ?>)</p>
       <a href="detailPost.php?id=<?php echo $post->getId(); ?>"><img src=" <?php echo 'uploads/'.$post->file_path; ?> "  width=300 alt=""> </a>

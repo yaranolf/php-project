@@ -1,10 +1,11 @@
 <?php
 include_once 'bootstrap.php';
-include 'classes/Like.php';
 
 $userId = htmlspecialchars($_GET['id']);
 $posts = Post::getPostsFromUser($userId);
 $info = Post::getUserInfo($userId);
+$user = new User();
+$user->setId($userId);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -20,7 +21,7 @@ $info = Post::getUserInfo($userId);
   
 <?php include_once 'nav.inc.php'; ?>
 
-<h2 class="username"><?php echo $info['user_name']; ?></h2>
+<h2 class="username"><?php echo $user->getName()['username']; ?></h2>
 <?php
             //display buttons adding as friend
             if (Friends::renderFriendShip($_SESSION['uid'], $userId, 'isThereRequestPending') == 1) {

@@ -135,7 +135,7 @@
         public static function getUser()
         {
             $conn = Db::getInstance();
-            $result = $conn->query('SELECT users.username FROM users, images where images.user_id = users.id');
+            $result = $conn->query('SELECT users.username FROM users, images where users.id = images.user_id');
 
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
@@ -225,7 +225,7 @@
         public function getName()
         {
             $conn = Db::getInstance();
-            $result = $conn->query('SELECT username FROM users where id='.$this->id);
+            $result = $conn->query('SELECT username FROM users WHERE id='.$this->id);
 
             return $result->fetch(PDO::FETCH_ASSOC);
         }

@@ -33,14 +33,16 @@ $username = $user->getName();
 
 <h2>Your <br> inspiration</h2>
 
+<section class="posts--list">
     <article class="center-div-image">
-        <a href="profileFriends.php?id=<?php echo $post['user_id']; ?>"> <h3 class="username"><?php echo htmlspecialchars($post['user_name']); ?></h3></a>
+    <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username position--left"><?php echo $post->username; ?></h3></a>
         <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" width=300 alt="">
         <p><?php echo htmlspecialchars($post['img_description']); ?></p>
         <p>(<?php echo $lat.','.$long; ?>) </p>
         <p><?php; // echo $post['date_created'];?></p>
         <div class="center-div"><a href="#" class="like btn--secondary" data-id="<?php echo $post['id']; ?>" >Like</a> <span class='likes'><?php echo $like; ?></span> people like this </div>
     </article>
+    <section class="posts--list">
 
     <!--comments posten-->
     <p>Comments</p>

@@ -2,8 +2,6 @@
 include_once 'bootstrap.php';
 
 $userId = $_SESSION['userid'];
-$user = new User();
-$user_name = $user->getUserName();
 
 if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
     $targetDir = 'uploads/';
