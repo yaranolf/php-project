@@ -21,6 +21,7 @@ if (isset($_POST['Submit1']) && !empty($_POST['description'])) {
         $post->setlong($long);
         $post->setlat($lat);
         $post->savePost();
+        header('Location: index.php');
     }
 } else {
     $description = 'Please add a description';
