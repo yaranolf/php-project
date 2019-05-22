@@ -19,6 +19,8 @@
 
         if (mail($recipient, $subject, $email_content, $email_headers)) {
             //send
+            echo 'Thank You! Your message has been sent.';
+            header('Location: ../ajax/contact.php');
         }
     } else {
         echo $error = 'Please try again';
