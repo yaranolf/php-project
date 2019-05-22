@@ -15,7 +15,7 @@ $long = $post['longitude'];
 
 //linken aan user en username opvragen
 $user = new User();
-$user->setId($_SESSION['userid']);
+$userId = $user->setId($_SESSION['userid']);
 $username = $user->getName();
 
 ?><!DOCTYPE html>
@@ -35,7 +35,7 @@ $username = $user->getName();
 
 <section class="posts--list">
     <article class="center-div-image">
-    <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username position--left"><?php echo $post->username; ?></h3></a>
+    <a href="profileFriends.php?id=<?php echo $post->user_id; ?>"> <h3 class="username position--left"><?php echo $user->getName()['username']; ?></h3></a>
         <img src="<?php echo 'uploads/'.htmlspecialchars($post['file_path']); ?>" width=300 alt="">
         <p><?php echo htmlspecialchars($post['img_description']); ?></p>
         <p>(<?php echo $lat.','.$long; ?>) </p>
