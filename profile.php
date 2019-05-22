@@ -44,8 +44,6 @@ if (!empty($_POST)) {
         $usernameError = 'Please enter Username';
         $valid = false;
     }
-    if (!empty($password)) {
-    }
 
     // update data
     if ($valid) {
@@ -69,15 +67,12 @@ if (!empty($_POST)) {
         }
     }
 } else {
-    $pdo = Db::getInstance();
-    $statement = $pdo->prepare("SELECT * FROM users WHERE id = $id");
-    $statement->execute();
-    $data = $statement->fetch(PDO::FETCH_ASSOC);
-
-    $firstname = $data['firstname'];
-    $lastname = $data['lastname'];
-    $email = $data['email'];
-    $username = $data['username'];
+    $user = new User();
+    $result = $user->getData($id);
+    $firstname = $user->getFirstName();
+    $lastname = $user->getLastName();
+    $email = $user->getEmail();
+    $username = $user->getUserName();
 }
 
 ?><!DOCTYPE html>

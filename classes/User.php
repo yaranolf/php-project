@@ -181,6 +181,18 @@
             return $result;
         }
 
+        public function getData($id)
+        {
+            $pdo = Db::getInstance();
+            $statement = $pdo->prepare("SELECT * FROM users WHERE id = $id");
+            $statement->execute();
+            $data = $statement->fetch(PDO::FETCH_ASSOC);
+            $this->firstName = $data['firstname'];
+            $this->lastName = $data['lastname'];
+            $this->email = $data['email'];
+            $this->userName = $data['username'];
+        }
+
         public function updateWithPassword($id)
         {
             // connectie
