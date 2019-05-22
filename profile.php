@@ -44,6 +44,8 @@ if (!empty($_POST)) {
         $usernameError = 'Please enter Username';
         $valid = false;
     }
+    if (!empty($password)) {
+    }
 
     // update data
     if ($valid) {
@@ -52,9 +54,19 @@ if (!empty($_POST)) {
         $user->setLastName($lastname);
         $user->setUserName($username);
         $user->setEmail($email);
-        $result = $user->update($id);
-        echo 'database geupdated';
-        // echo $result;
+        if (empty($password)) {
+            $result = $user->update($id);
+            echo 'database geupdated';
+        } else {
+            $security = new Security();
+            $security->password = $password;
+            if ($security->passwordIsStrongEnough()) {
+                $user->setPassword($password);
+                $result = $user->updateWithPassword($id);
+            } else {
+                $passwordError = 'Your passwords are not secure or do not match.';
+            }
+        }
     }
 } else {
     $pdo = Db::getInstance();
